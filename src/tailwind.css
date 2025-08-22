@@ -1,0 +1,15 @@
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+@layer base {
+  :root {
+    --bg1: #fafaf7;
+    --bg2: #f7f2ec;
+    --ink: #202527;
+    --ink-light: #6d767a;
+  }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-bg1 text-ink font-sans; }
+  .section-title { @apply font-display text-3xl font-semibold text-ink; }
+}
+
