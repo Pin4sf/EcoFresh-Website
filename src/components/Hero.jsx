@@ -16,7 +16,7 @@ export default function Hero() {
             playsInline
             poster="/assets/hero-poster.svg"
           >
-            <source src="https://res.cloudinary.com/dbwmxxxr2/video/upload/v1755868036/Organic_Material_to_PHA_Pellets_online-video-cutter.com_wb13vg.mp4" type="video/mp4" />
+            <source src="public\assets\Organic_Material_to_PHA_Pellets (online-video-cutter.com).mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-ink/50"></div>
         </div>
