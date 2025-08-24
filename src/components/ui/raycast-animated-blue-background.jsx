@@ -33,18 +33,23 @@ export const RaycastAnimatedBackground = ({ className, children }) => {
 
   return (
     <div className={cn("absolute inset-0 w-full h-full min-h-full", className)}>
-      <UnicornScene 
-        production={true} 
-        projectId="ed7SJMvTJEVxfqzypOOQ" 
-        width={width} 
-        height={height} 
-        style={{
-          width: '100%',
-          height: '100%',
-          minHeight: '100%',
-          objectFit: 'cover'
-        }}
-      />
+      {/* Beige background with dark teal rays overlay */}
+      <div className="absolute inset-0 bg-bg1"></div>
+      
+      {/* Dark teal rays effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary2/20 to-primary2/40"></div>
+      
+      {/* Additional ray effects */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary2/15 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-primary2/10 to-transparent"></div>
+      
+      {/* Subtle animated rays */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-primary2 to-transparent animate-pulse"></div>
+        <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-primary2 to-transparent animate-pulse delay-1000"></div>
+        <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-primary2 to-transparent animate-pulse delay-2000"></div>
+      </div>
+      
       {children && (
         <div className="absolute inset-0 z-10">
           {children}

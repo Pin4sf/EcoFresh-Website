@@ -8,7 +8,7 @@ export function EcoFormSimpleBorder({
 }) {
   return (
     <motion.span
-      className={`bg-gradient-to-r ${gradientColors.join(" ")} bg-clip-text text-transparent bg-[length:200%_100%] font-bold text-5xl md:text-6xl lg:text-8xl cursor-pointer transition-all duration-300 hover:scale-105 hover:drop-shadow-lg font-display ${className}`}
+      className={`bg-gradient-to-r ${gradientColors.join(" ")} bg-clip-text text-transparent bg-[length:200%_100%] font-bold text-5xl md:text-6xl lg:text-8xl cursor-pointer transition-all duration-300 hover:scale-105 hover:drop-shadow-lg font-sans ${className}`}
       animate={{
         backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
       }}

@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Alice", serif;
-    --font-display: "Sacramento", cursive;
-    --font-cursive: "Sacramento", cursive;
+    --font-sans: "Poiret One", cursive;
+    --font-display: "Poiret One", cursive;
+    --font-cursive: "Poiret One", cursive;
 
-    --color-ink: #06202b;
-    --color-ink-light: #077a7d;
-    --color-bg1: #f5eedd;
-    --color-bg2: #f5eedd;
-    --color-primary1: #7ae2cf;
-    --color-primary2: #077a7d;
-    --color-secondary1: #7ae2cf;
-    --color-secondary2: #077a7d;
-    --color-accent: #7ae2cf;
-    --color-seafoam: #7ae2cf;
-    --color-lilac: #077a7d;
+    --color-ink: #124170;
+    --color-ink-light: #26667f;
+    --color-bg1: #ddf4e7;
+    --color-bg2: #ddf4e7;
+    --color-primary1: #67c090;
+    --color-primary2: #26667f;
+    --color-secondary1: #67c090;
+    --color-secondary2: #26667f;
+    --color-accent: #67c090;
+    --color-seafoam: #67c090;
+    --color-lilac: #26667f;
 }
 
 @layer base {

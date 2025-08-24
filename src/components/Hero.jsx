@@ -2,28 +2,20 @@ import { Button } from './ui/button'
 import { WaveAnimation } from './ui/wave-animation'
 import { AnimatedGradientText } from './ui/animated-gradient-text'
 import { EcoFormSimpleBorder } from './ui/ecoform-simple-border'
+import AnimatedShaderBackground from './ui/animated-shader-background'
 
 export default function Hero() {
   return (
     <>
-      <section data-reveal className="snap-section relative min-h-dvh flex items-center justify-center px-4 pt-28 pb-8 overflow-hidden bg-gradient-to-br from-bg1 via-primary1/20 to-primary2/20" id="hero">
+      <section data-reveal className="snap-section relative flex items-center justify-center px-4 pt-28 pb-8 overflow-hidden bg-[#DDF4E7]" id="hero">
         <div className="absolute inset-0 -z-10">
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/assets/hero-poster.svg"
-          >
-            <source src="public\assets\Organic_Material_to_PHA_Pellets (online-video-cutter.com).mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-ink/50"></div>
+          <AnimatedShaderBackground className="opacity-100" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-ink/40"></div>
         </div>
         
         <div className="relative z-10 max-w-5xl text-center">
           <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight text-white">
-            AI-driven <EcoFormSimpleBorder gradientColors={["from-primary1", "via-primary2", "to-ink"]}>EcoForm®</EcoFormSimpleBorder> for 
+            AI-driven <AnimatedGradientText gradientColors={["from-white", "via-[#DDF4E7]", "to-[#A8D8E5]"]} className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]">EcoForm®</AnimatedGradientText> for 
             <span className="block">
               <span className="text-6xl md:text-8xl lg:text-9xl text-white">
                 plastic-free tomorrow
@@ -47,11 +39,11 @@ export default function Hero() {
         {/* Wave Animation Background */}
         <div className="absolute inset-0 opacity-25">
           <WaveAnimation 
-            width={2800}
-            height={1100}
+            width={2000}
+            height={1000}
             waveSpeed={1.5}
             waveIntensity={30} 
-            particleColor="#F5EEDD"
+            particleColor="#DDF4E7"
             pointSize={2.5}
             gridDistance={4}
             className="w-full h-full"

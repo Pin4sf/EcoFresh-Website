@@ -22,7 +22,7 @@ function MetricCard({ value, unit, label, description, aria }) {
   useCountUp(ref, value)
   return (
     <div data-reveal className="bg-white/80 backdrop-blur border border-white/30 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1" aria-label={aria}>
-      <div ref={ref} className="font-display text-5xl font-bold text-ink mb-2">0</div>
+      <div ref={ref} className="font-sans text-5xl font-bold text-ink mb-2">0</div>
       <div className="text-primary2 font-semibold text-lg mb-3">{unit}</div>
       <div className="text-ink font-semibold mb-2 text-lg">{label}</div>
       <div className="text-ink-light text-sm mb-4">{description}</div>
@@ -45,7 +45,7 @@ export default function Metrics() {
         >
           <source src="/assets/Plastic_Bag_s_Ominous_Grace (online-video-cutter.com).mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-ink/60"></div>
       </div>
       
       {/* Subtle background elements */}
@@ -56,7 +56,7 @@ export default function Metrics() {
       
       <div className="container mx-auto max-w-[1200px] px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="font-display text-3xl font-semibold mb-4 text-white">The Scale of the Opportunity</h2>
+          <h2 className="font-sans text-3xl font-semibold mb-4 text-white">The Scale of the Opportunity</h2>
           <p className="text-white/90 text-lg max-w-3xl mx-auto">
             Our technology addresses massive global challenges while creating unprecedented market opportunities
           </p>
