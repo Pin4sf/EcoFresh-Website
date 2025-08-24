@@ -1,4 +1,4 @@
-import NeonRaymarcher from './ui/neon-raymarcher'
+import { WaveAnimation } from './ui/wave-animation'
 
 export default function TechTiles() {
   const tiles = [
@@ -25,18 +25,46 @@ export default function TechTiles() {
   ]
   return (
     <section className="section-full min-h-screen py-10 sm:py-12 relative overflow-hidden flex flex-col" id="technology">
-      {/* Mobile Background - Updated to match new theme */}
-      <div className="absolute inset-0 -z-20 bg-[#1F3F4B] sm:hidden"></div>
+      {/* Gradient Background Layer (darker) */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-br from-[#124170] via-[#0f2f3a] to-[#26667F]"></div>
       
-      {/* Raymarcher Background - Hidden on mobile for performance */}
-      <div className="hidden sm:block">
-        <NeonRaymarcher className="absolute inset-0 -z-10" />
+      {/* Wave Animation Background - Hidden on mobile for performance */}
+      <div className="hidden sm:block absolute inset-0 -z-10 opacity-40">
+        <WaveAnimation 
+          width={2200}
+          height={1100}
+          waveSpeed={1.5}
+          waveIntensity={30}
+          particleColor="#DDF4E7"
+          pointSize={2.5}
+          gridDistance={4}
+          className="w-full h-full"
+        />
+      </div>
+
+      {/* Subtle dark overlay for readability */}
+      <div className="absolute inset-0 z-0 bg-black/25"></div>
+
+      {/* Floating Bubbles */}
+      <div className="absolute inset-0 z-0 opacity-25 pointer-events-none">
+        {/* Large bubbles */}
+        <div className="absolute top-16 left-10 w-24 h-24 bg-white/10 rounded-full blur-md animate-float-slow"></div>
+        <div className="absolute bottom-16 right-14 w-20 h-20 bg-white/10 rounded-full blur-md animate-float-medium"></div>
+        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-white/10 rounded-full blur-md animate-float-fast"></div>
+        {/* Medium bubbles */}
+        <div className="absolute top-1/4 left-1/3 w-12 h-12 bg-white/10 rounded-full blur-sm animate-float-medium-delayed"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-14 h-14 bg-white/10 rounded-full blur-sm animate-float-slow-delayed"></div>
+        <div className="absolute top-2/3 right-1/5 w-10 h-10 bg-white/10 rounded-full blur-sm animate-float-fast-delayed"></div>
+        {/* Small bubbles */}
+        <div className="absolute top-10 right-12 w-8 h-8 bg-white/10 rounded-full blur-[1px] animate-float-slow"></div>
+        <div className="absolute bottom-24 left-1/2 w-6 h-6 bg-white/10 rounded-full blur-[1px] animate-float-medium"></div>
+        <div className="absolute top-1/2 left-16 w-5 h-5 bg-white/10 rounded-full blur-[1px] animate-float-fast"></div>
       </div>
       
       {/* Content Overlay */}
-      <div className="mx-auto max-w-[1200px] px-4 relative z-10 flex-1 flex flex-col text-[#124170]">
-        <h2 className="section-title text-center font-sans text-2xl sm:text-3xl font-semibold mb-3 text-[#124170]">The Tech Moat — 5 Innovations</h2>
-        <p className="text-center text-[#124170]/90 text-base sm:text-lg mb-6 sm:mb-8 max-w-3xl mx-auto">
+      <div className="mx-auto max-w-[1200px] px-4 relative z-10 flex-1 flex flex-col text-white">
+        <h2 className="section-title text-center font-sans text-2xl sm:text-3xl font-semibold mb-3 text-white">The Tech Moat — 5 Innovations</h2>
+        <p className="text-center text-white/90 text-base sm:text-lg mb-6 sm:mb-8 max-w-3xl mx-auto">
           Our proprietary technology stack creates multiple competitive moats through integrated AI, biotechnology, and circular design.
         </p>
         
@@ -76,13 +104,13 @@ export default function TechTiles() {
                 {/* Content */}
                 <div className="relative h-full rounded-3xl p-3 sm:p-4 lg:p-5 flex flex-col justify-between">
                   <div className="text-left">
-                    <h4 className="text-lg sm:text-xl lg:text-2xl xl:text-2xl font-extrabold mb-2 text-[#124170] tracking-tight leading-tight group-hover:text-[#124170] transition-colors duration-500">{t.title}</h4>
-                    <p className="text-[#124170]/90 text-sm sm:text-base lg:text-base font-medium leading-relaxed group-hover:text-[#124170] transition-colors duration-500">{t.description}</p>
+                    <h4 className="text-lg sm:text-xl lg:text-2xl xl:text-2xl font-extrabold mb-2 text-white tracking-tight leading-tight group-hover:text-white transition-colors duration-500">{t.title}</h4>
+                    <p className="text-white/90 text-sm sm:text-base lg:text-base font-medium leading-relaxed group-hover:text-white transition-colors duration-500">{t.description}</p>
                   </div>
                   
                   {/* Bottom indicator with enhanced styling */}
                   <div className="mt-2 pt-2 border-t border-white/20 group-hover:border-white/40 transition-colors duration-500">
-                    <div className="inline-block bg-white/20 text-[#124170] text-sm font-semibold px-3 py-1.5 rounded-full border border-white/30 group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-500 group-hover:scale-105">
+                    <div className="inline-block bg-white/20 text-white text-sm font-semibold px-3 py-1.5 rounded-full border border-white/30 group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-500 group-hover:scale-105">
                       Innovation {i + 1}
                     </div>
                   </div>

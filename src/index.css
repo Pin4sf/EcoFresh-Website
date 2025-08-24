@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Poiret One", cursive;
-    --font-display: "Poiret One", cursive;
-    --font-cursive: "Poiret One", cursive;
+    --font-sans: "Lexend", cursive;
+    --font-display: "Lexend", cursive;
+    --font-cursive: "Lexend", cursive;
 
     --color-ink: #124170;
     --color-ink-light: #26667f;

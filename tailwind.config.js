@@ -20,8 +20,8 @@ export default {
         lilac: '#60a5fa',
       },
       fontFamily: {
-        display: ['Playfair Display', 'serif'],
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

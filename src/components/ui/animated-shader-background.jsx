@@ -231,8 +231,11 @@ void main(){gl_Position=position;}`;
     const canvas = canvasRef.current;
     const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
     
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
+    // Match canvas buffer to actual rendered size so it can span both hero sections
+    const displayWidth = Math.max(1, canvas.clientWidth);
+    const displayHeight = Math.max(1, canvas.clientHeight);
+    canvas.width = displayWidth * dpr;
+    canvas.height = displayHeight * dpr;
     
     if (rendererRef.current) {
       rendererRef.current.updateScale(dpr);
@@ -293,7 +296,7 @@ const AnimatedShaderBackground = ({ className = "" }) => {
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 w-full h-full object-contain touch-none ${className}`}
+      className={`absolute inset-0 w-full h-full object-cover touch-none ${className}`}
       style={{ background: '#DDF4E7' }}
     />
   );
