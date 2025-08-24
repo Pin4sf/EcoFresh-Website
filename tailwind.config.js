@@ -25,7 +25,15 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      addUtilities({
+        '.bg-gradient-radial': {
+          'background': 'radial-gradient(circle, var(--tw-gradient-stops))',
+        },
+      })
+    }
+  ],
 }
 
 

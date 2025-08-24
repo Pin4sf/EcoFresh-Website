@@ -33,7 +33,22 @@ function MetricCard({ value, unit, label, description, aria }) {
 
 export default function Metrics() {
   return (
-    <section className="py-20 bg-gradient-to-br from-seafoam/30 to-lilac/30 relative overflow-hidden" id="metrics">
+    <section className="snap-section py-20 relative overflow-hidden" id="metrics">
+      {/* Background Video */}
+      <div className="absolute inset-0 -z-10">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/assets/Plastic_Bag_s_Ominous_Grace (online-video-cutter.com).mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/60"></div>
+      </div>
+      
+      {/* Subtle background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-1/4 w-32 h-32 bg-primary2 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 right-1/4 w-40 h-40 bg-secondary2 rounded-full blur-3xl"></div>
@@ -41,8 +56,8 @@ export default function Metrics() {
       
       <div className="container mx-auto max-w-[1200px] px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="font-display text-3xl font-semibold mb-4">The Scale of the Opportunity</h2>
-          <p className="text-ink-light text-lg max-w-3xl mx-auto">
+          <h2 className="font-display text-3xl font-semibold mb-4 text-white">The Scale of the Opportunity</h2>
+          <p className="text-white/90 text-lg max-w-3xl mx-auto">
             Our technology addresses massive global challenges while creating unprecedented market opportunities
           </p>
         </div>
