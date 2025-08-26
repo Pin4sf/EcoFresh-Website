@@ -13,7 +13,7 @@ export default function RevenueStreams() {
         <h2 className="section-title text-center font-display text-3xl font-semibold mb-10">Revenue Streams</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {streams.map((s) => (
-            <div key={s.key} data-reveal className="bg-white/60 backdrop-blur border border-white/30 rounded-2xl p-8 text-center shadow transition hover:-translate-y-2">
+            <div key={s.key} data-reveal className="card-tilt bg-white/60 backdrop-blur border border-white/30 rounded-2xl p-8 text-center shadow transition will-change-transform">
               <h3 className="text-xl font-bold mb-2">{s.title}</h3>
               <p className="text-ink-light mb-2">{s.target}</p>
               <p className="text-primary2 font-semibold mb-4">{s.model}</p>

@@ -4,15 +4,15 @@ export default function Narrative() {
       <div className="mx-auto max-w-[1200px] px-4 grid md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
           <div>
-            <h3 className="text-xl font-semibold mb-2">What We Do</h3>
+            <h3 className="text-xl font-semibold mb-2" data-split>What We Do</h3>
             <p className="text-ink-light">We transform any organic waste into high-value PHA bioplastics using our proprietary AI-governed bioprocessing platform. Our decentralized approach eliminates raw material costs while ensuring consistent quality.</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-2">Why It Matters</h3>
+            <h3 className="text-xl font-semibold mb-2" data-split>Why It Matters</h3>
             <p className="text-ink-light">Current bioplastic production relies on expensive virgin feedstocks and centralized facilities. We unlock infinite, free feedstock while reducing environmental impact through distributed processing.</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-2">Why Now</h3>
+            <h3 className="text-xl font-semibold mb-2" data-split>Why Now</h3>
             <p className="text-ink-light">Regulatory pressure on single-use plastics, AI breakthroughs in bioprocessing, and growing demand for sustainable materials create a perfect convergence for our technology.</p>
           </div>
         </div>

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 export function EcoFormSimpleBorder({ 
   children = "EcoForm®", 
@@ -6,24 +7,27 @@ export function EcoFormSimpleBorder({
   gradientColors = ["from-primary1", "via-primary2", "to-ink"],
   animationDuration = 4 
 }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+    const tween = gsap.fromTo(
+      el,
+      { backgroundPosition: "0% 50%" },
+      { backgroundPosition: "100% 50%", ease: "none", duration: animationDuration, repeat: -1, yoyo: true }
+    )
+    return () => tween.kill()
+  }, [animationDuration])
+
   return (
-    <motion.span
+    <span
+      ref={ref}
       className={`bg-gradient-to-r ${gradientColors.join(" ")} bg-clip-text text-transparent bg-[length:200%_100%] font-bold text-5xl md:text-6xl lg:text-8xl cursor-pointer transition-all duration-300 hover:scale-105 hover:drop-shadow-lg font-sans ${className}`}
-      animate={{
-        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-      }}
-      transition={{
-        duration: animationDuration,
-        repeat: Infinity,
-        ease: "linear"
-      }}
-      whileHover={{
-        scale: 1.05,
-        filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))"
-      }}
     >
       {children}
-    </motion.span>
+    </span>
   );
 }
 

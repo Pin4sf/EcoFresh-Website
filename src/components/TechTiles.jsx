@@ -31,8 +31,8 @@ export default function TechTiles() {
       {/* Wave Animation Background - Hidden on mobile for performance */}
       <div className="hidden sm:block absolute inset-0 -z-10 opacity-40">
         <WaveAnimation 
-          width={2200}
-          height={1100}
+          width={2400}
+          height={950}
           waveSpeed={1.5}
           waveIntensity={30}
           particleColor="#DDF4E7"

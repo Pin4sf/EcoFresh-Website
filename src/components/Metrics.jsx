@@ -1,19 +1,25 @@
 import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-function useCountUp(ref, target, duration = 1200, suffix = '') {
+gsap.registerPlugin(ScrollTrigger)
+
+function useCountUp(ref, target, duration = 1.2, suffix = '') {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    let startTs = 0
-    const start = 0
-    function step(ts) {
-      if (!startTs) startTs = ts
-      const p = Math.min(1, (ts - startTs) / duration)
-      const value = Math.floor(start + (target - start) * p)
-      el.textContent = `${value}${suffix}`
-      if (p < 1) requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
+    const obj = { value: 0 }
+    const tween = gsap.to(obj, {
+      value: target,
+      duration,
+      ease: 'power1.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      onUpdate: () => {
+        const value = Math.floor(obj.value)
+        el.textContent = `${value}${suffix}`
+      },
+    })
+    return () => tween.kill()
   }, [ref, target, duration, suffix])
 }
 

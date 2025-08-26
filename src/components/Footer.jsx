@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1200px] px-4 relative z-10">
         {/* Main Footer Content - Centered Large Text */}
         <div className="text-center mb-16">
-          <div className="text-6xl md:text-8xl font-bold text-white/90 mb-8 tracking-tight">
+          <div className="text-6xl md:text-8xl font-bold text-white/90 mb-8 tracking-tight" data-split>
             EcoFresh
           </div>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">

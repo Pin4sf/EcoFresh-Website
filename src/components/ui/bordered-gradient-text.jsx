@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 export function BorderedGradientText({ 
   children, 
@@ -7,39 +8,44 @@ export function BorderedGradientText({
   borderWidth = "2px",
   animationDuration = 3 
 }) {
+  const borderRef = useRef(null)
+  const textRef = useRef(null)
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
+    const borderTween = gsap.fromTo(
+      borderRef.current,
+      { backgroundPosition: "0% 50%" },
+      { backgroundPosition: "100% 50%", ease: "none", duration: animationDuration, repeat: -1, yoyo: true }
+    )
+    const textTween = gsap.fromTo(
+      textRef.current,
+      { backgroundPosition: "0% 50%" },
+      { backgroundPosition: "100% 50%", ease: "none", duration: animationDuration, repeat: -1, yoyo: true }
+    )
+    return () => {
+      borderTween.kill()
+      textTween.kill()
+    }
+  }, [animationDuration])
+
   return (
     <div className="relative inline-block">
       {/* Animated border background */}
-      <motion.div
+      <span
+        ref={borderRef}
         className={`absolute inset-0 rounded-lg bg-gradient-to-r ${gradientColors.join(" ")} p-1`}
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-        }}
-        transition={{
-          duration: animationDuration,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        style={{
-          backgroundSize: "200% 100%"
-        }}
+        style={{ backgroundSize: "200% 100%" }}
       />
       
       {/* Text content */}
       <div className={`relative bg-black rounded-md px-3 py-1 ${className}`}>
-        <motion.span
+        <span
+          ref={textRef}
           className={`bg-gradient-to-r ${gradientColors.join(" ")} bg-clip-text text-transparent bg-[length:200%_100%] font-bold`}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-          }}
-          transition={{
-            duration: animationDuration,
-            repeat: Infinity,
-            ease: "linear"
-          }}
         >
           {children}
-        </motion.span>
+        </span>
       </div>
     </div>
   );

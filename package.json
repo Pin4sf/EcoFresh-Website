@@ -1,45 +1,44 @@
 {
-  "name": "ecofresh-home-react",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@radix-ui/react-dialog": "^1.1.15",
-    "@react-three/drei": "^10.7.4",
-    "@react-three/fiber": "^9.3.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.23.12",
-    "gsap": "^3.13.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "tailwindcss-animate": "^1.0.7",
-    "three": "^0.179.1",
-    "unicornstudio-react": "^1.4.29-1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@tailwindcss/postcss": "^4.1.12",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
-    "autoprefixer": "^10.4.21",
-    "class-variance-authority": "^0.7.1",
-    "eslint": "^9.33.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "lucide-react": "^0.540.0",
-    "postcss": "^8.5.6",
-    "radix-ui": "^1.4.3",
-    "react-router-dom": "^7.8.1",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12",
-    "vite": "^7.1.2"
-  }
+    "name": "ecofresh-home-react",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@radix-ui/react-dialog": "^1.1.15",
+        "@react-three/drei": "^10.7.4",
+        "@react-three/fiber": "^9.3.0",
+        "clsx": "^2.1.1",
+        "gsap": "^3.13.0",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "tailwindcss-animate": "^1.0.7",
+        "three": "^0.179.1",
+        "unicornstudio-react": "^1.4.29-1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.33.0",
+        "@tailwindcss/postcss": "^4.1.12",
+        "@types/react": "^19.1.10",
+        "@types/react-dom": "^19.1.7",
+        "@vitejs/plugin-react": "^5.0.0",
+        "autoprefixer": "^10.4.21",
+        "class-variance-authority": "^0.7.1",
+        "eslint": "^9.33.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.20",
+        "globals": "^16.3.0",
+        "lucide-react": "^0.540.0",
+        "postcss": "^8.5.6",
+        "radix-ui": "^1.4.3",
+        "react-router-dom": "^7.8.1",
+        "tailwind-merge": "^3.3.1",
+        "tailwindcss": "^4.1.12",
+        "vite": "^7.1.2"
+    }
 }
