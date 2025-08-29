@@ -63,4 +63,13 @@
     }
 
     /* Floating animations are handled via GSAP for performance and control */
+
+    /* Hide scrollbars utility */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 }

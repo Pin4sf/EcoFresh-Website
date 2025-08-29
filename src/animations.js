@@ -133,6 +133,40 @@ function initTimelineAnimations() {
   )
 }
 
+function initTimelineMarquee() {
+  const marquee = document.querySelector('#timeline [data-marquee]')
+  if (!marquee) return
+  const track = marquee.querySelector('[data-track]')
+  if (!track) return
+
+  // Arrow-only navigation using scrollTop on the container
+  const cards = Array.from(track.children)
+  if (cards.length === 0) return
+
+  function pxToNum(v) {
+    const n = parseFloat(v)
+    return Number.isNaN(n) ? 0 : n
+  }
+  const styles = getComputedStyle(track)
+  const gap = pxToNum(styles.rowGap || styles.gap)
+  const cardHeight = () => cards[0].getBoundingClientRect().height
+  const step = () => cardHeight() + gap
+
+  function go(delta) {
+    const target = marquee.scrollTop + delta * step()
+    gsap.to(marquee, {
+      scrollTop: target,
+      duration: 0.35,
+      ease: 'power2.out',
+    })
+  }
+
+  const prevBtn = document.getElementById('timeline-prev')
+  const nextBtn = document.getElementById('timeline-next')
+  prevBtn?.addEventListener('click', () => go(-1))
+  nextBtn?.addEventListener('click', () => go(1))
+}
+
 export function initSmoothScroll() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {

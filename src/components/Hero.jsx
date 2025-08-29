@@ -3,18 +3,23 @@ import NeonRaymarcher from './ui/neon-raymarcher'
 import { AnimatedGradientText } from './ui/animated-gradient-text'
 import { EcoFormSimpleBorder } from './ui/ecoform-simple-border'
 import { FluidBlob } from './ui/fluid-blob'
+import { FlickeringGrid } from './ui/flickering-grid-hero'
 
 export default function Hero() {
   return (
     <div className="relative">
-      {/* Continuous fluid blob background for entire hero */}
-      <div className="absolute inset-0 z-0 h-full">
-        <FluidBlob />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 pointer-events-none"></div>
+      {/* Background ONLY for first section: Fluid Blob */}
+      <div className="absolute inset-0 z-0 h-full pointer-events-none">
+        {/* First section overlay handled below; keep container for stacking */}
       </div>
 
       {/* Section 1: Headline and CTAs */}
       <section data-reveal className="snap-section relative flex items-center justify-center px-4 pt-28 pb-8 overflow-hidden" id="hero">
+        {/* Fluid blob background for section 1 */}
+        <div className="absolute inset-0 z-0 h-full">
+          <FluidBlob />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 pointer-events-none"></div>
+        </div>
         <div className="relative z-10 max-w-5xl text-center">
                       <h1 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold mb-12 md:mb-16 leading-tight text-white mix-blend-difference relative z-20">
               Envisioning the Future for 
@@ -24,10 +29,10 @@ export default function Hero() {
             </h1>
           
           <div className="flex flex-wrap items-center justify-center gap-5 md:gap-6 mb-4 md:mb-8">
-            <Button size="lg" asChild className="text-lg px-8 py-4 bg-white hover:bg-white/90 text-[#124170] border-0 shadow-md">
+            <Button variant="cta" size="lg" asChild className="text-lg px-8 py-4">
               <a href="#technology">Explore Technology</a>
             </Button>
-            <Button variant="outline" size="lg" asChild className="text-lg px-8 py-4 border-white text-[#124170] bg-white hover:bg-white/90">
+            <Button variant="cta" size="lg" asChild className="text-lg px-8 py-4">
               <a href="#investors">View Investor Deck</a>
             </Button>
           </div>
@@ -36,6 +41,19 @@ export default function Hero() {
 
       {/* Section 2: Heading aligned with canvas, cards row below */}
       <section className="snap-section py-20 text-white relative overflow-hidden">
+        {/* Flickering grid background for section 2 */}
+        <div className="absolute inset-0 -z-0">
+          {/* Continue FluidBlob base color into this section */}
+          <div className="absolute inset-0 -z-10 bg-[#26667F]/80" />
+          <FlickeringGrid
+            className="[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]"
+            color="7ADAA5"
+            maxOpacity={0.18}
+            flickerChance={0.12}
+            squareSize={3}
+            gridGap={6}
+          />
+        </div>
         
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">

@@ -17,10 +17,10 @@ export default function Navbar() {
             <a href="#investors" className="text-sm font-semibold text-[#124170] hover:text-[#0e3150] px-3 py-2 rounded-full">Investors</a>
           </nav>
           <div className="hidden md:flex gap-3">
-            <Button variant="outline" size="sm" asChild className="font-semibold bg-white text-[#124170] hover:bg-white/90">
+            <Button variant="cta" size="sm" asChild className="font-semibold">
               <a href="#investors">Investor Deck</a>
             </Button>
-            <Button size="sm" asChild className="font-semibold bg-white text-[#124170] hover:bg-white/90">
+            <Button variant="cta" size="sm" asChild className="font-semibold">
               <a href="mailto:investors@ecofresh.com?subject=Investor%20Intro%20Call&body=Hi%20EcoFresh%20Team%2C%0D%0A%0D%0AI%27d%20like%20to%20book%20a%2030-min%20intro%20call.%20Here%20are%20some%20time%20windows%3A%0D%0A-%20%0D%0A-%20%0D%0A%0D%0ARegards%2C%0D%0A">Book Investor Call</a>
             </Button>
           </div>

@@ -1,4 +1,5 @@
 import { Button } from './ui/button'
+import { FlickeringGrid } from './ui/flickering-grid-hero'
 
 export default function Policy() {
   const complianceStandards = [
@@ -25,8 +26,19 @@ export default function Policy() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-bg2 to-bg1" id="government">
-      <div className="mx-auto max-w-[1200px] px-4">
+    <section className="py-20 bg-gradient-to-br from-bg2 to-bg1 relative overflow-hidden" id="government">
+      {/* Flickering grid background */}
+      <div className="absolute inset-0 -z-0 pointer-events-none">
+        <FlickeringGrid
+          className="[mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
+          color="7ADAA5"
+          maxOpacity={0.12}
+          flickerChance={0.1}
+          squareSize={3}
+          gridGap={6}
+        />
+      </div>
+      <div className="mx-auto max-w-[1200px] px-4 relative z-10">
         <div className="bg-gradient-to-br from-primary2/20 to-secondary2/20 rounded-3xl p-8 lg:p-12 border border-primary1/20 shadow-xl">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Section: Main Policy Statement */}
@@ -37,7 +49,7 @@ export default function Policy() {
               <p className="text-ink-light text-lg mb-8 leading-relaxed">
                 Our technology directly addresses regulatory mandates for plastic waste reduction and circular economy initiatives. We work closely with environmental agencies to ensure compliance and maximize policy incentives.
               </p>
-              <Button size="lg" className="text-lg px-8 py-4">
+              <Button variant="cta" size="lg" className="text-lg px-8 py-4">
                 View Compliance Framework →
               </Button>
             </div>
