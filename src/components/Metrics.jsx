@@ -27,12 +27,37 @@ function MetricCard({ value, unit, label, description, aria }) {
   const ref = useRef(null)
   useCountUp(ref, value)
   return (
-    <div data-reveal className="bg-white/80 backdrop-blur border border-white/30 rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1" aria-label={aria}>
-      <div ref={ref} className="font-sans text-5xl font-bold text-ink mb-2">0</div>
-      <div className="text-primary2 font-semibold text-lg mb-3">{unit}</div>
-      <div className="text-ink font-semibold mb-2 text-lg">{label}</div>
-      <div className="text-ink-light text-sm mb-4">{description}</div>
-      <div className="inline-block bg-accent text-ink text-xs font-semibold px-3 py-1 rounded-full">Global Impact</div>
+    <div data-reveal className="group relative bg-white/90 backdrop-blur-xl border border-white/40 rounded-3xl p-8 text-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 overflow-hidden" aria-label={aria}>
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/60 to-white/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      {/* Subtle border glow */}
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary2/20 via-secondary2/20 to-primary1/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Number and Unit */}
+        <div className="mb-6">
+          <div ref={ref} className="font-display text-6xl font-bold bg-gradient-to-r from-primary1 to-secondary2 bg-clip-text text-transparent mb-2">0</div>
+          <div className="text-primary2 font-bold text-xl tracking-wide">{unit}</div>
+        </div>
+        
+        {/* Label */}
+        <div className="text-ink font-bold text-xl mb-4 leading-tight">{label}</div>
+        
+        {/* Description */}
+        <div className="text-ink-light text-sm leading-relaxed mb-6">{description}</div>
+        
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary1 to-secondary2 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+          <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+          Global Impact
+        </div>
+      </div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-primary2/20 to-secondary2/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute bottom-4 left-4 w-6 h-6 bg-gradient-to-tr from-primary1/20 to-secondary2/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
     </div>
   )
 }
@@ -49,7 +74,7 @@ export default function Metrics() {
           loop
           playsInline
         >
-          <source src="/assets/Plastic_Bag_s_Ominous_Grace (online-video-cutter.com).mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dbhmxxxr2/video/upload/v1756527297/Plastic_Bag_s_Ominous_Grace_ezczoc.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-ink/60"></div>
       </div>
@@ -61,9 +86,15 @@ export default function Metrics() {
       </div>
       
       <div className="container mx-auto max-w-[1200px] px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="font-sans text-3xl font-semibold mb-4 text-white">The Scale of the Opportunity</h2>
-          <p className="text-white/90 text-lg max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-6">
+            <div className="w-2 h-2 bg-primary2 rounded-full animate-pulse"></div>
+            <span className="text-white/90 text-sm font-medium tracking-wide">GLOBAL METRICS</span>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+            The Scale of the Opportunity
+          </h2>
+          <p className="text-white/80 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
             Our technology addresses massive global challenges while creating unprecedented market opportunities
           </p>
         </div>

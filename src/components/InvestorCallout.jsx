@@ -1,18 +1,19 @@
 import { Button } from './ui/button'
-import { FlickeringGrid } from './ui/flickering-grid-hero'
+import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
 export default function InvestorCallout() {
   return (
     <section data-reveal className="py-20 bg-ink text-bg1 relative overflow-hidden" id="investors">
-      {/* Flickering grid background */}
+      {/* Animated grid pattern background */}
       <div className="absolute inset-0 -z-0 pointer-events-none">
-        <FlickeringGrid
+        <AnimatedGridPattern
           className="[mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
-          color="7ADAA5"
-          maxOpacity={0.2}
-          flickerChance={0.12}
-          squareSize={3}
-          gridGap={6}
+          color="#7ADAA5"
+          maxOpacity={0.18}
+          numSquares={45}
+          duration={3}
+          width={40}
+          height={40}
         />
       </div>
       <div className="mx-auto max-w-[1200px] px-4 text-center relative z-10">

@@ -1,48 +1,44 @@
+import { AnimatedGridPattern } from './ui/animated-grid-pattern'
+
 export default function Footer() {
   return (
-    <footer className="bg-ink text-bg1 py-20 relative overflow-hidden" id="footer">
-      {/* Video Background */}
+    <footer className="bg-ink text-bg1 relative overflow-hidden" id="footer">
+      {/* Animated Grid Pattern Background */}
       <div className="absolute inset-0 -z-10">
-        <video 
-          className="absolute inset-0 w-full h-full object-cover" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/assets/Organic_Material_to_PHA_Pellets.mp4" type="video/mp4" />
-        </video>
-        {/* Overlay to ensure text visibility */}
-        <div className="absolute inset-0 bg-ink/85" aria-hidden="true"></div>
+        <AnimatedGridPattern
+          className="[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]"
+          color="#7ADAA5"
+          maxOpacity={0.15}
+          numSquares={40}
+          duration={3}
+          width={50}
+          height={50}
+        />
+        {/* Dark overlay to ensure text visibility */}
+        <div className="absolute inset-0 bg-ink/90" aria-hidden="true"></div>
       </div>
 
-      <div className="mx-auto max-w-[1200px] px-4 relative z-10">
-        {/* Main Footer Content - Centered Large Text */}
-        <div className="text-center mb-16">
-          <div className="text-6xl md:text-8xl font-bold text-white/90 mb-8 tracking-tight" data-split>
+      {/* Main Footer Content - EcoFresh Text Full Viewport */}
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="text-center w-full">
+          <div className="text-8xl md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-space-grotesk font-bold text-white/90 tracking-tight leading-none" data-split>
             EcoFresh
           </div>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            AI-driven EcoForm® for a plastic-free tomorrow
-          </p>
         </div>
+      </div>
 
-        {/* Simple Navigation Links */}
-        <div className="flex justify-center items-center gap-8 mb-12">
-          <a href="#technology" className="text-white/70 hover:text-white transition-colors">Technology</a>
-          <a href="#investors" className="text-white/70 hover:text-white transition-colors">Investors</a>
-          <a href="#team" className="text-white/70 hover:text-white transition-colors">Team</a>
-          <a href="mailto:hello@ecofresh.com" className="text-white/70 hover:text-white transition-colors">Contact</a>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/50 text-sm">© 2025 EcoFresh. All rights reserved.</p>
-          <div className="flex gap-6 text-white/50 text-sm">
-            <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white/70 transition-colors">Terms of Service</a>
+      {/* Bottom Section - Navigation and Links */}
+      <div className="border-t border-white/10 py-6">
+        <div className="mx-auto max-w-[1200px] px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex gap-6 text-white/60 text-sm">
+            <a href="#technology" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Technology</a>
+            <a href="#investors" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Investors</a>
+            <a href="#team" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Team</a>
+            <a href="mailto:hello@ecofresh.com" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Contact</a>
+          </div>
+          <div className="flex gap-6 text-white/60 text-sm">
+            <a href="#" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Privacy Policy</a>
+            <a href="#" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Terms of Service</a>
           </div>
         </div>
       </div>

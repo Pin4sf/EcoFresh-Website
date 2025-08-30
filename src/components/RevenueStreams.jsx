@@ -1,5 +1,5 @@
 import { Button } from './ui/button'
-import { FlickeringGrid } from './ui/flickering-grid-hero'
+import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
 const streams = [
   { key: 'b2c', icon: '🛍️', title: 'B2C', target: 'Eco-conscious consumers, housing societies', model: 'Direct sales + subscriptions', edge: 'Zero input cost' },
@@ -10,15 +10,16 @@ const streams = [
 export default function RevenueStreams() {
   return (
     <section className="py-20 bg-bg1 relative overflow-hidden" id="revenue-streams">
-      {/* Flickering grid background */}
+      {/* Animated grid pattern background */}
       <div className="absolute inset-0 -z-0 pointer-events-none">
-        <FlickeringGrid
+        <AnimatedGridPattern
           className="[mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
-          color="7ADAA5"
-          maxOpacity={0.15}
-          flickerChance={0.1}
-          squareSize={3}
-          gridGap={6}
+          color="#7ADAA5"
+          maxOpacity={0.12}
+          numSquares={30}
+          duration={3}
+          width={50}
+          height={50}
         />
       </div>
       <div className="mx-auto max-w-[1200px] px-4 relative z-10">

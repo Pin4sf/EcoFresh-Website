@@ -148,3 +148,18 @@ const observer = new IntersectionObserver(
 - [ ] Test with reduced motion preferences
 - [ ] Validate accessibility compliance
 - [ ] Check Core Web Vitals scores
+
+Current Background Status:
+Now you have a mix of background types across your sections:
+Particles Background:
+IP.jsx: #26667F particles with diagonal drift
+Roadmap.jsx: #26667F particles with horizontal drift
+Team.jsx: #67C090 particles with vertical drift
+AnimatedGridPattern Background:
+Flywheel.jsx: #7ADAA5 animated grid
+RevenueStreams.jsx: #7ADAA5 animated grid
+Timeline.jsx: #7ADAA5 animated grid
+Policy.jsx: #7ADAA5 animated grid
+InvestorCallout.jsx: #7ADAA5 animated grid
+FlickeringGrid Background:
+ImpactCalculator.jsx: #4A9B6B flickering grid (newly updated)

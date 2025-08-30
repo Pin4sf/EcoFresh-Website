@@ -1,5 +1,5 @@
 import { Button } from './ui/button'
-import { FlickeringGrid } from './ui/flickering-grid-hero'
+import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
 export default function Policy() {
   const complianceStandards = [
@@ -27,15 +27,16 @@ export default function Policy() {
 
   return (
     <section className="py-20 bg-gradient-to-br from-bg2 to-bg1 relative overflow-hidden" id="government">
-      {/* Flickering grid background */}
+      {/* Animated grid pattern background */}
       <div className="absolute inset-0 -z-0 pointer-events-none">
-        <FlickeringGrid
+        <AnimatedGridPattern
           className="[mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
-          color="7ADAA5"
-          maxOpacity={0.12}
-          flickerChance={0.1}
-          squareSize={3}
-          gridGap={6}
+          color="#7ADAA5"
+          maxOpacity={0.10}
+          numSquares={20}
+          duration={3}
+          width={60}
+          height={60}
         />
       </div>
       <div className="mx-auto max-w-[1200px] px-4 relative z-10">

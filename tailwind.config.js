@@ -20,8 +20,9 @@ export default {
         lilac: '#60a5fa',
       },
       fontFamily: {
-        display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Space Grotesk', 'Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'space-grotesk': ['Space Grotesk', 'sans-serif'],
       },
     },
   },

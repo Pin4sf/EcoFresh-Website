@@ -1,7 +1,23 @@
+import { VantaTopology } from './ui/vanta-topology'
+
 export default function Narrative() {
   return (
-    <section className="py-20 bg-bg2" id="narrative">
-      <div className="mx-auto max-w-[1200px] px-4 grid md:grid-cols-2 gap-10 items-center">
+    <section className="py-20 bg-bg2 relative overflow-hidden" id="narrative">
+      {/* Vanta.js Topology animated background */}
+      <VantaTopology 
+        color="#67C090"
+        backgroundColor="#DDF4E7"
+        mouseControls={true}
+        touchControls={true}
+        gyroControls={false}
+        minHeight={200.00}
+        minWidth={200.00}
+        scale={1.00}
+        scaleMobile={1.00}
+        className="opacity-80"
+      />
+      
+      <div className="mx-auto max-w-[1200px] px-4 grid md:grid-cols-2 gap-10 items-center relative z-10">
         <div className="space-y-6">
           <div>
             <h3 className="text-xl font-semibold mb-2" data-split>What We Do</h3>

@@ -1,3 +1,5 @@
+import { Particles } from './ui/particles'
+
 export default function IP() {
   const claims = [
     'Proprietary waste-agnostic detoxification process',
@@ -6,33 +8,46 @@ export default function IP() {
     'Zero-waste circular biorefinery design',
   ]
   return (
-    <section data-reveal className="py-20 bg-bg2" id="ip">
-      <div className="mx-auto max-w-[1200px] px-4">
-        <div className="relative bg-bg1 border-2 border-primary1 rounded-2xl p-8">
+    <section data-reveal className="py-20 bg-bg2 relative overflow-hidden" id="ip">
+      {/* Particles background */}
+      <div className="absolute inset-0 -z-0 pointer-events-none">
+        <Particles
+          quantity={150}
+          staticity={70}
+          ease={65}
+          size={0.6}
+          color="#26667F"
+          vx={0.2}
+          vy={0.25}
+        />
+      </div>
+      
+      <div className="mx-auto max-w-[1200px] px-4 relative z-10">
+        <div className="relative bg-bg1/90 backdrop-blur-md border-2 border-primary1 rounded-2xl p-8">
           <div className="absolute -top-3 left-6 bg-accent text-ink rounded-full px-4 py-1 font-semibold">Patent Filed</div>
-          <h2 className="font-display text-3xl font-semibold mb-6">IP & Competitive Advantage</h2>
+          <h2 className="font-space-grotesk text-3xl font-bold mb-6">IP & Competitive Advantage</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <ul className="list-disc list-inside text-ink-light space-y-2">
+            <ul className="list-disc list-inside text-ink-light space-y-3">
               {claims.map((c) => (
-                <li key={c}><span className="text-primary2 font-bold mr-1">✓</span>{c}</li>
+                <li key={c} className="flex items-start">
+                  <span className="text-primary2 font-bold mr-3 text-lg flex-shrink-0">✓</span>
+                  <span className="text-ink-light leading-relaxed">{c}</span>
+                </li>
               ))}
             </ul>
-            <div>
-              <svg viewBox="0 0 200 150" className="w-full h-auto">
-                <defs>
-                  <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="var(--tw-color-primary2)" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="var(--tw-color-secondary2)" stopOpacity="0.8" />
-                  </linearGradient>
-                </defs>
-                <circle cx="170" cy="30" r="8" fill="url(#chartGradient)" />
-                <circle cx="50" cy="80" r="4" fill="#6d767a" opacity="0.6" />
-                <circle cx="80" cy="90" r="4" fill="#6d767a" opacity="0.6" />
-                <circle cx="120" cy="70" r="4" fill="#6d767a" opacity="0.6" />
-                <text x="170" y="20" textAnchor="middle" className="fill-current">EcoFresh</text>
-                <text x="10" y="140" className="fill-current">Cost Efficiency →</text>
-                <text x="10" y="20" className="fill-current" transform="rotate(-90, 10, 20)">← Quality</text>
-              </svg>
+            <div className="text-center">
+              <div className="relative inline-block">
+                {/* Certification Badge */}
+                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-primary1 to-primary2 rounded-full flex items-center justify-center shadow-2xl">
+                  <div className="text-6xl">🏆</div>
+                </div>
+                {/* Patent Status */}
+                <div className="absolute -top-2 -right-2 bg-accent text-ink rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shadow-lg">
+                  P
+                </div>
+                <h3 className="text-xl font-space-grotesk font-bold text-ink mb-2">Patent Filed</h3>
+                <p className="text-ink-light text-sm font-light">US Patent Application<br/>Pending Approval</p>
+              </div>
             </div>
           </div>
         </div>

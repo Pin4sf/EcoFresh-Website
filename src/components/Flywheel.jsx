@@ -1,18 +1,19 @@
-import { FlickeringGrid } from './ui/flickering-grid-hero'
+import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
 export default function Flywheel() {
   return (
     <section className="py-20 bg-bg2 relative overflow-hidden" id="flywheel">
-      {/* Flickering grid background */}
+      {/* Animated grid pattern background */}
       <div className="absolute inset-0 -z-0 pointer-events-none">
         <div className="absolute inset-0 -z-10" />
-        <FlickeringGrid
+        <AnimatedGridPattern
           className="[mask-image:radial-gradient(1100px_circle_at_center,white,transparent)]"
-          color="7ADAA5"
-          maxOpacity={0.18}
-          flickerChance={0.12}
-          squareSize={3}
-          gridGap={6}
+          color="#7ADAA5"
+          maxOpacity={0.15}
+          numSquares={35}
+          duration={3}
+          width={45}
+          height={45}
         />
       </div>
       <div className="mx-auto max-w-[1200px] px-4">

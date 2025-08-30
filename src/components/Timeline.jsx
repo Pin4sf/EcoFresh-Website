@@ -1,5 +1,5 @@
 import { Button } from './ui/button'
-import { FlickeringGrid } from './ui/flickering-grid-hero'
+import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
 export default function Timeline() {
   const items = [
@@ -10,15 +10,16 @@ export default function Timeline() {
   ]
   return (
     <section className="py-20 bg-bg1 relative overflow-hidden" id="timeline">
-      {/* Flickering grid background */}
+      {/* Animated grid pattern background */}
       <div className="absolute inset-0 -z-0 pointer-events-none">
-        <FlickeringGrid
+        <AnimatedGridPattern
           className="[mask-image:radial-gradient(1200px_circle_at_center,white,transparent)]"
-          color="7ADAA5"
-          maxOpacity={0.14}
-          flickerChance={0.1}
-          squareSize={3}
-          gridGap={6}
+          color="#7ADAA5"
+          maxOpacity={0.12}
+          numSquares={25}
+          duration={3}
+          width={55}
+          height={55}
         />
       </div>
       <div className="mx-auto max-w-[1200px] px-4 relative z-10">

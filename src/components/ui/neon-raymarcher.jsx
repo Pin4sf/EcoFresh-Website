@@ -282,5 +282,3 @@ export const NeonRaymarcher = ({ className = '' }) => {
 }
 
 export default NeonRaymarcher
-
-
