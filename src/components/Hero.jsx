@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from './ui/button'
@@ -10,10 +10,66 @@ import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Mobile detection hook
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const userAgent = navigator.userAgent
+      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth <= 768
+      setIsMobile(mobileRegex.test(userAgent) || (isTouchDevice && isSmallScreen))
+    }
+    
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+    return () => window.removeEventListener('resize', checkIsMobile)
+  }, [])
+
+  return isMobile
+}
+
+// Mobile-optimized canvas component
+const MobileCanvas = () => {
+  return (
+    <div className="w-full h-full relative overflow-hidden">
+      {/* Gradient background with EcoFresh brand colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary1/80 via-primary2/60 to-secondary2/80"></div>
+      
+      {/* Animated overlay patterns */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent animate-pulse"></div>
+      
+      {/* EcoForm product image placeholder */}
+      <div className="absolute inset-0 flex items-center justify-center p-8">
+        <div className="text-center text-white/90">
+          <div className="w-24 h-24 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.781 0-2.674-2.153-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-bold mb-2">EcoForm® Bioplastic</h3>
+          <p className="text-sm opacity-80">Sustainable. Biodegradable. Innovative.</p>
+        </div>
+      </div>
+      
+      {/* Floating particles effect */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}></div>
+        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-white/20 rounded-full animate-bounce" style={{ animationDelay: '2s', animationDuration: '5s' }}></div>
+        <div className="absolute bottom-1/3 right-1/3 w-1.5 h-1.5 bg-white/35 rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3.5s' }}></div>
+      </div>
+    </div>
+  )
+}
+
 export default function Hero() {
   const heroRef = useRef(null)
   const secondSectionRef = useRef(null)
   const cardsRef = useRef(null)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -140,21 +196,37 @@ export default function Hero() {
     <div ref={heroRef} className="relative">
       {/* Section 1: Headline and CTAs */}
       <section data-reveal className="snap-section relative flex items-center justify-center px-4 pt-28 pb-8 overflow-hidden" id="hero">
-        {/* Vanta.js Cells animated background for section 1 */}
+        {/* Background - Mobile optimized */}
         <div className="absolute inset-0 z-0 h-full">
-          <VantaCells 
-            color1="#67C090"
-            color2="#124170"
-            size={1.00}
-            mouseControls={true}
-            touchControls={true}
-            gyroControls={false}
-            minHeight={200.00}
-            minWidth={200.00}
-            scale={1.00}
-            className="opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 pointer-events-none"></div>
+          {isMobile ? (
+            // Simple gradient background for mobile
+            <div className="absolute inset-0 bg-gradient-to-br from-primary1/90 via-primary2/80 to-secondary2/90">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 pointer-events-none"></div>
+              {/* Simple animated background pattern for mobile */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+                <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-primary2 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 right-1/2 w-40 h-40 bg-secondary2 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+              </div>
+            </div>
+          ) : (
+            // Full VantaCells for desktop
+            <>
+              <VantaCells 
+                color1="#67C090"
+                color2="#124170"
+                size={1.00}
+                mouseControls={true}
+                touchControls={true}
+                gyroControls={false}
+                minHeight={200.00}
+                minWidth={200.00}
+                scale={1.00}
+                className="opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 pointer-events-none"></div>
+            </>
+          )}
         </div>
         <div className="relative z-10 max-w-5xl text-center">
           <h1 className="hero-title font-space-grotesk text-5xl md:text-7xl lg:text-8xl font-bold mb-12 md:mb-16 leading-tight text-white mix-blend-difference relative z-20">
@@ -206,10 +278,14 @@ export default function Hero() {
               </h2>
             </div>
 
-            {/* Right column: neon-raymarcher canvas */}
+            {/* Right column: canvas (mobile-optimized) */}
             <div className="self-start flex flex-col items-center lg:items-end lg:pl-12 xl:pl-20">
               <div className="canvas-container w-full lg:w-[480px] xl:w-[560px] h-[50vh] min-h-[360px] rounded-2xl overflow-hidden border border-white/20 bg-black/20 backdrop-blur-md">
-                <NeonRaymarcher className="w-full h-full" />
+                {isMobile ? (
+                  <MobileCanvas />
+                ) : (
+                  <NeonRaymarcher className="w-full h-full" />
+                )}
               </div>
             </div>
 
