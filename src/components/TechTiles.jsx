@@ -1,6 +1,109 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { WaveAnimation } from './ui/wave-animation'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function TechTiles() {
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const tilesRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate header elements
+      gsap.fromTo('.tech-title', 
+        { 
+          opacity: 0, 
+          y: 30,
+          scale: 0.95
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+      gsap.fromTo('.tech-description', 
+        { 
+          opacity: 0, 
+          y: 20
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+      // Animate tech tiles with special handling for the featured center card
+      gsap.fromTo('.tech-tile', 
+        { 
+          opacity: 0, 
+          y: 40,
+          scale: 0.9,
+          rotation: -2
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          duration: 0.7,
+          stagger: {
+            amount: 0.8,
+            from: "center"
+          },
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: tilesRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+      // Special animation for the center featured tile
+      gsap.fromTo('.tech-tile-featured', 
+        { 
+          opacity: 0, 
+          scale: 0.8,
+          rotation: 5
+        }, 
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1,
+          ease: 'elastic.out(1, 0.8)',
+          scrollTrigger: {
+            trigger: tilesRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   const tiles = [
     { 
       title: 'Waste-Agnostic Detox', 
@@ -24,7 +127,7 @@ export default function TechTiles() {
     },
   ]
   return (
-    <section className="section-full min-h-screen py-10 sm:py-12 relative overflow-hidden flex flex-col" id="technology">
+    <section ref={sectionRef} className="section-full min-h-screen py-10 sm:py-12 relative overflow-hidden flex flex-col" id="technology">
       {/* Gradient Background Layer (darker) */}
       <div className="absolute inset-0 -z-20 bg-gradient-to-br from-[#124170] via-[#0f2f3a] to-[#26667F]"></div>
       
@@ -63,13 +166,15 @@ export default function TechTiles() {
       
       {/* Content Overlay */}
       <div className="mx-auto max-w-[1200px] px-4 relative z-10 flex-1 flex flex-col text-white">
-        <h2 className="section-title text-center font-sans text-2xl sm:text-3xl font-semibold mb-3 text-white">The Tech Moat — 5 Innovations</h2>
-        <p className="text-center text-white/90 text-base sm:text-lg mb-6 sm:mb-8 max-w-3xl mx-auto">
-          Our proprietary technology stack creates multiple competitive moats through integrated AI, biotechnology, and circular design.
-        </p>
+        <div ref={headerRef}>
+          <h2 className="tech-title section-title text-center font-sans text-2xl sm:text-3xl font-semibold mb-3 text-white">The Tech Moat — 5 Innovations</h2>
+          <p className="tech-description text-center text-white/90 text-base sm:text-lg mb-6 sm:mb-8 max-w-3xl mx-auto">
+            Our proprietary technology stack creates multiple competitive moats through integrated AI, biotechnology, and circular design.
+          </p>
+        </div>
         
         {/* Central Bento Grid Layout - Featured Center Card */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 auto-rows-fr flex-1 max-w-5xl mx-auto">
+        <div ref={tilesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 auto-rows-fr flex-1 max-w-5xl mx-auto">
           {tiles.map((t, i) => {
             // Central bento grid layout with featured center card
             const bentoLayouts = {
@@ -94,7 +199,7 @@ export default function TechTiles() {
             const layoutClass = `${bentoLayouts.mobile} ${bentoLayouts.sm} ${bentoLayouts.md} ${bentoLayouts.lg} ${bentoLayouts.xl}`
             
             return (
-              <div key={i} data-reveal className={`group relative ${layoutClass} transition-all duration-700 ease-out transform hover:scale-[1.02] hover:-translate-y-1`}>
+              <div key={i} data-reveal className={`tech-tile ${i === 2 ? 'tech-tile-featured' : ''} group relative ${layoutClass} transition-all duration-700 ease-out transform hover:scale-[1.02] hover:-translate-y-1`}>
                 {/* Card Background with Glass Effect */}
                 <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl transition-all duration-500 group-hover:bg-white/20 group-hover:border-white/40 group-hover:shadow-2xl" />
                 

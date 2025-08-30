@@ -1,3 +1,6 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from './ui/button'
 import NeonRaymarcher from './ui/neon-raymarcher'
 import { AnimatedGradientText } from './ui/animated-gradient-text'
@@ -5,9 +8,136 @@ import { EcoFormSimpleBorder } from './ui/ecoform-simple-border'
 import { VantaCells } from './ui/vanta-cells'
 import { AnimatedGridPattern } from './ui/animated-grid-pattern'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function Hero() {
+  const heroRef = useRef(null)
+  const secondSectionRef = useRef(null)
+  const cardsRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero Section Animations
+      const tl = gsap.timeline()
+      
+      // Animate hero title
+      tl.fromTo('.hero-title', 
+        { 
+          opacity: 0, 
+          y: 50,
+          scale: 0.95
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power2.out'
+        }
+      )
+      
+      // Animate buttons with stagger
+      tl.fromTo('.hero-button', 
+        { 
+          opacity: 0, 
+          y: 30 
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out'
+        }, '-=0.6'
+      )
+
+      // Second Section Animations
+      gsap.fromTo('.section-title', 
+        { 
+          opacity: 0, 
+          y: 40 
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: secondSectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+      // Animate canvas container
+      gsap.fromTo('.canvas-container', 
+        { 
+          opacity: 0, 
+          scale: 0.9,
+          rotation: -5
+        }, 
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: secondSectionRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+      // Animate feature cards
+      gsap.fromTo('.feature-card', 
+        { 
+          opacity: 0, 
+          y: 50,
+          scale: 0.9
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+      // Animate tagline
+      gsap.fromTo('.hero-tagline', 
+        { 
+          opacity: 0, 
+          y: 20 
+        }, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.hero-tagline',
+            start: 'top 90%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      )
+
+    }, heroRef)
+
+    return () => ctx.revert()
+  }, [])
   return (
-    <div className="relative">
+    <div ref={heroRef} className="relative">
       {/* Section 1: Headline and CTAs */}
       <section data-reveal className="snap-section relative flex items-center justify-center px-4 pt-28 pb-8 overflow-hidden" id="hero">
         {/* Vanta.js Cells animated background for section 1 */}
@@ -27,18 +157,18 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 pointer-events-none"></div>
         </div>
         <div className="relative z-10 max-w-5xl text-center">
-                      <h1 className="font-space-grotesk text-5xl md:text-7xl lg:text-8xl font-bold mb-12 md:mb-16 leading-tight text-white mix-blend-difference relative z-20">
-              Envisioning the Future for 
-              <span className="block text-6xl md:text-8xl lg:text-9xl text-white mix-blend-difference">
-                a <AnimatedGradientText className="mix-blend-difference">plastic-free</AnimatedGradientText> tomorrow
-              </span>
-            </h1>
+          <h1 className="hero-title font-space-grotesk text-5xl md:text-7xl lg:text-8xl font-bold mb-12 md:mb-16 leading-tight text-white mix-blend-difference relative z-20">
+            Envisioning the Future for 
+            <span className="block text-6xl md:text-8xl lg:text-9xl text-white mix-blend-difference">
+              a <AnimatedGradientText className="mix-blend-difference">plastic-free</AnimatedGradientText> tomorrow
+            </span>
+          </h1>
           
           <div className="flex flex-wrap items-center justify-center gap-5 md:gap-6 mb-4 md:mb-8">
-            <Button variant="cta" size="lg" asChild className="text-lg px-8 py-4">
+            <Button variant="cta" size="lg" asChild className="hero-button text-lg px-8 py-4">
               <a href="#technology">Explore Technology</a>
             </Button>
-            <Button variant="cta" size="lg" asChild className="text-lg px-8 py-4">
+            <Button variant="cta" size="lg" asChild className="hero-button text-lg px-8 py-4">
               <a href="#investors">View Investor Deck</a>
             </Button>
           </div>
@@ -46,7 +176,7 @@ export default function Hero() {
       </section>
 
       {/* Section 2: Heading aligned with canvas, cards row below */}
-      <section className="snap-section py-20 text-white relative overflow-hidden">
+      <section ref={secondSectionRef} className="snap-section py-20 text-white relative overflow-hidden">
         {/* Animated grid pattern background for section 2 */}
         <div className="absolute inset-0 -z-0">
           {/* Vanta Cells inspired base color for this section */}
@@ -66,7 +196,7 @@ export default function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
             {/* Left column: title aligned with canvas */}
             <div className="lg:pr-12 xl:pr-20 self-start">
-              <h2 className="font-space-grotesk text-4xl md:text-6xl font-bold mb-6 text-left text-white">
+              <h2 className="section-title font-space-grotesk text-4xl md:text-6xl font-bold mb-6 text-left text-white">
                 A world of possibilities for 
                 <span className="block">
                   <AnimatedGradientText className="text-5xl md:text-7xl">
@@ -78,15 +208,15 @@ export default function Hero() {
 
             {/* Right column: neon-raymarcher canvas */}
             <div className="self-start flex flex-col items-center lg:items-end lg:pl-12 xl:pl-20">
-              <div className="w-full lg:w-[480px] xl:w-[560px] h-[50vh] min-h-[360px] rounded-2xl overflow-hidden border border-white/20 bg-black/20 backdrop-blur-md">
+              <div className="canvas-container w-full lg:w-[480px] xl:w-[560px] h-[50vh] min-h-[360px] rounded-2xl overflow-hidden border border-white/20 bg-black/20 backdrop-blur-md">
                 <NeonRaymarcher className="w-full h-full" />
               </div>
             </div>
 
             {/* Cards row spanning full width below heading + canvas */}
             <div className="lg:col-span-2 mt-10">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="group bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
+              <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="feature-card group bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
                   <div className="w-16 h-16 mb-6 bg-gradient-to-br from-primary1/60 to-primary2/60 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -95,7 +225,7 @@ export default function Hero() {
                   <h3 className="text-xl font-space-grotesk font-bold mb-3 group-hover:text-primary1 transition-colors duration-300">Decentralized Processing</h3>
                   <p className="text-white/90 group-hover:text-white transition-colors duration-300 font-light">Modular units that transform waste into bioplastics at the source, eliminating transportation costs.</p>
                 </div>
-                <div className="group bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
+                <div className="feature-card group bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
                   <div className="w-16 h-16 mb-6 bg-gradient-to-br from-secondary1/60 to-secondary2/60 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -104,7 +234,7 @@ export default function Hero() {
                   <h3 className="text-xl font-space-grotesk font-bold mb-3 group-hover:text-secondary1 transition-colors duration-300">AI-Governed Quality</h3>
                   <p className="text-white/90 group-hover:text-white transition-colors duration-300 font-light">Real-time optimization ensures consistent EcoForm® quality across all production units.</p>
                 </div>
-                <div className="group bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
+                <div className="feature-card group bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 border border-white/20 transition-all duration-500 hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
                   <div className="w-16 h-16 mb-6 bg-gradient-to-br from-accent/60 to-accent/70 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
@@ -114,7 +244,7 @@ export default function Hero() {
                   <p className="text-white/90 group-hover:text-white transition-colors duration-300 font-light">Waste becomes feedstock - no virgin materials needed, dramatically reducing production costs.</p>
                 </div>
               </div>
-              <p className="mt-8 text-white font-space-grotesk font-medium text-lg text-center">
+              <p className="hero-tagline mt-8 text-white font-space-grotesk font-medium text-lg text-center">
                 Policy-aligned • AI-governed • Zero raw material cost
               </p>
             </div>

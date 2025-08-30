@@ -21,7 +21,7 @@ export default function Footer() {
       {/* Main Footer Content - EcoFresh Text Full Viewport */}
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center w-full">
-          <div className="text-8xl md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-space-grotesk font-bold text-white/90 tracking-tight leading-none" data-split>
+          <div className="ecofresh-brand text-8xl md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-space-grotesk font-black text-white tracking-tight leading-none" data-split>
             EcoFresh
           </div>
         </div>

@@ -25,6 +25,14 @@
         height: 100%;
     }
 
+    /* Font Rendering Optimization */
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    }
+
     /* Snap Scrolling Setup - Fixed to allow normal scrolling */
     html {
         overflow-y: auto;
@@ -71,5 +79,15 @@
     .no-scrollbar {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
+    }
+
+    /* EcoFresh Brand Text Optimization */
+    .ecofresh-brand {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+        font-variant-numeric: lining-nums;
+        letter-spacing: -0.02em;
     }
 }
