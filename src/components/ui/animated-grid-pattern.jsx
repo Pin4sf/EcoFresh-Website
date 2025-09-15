@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { gsap } from "gsap";
 import { cn } from "./utils";
 import { getPerformanceMode, shouldReduceAnimations } from '../../utils/deviceDetection';
 
@@ -174,16 +174,23 @@ export function AnimatedGridPattern({
       {shouldRender && isInView && (
         <svg x={x} y={y} className="overflow-visible">
           {squares.map(({ pos: [x, y], id }, index) => (
-            <motion.rect
-              initial={{ opacity: 0 }}
-              animate={{ opacity: optimizedProps.maxOpacity }}
-              transition={{
-                duration: optimizedProps.duration,
-                repeat: reduceAnimations ? 0 : 1,
-                delay: reduceAnimations ? 0 : index * 0.1,
-                repeatType: "reverse",
+            <rect
+              ref={(el) => {
+                if (el && !el.dataset.animated) {
+                  el.dataset.animated = 'true';
+                  gsap.fromTo(el, 
+                    { opacity: 0 },
+                    {
+                      opacity: optimizedProps.maxOpacity,
+                      duration: optimizedProps.duration,
+                      delay: reduceAnimations ? 0 : index * 0.1,
+                      repeat: reduceAnimations ? 0 : 1,
+                      yoyo: true,
+                      onComplete: () => updateSquarePosition(id)
+                    }
+                  );
+                }
               }}
-              onAnimationComplete={() => updateSquarePosition(id)}
               key={`${x}-${y}-${index}`}
               width={optimizedProps.width - 1}
               height={optimizedProps.height - 1}

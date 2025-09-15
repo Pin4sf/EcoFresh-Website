@@ -8,8 +8,8 @@ gsap.registerPlugin(ScrollTrigger)
 const team = [
   { name: 'Ark Patil', role: 'CEO & Founder', bullets: ['Operations & Executions', 'Smart manufacturings', 'Strategic planning'] },
   { name: 'Shivansh Fulper', role: 'CTO & Co-Founder', bullets: ['AI/ML systems architect', 'Smart manufacturing systems', 'Business analytics'] },
-  { name: 'Ansh Bathija', role: 'CDO & Co-Founder', bullets: ['Industrial prototyping', 'Design strategy', 'Hardware systems'] },
-  { name: 'Mayur Kumar', role: 'CPO & Co-Founder', bullets: ['Product Design', '3D Modeling', 'System architecture'] },
+  { name: 'Ansh Bathija', role: 'CPO & Co-Founder', bullets: ['Industrial prototyping', 'Design strategy', 'Hardware systems'] },
+  { name: 'Mayur Kumar', role: 'CFO & Co-Founder', bullets: ['Product Design', '3D Modeling', 'System architecture'] },
 ]
 
 export default function Team() {
