@@ -18,7 +18,7 @@ export default function Navbar() {
           </nav>
           <div className="hidden md:flex gap-3">
             <Button variant="cta" size="sm" asChild className="font-semibold">
-              <a href="#investors">Investor Deck</a>
+              <a href="https://docs.google.com/presentation/d/1ilMP4fLYCqhdDt54FxNFvYMEMkbNhaM8/edit?usp=sharing&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Investor Deck</a>
             </Button>
             <Button variant="cta" size="sm" asChild className="font-semibold">
               <a href="mailto:investors@ecofresh.com?subject=Investor%20Intro%20Call&body=Hi%20EcoFresh%20Team%2C%0D%0A%0D%0AI%27d%20like%20to%20book%20a%2030-min%20intro%20call.%20Here%20are%20some%20time%20windows%3A%0D%0A-%20%0D%0A-%20%0D%0A%0D%0ARegards%2C%0D%0A">Book Investor Call</a>
