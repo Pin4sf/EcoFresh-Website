@@ -238,7 +238,7 @@ export default function Hero() {
           
           <div className="flex flex-wrap items-center justify-center gap-5 md:gap-6 mb-4 md:mb-8">
             <Button variant="cta" size="lg" asChild className="hero-button text-lg px-8 py-4">
-              <a href="#technology">Explore Technology</a>
+              <a href="https://dune-mile-55e.notion.site/EcoFresh-268b7cf6c65f80b99f8efc738ef4fa8d" target="_blank" rel="noopener noreferrer">Explore Technology</a>
             </Button>
             <Button variant="cta" size="lg" asChild className="hero-button text-lg px-8 py-4">
               <a href="#investors">View Investor Deck</a>

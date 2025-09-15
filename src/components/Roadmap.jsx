@@ -5,19 +5,6 @@ import { Particles } from './ui/particles'
 
 gsap.registerPlugin(ScrollTrigger)
 
-function Progress({ value }) {
-  const circumference = 2 * Math.PI * 45
-  const offset = circumference - (value / 100) * circumference
-  return (
-    <div className="relative w-28 h-28">
-      <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-        <circle cx="50" cy="50" r="45" className="stroke-primary1" strokeWidth="8" fill="none" />
-        <circle cx="50" cy="50" r="45" className="stroke-primary2" strokeWidth="8" fill="none" strokeDasharray={circumference} strokeDashoffset={offset} strokeLinecap="round" />
-      </svg>
-      <span className="absolute inset-0 flex items-center justify-center font-semibold">{value}%</span>
-    </div>
-  )
-}
 
 export default function Roadmap() {
   const sectionRef = useRef(null)
@@ -89,27 +76,6 @@ export default function Roadmap() {
         }
       )
 
-      // Animate progress circles
-      gsap.fromTo('.progress-circle', 
-        { 
-          opacity: 0, 
-          scale: 0.5,
-          rotation: -180
-        }, 
-        {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'elastic.out(1, 0.8)',
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      )
 
     }, sectionRef)
 
@@ -117,10 +83,10 @@ export default function Roadmap() {
   }, [])
 
   const items = [
-    { pct: 85, title: 'AI Process Control', text: 'Real-time optimization algorithms' },
-    { pct: 70, title: 'Quality Prediction', text: 'ML-driven property forecasting' },
-    { pct: 60, title: 'Fleet Management', text: 'Decentralized unit coordination' },
-    { pct: 40, title: 'Market Analytics & Fulfillment', text: 'Supply-demand optimization' },
+    { title: 'AI Process Control', text: 'Real-time optimization algorithms' },
+    { title: 'Quality Prediction', text: 'ML-driven property forecasting' },
+    { title: 'Fleet Management', text: 'Decentralized unit coordination' },
+    { title: 'Market Analytics & Fulfillment', text: 'Supply-demand optimization' },
   ]
   return (
     <section ref={sectionRef} className="py-20 bg-bg1 relative overflow-hidden" id="roadmap">
@@ -145,14 +111,11 @@ export default function Roadmap() {
         
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map((it, idx) => (
-            <div key={idx} className="roadmap-card group text-center p-6 bg-white/90 backdrop-blur-md border-2 border-primary1/20 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary1/50 hover:bg-white/95 flex flex-col h-full">
-              <div className="progress-circle flex justify-center mb-4">
-                <Progress value={it.pct} />
-              </div>
-              <h4 className="font-space-grotesk font-bold mt-4 mb-2 text-lg text-ink group-hover:text-primary1 transition-colors duration-300">{it.title}</h4>
-              <p className="text-ink-light text-sm leading-relaxed font-light flex-grow">{it.text}</p>
-              <div className="mt-4 pt-3 border-t border-primary1/20">
-                <span className="text-xs font-space-grotesk font-medium text-primary2 bg-primary1/10 px-3 py-1 rounded-full">Phase {idx + 1}</span>
+            <div key={idx} className="roadmap-card group text-center p-8 bg-white/90 backdrop-blur-md border-2 border-primary1/20 rounded-2xl transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary1/50 hover:bg-white/95 flex flex-col h-full">
+              <h4 className="font-space-grotesk font-bold mb-4 text-xl text-ink group-hover:text-primary1 transition-colors duration-300">{it.title}</h4>
+              <p className="text-ink-light text-base leading-relaxed font-light flex-grow">{it.text}</p>
+              <div className="mt-6 pt-4 border-t border-primary1/20">
+                <span className="text-sm font-space-grotesk font-medium text-primary2 bg-primary1/10 px-4 py-2 rounded-full">Phase {idx + 1}</span>
               </div>
             </div>
           ))}

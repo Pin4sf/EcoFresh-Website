@@ -68,7 +68,7 @@ function App() {
         <div data-speed="0.98">
           <RevenueStreams />
         </div>
-        <Timeline />
+        {/* <Timeline /> */}
         <div data-speed="1.02">
           <Narrative />
         </div>
