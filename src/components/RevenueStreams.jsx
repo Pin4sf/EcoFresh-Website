@@ -197,7 +197,7 @@ export default function RevenueStreams() {
             <a href="#pilots">Open Pilot Program</a>
           </Button>
           <Button variant="cta" asChild className="revenue-button">
-            <a href="mailto:investors@ecofresh.com">Book Investor Call</a>
+            <a href="tel:+919665437830">Book Investor Call</a>
           </Button>
         </div>
       </div>

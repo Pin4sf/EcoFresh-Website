@@ -90,7 +90,7 @@ function App() {
       {/* Floating Investor CTA Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <a 
-          href="mailto:investors@ecofresh.com?subject=Investor%20Intro%20Call&body=Hi%20EcoFresh%20Team%2C%0D%0A%0D%0AI%27d%20like%20to%20book%20a%2030-min%20intro%20call.%20Here%20are%20some%20time%20windows%3A%0D%0A-%20%0D%0A-%20%0D%0A%0D%0ARegards%2C%0D%0A"
+          href="tel:+919665437830"
           className="bg-primary2 hover:bg-primary1 text-ink font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-center gap-2"
         >
           <span className="text-lg">📞</span>

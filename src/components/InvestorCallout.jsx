@@ -24,7 +24,7 @@ export default function InvestorCallout() {
             <a href="https://docs.google.com/presentation/d/1ilMP4fLYCqhdDt54FxNFvYMEMkbNhaM8/edit?usp=sharing&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Open Investor Deck</a>
           </Button>
           <Button variant="cta" asChild>
-            <a href="mailto:investors@ecofresh.com?subject=Investor%20Intro%20Call&body=Hi%20EcoFresh%20Team%2C%0D%0A%0D%0AI%27d%20like%20to%20book%20a%2030-min%20intro%20call.%20Here%20are%20some%20time%20windows%3A%0D%0A-%20%0D%0A-%20%0D%0A%0D%0ARegards%2C%0D%0A">Schedule Call</a>
+            <a href="tel:+919665437830">Schedule Call</a>
           </Button>
           <Button variant="cta" asChild>
             <a href="https://docs.google.com/presentation/d/1ilMP4fLYCqhdDt54FxNFvYMEMkbNhaM8/edit?usp=sharing&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Request Data Room</a>
