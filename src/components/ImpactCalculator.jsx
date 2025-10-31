@@ -4,36 +4,71 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { VantaFog } from './ui/vanta-fog'
 import { Button } from './ui/button'
 
+
 gsap.registerPlugin(ScrollTrigger)
+
 
 function formatNumber(n) {
   return new Intl.NumberFormat().format(n)
 }
 
-// Enhanced calculation logic with realistic environmental impact data
+
+// === Updated calculation logic based on the uploaded EcoFresh report ===
+// Uses: EcoForm yield, CO2 avoidance per kg EcoForm, water & energy savings, land-saved per kg waste, plastic bag equivalence.
 function calculateEnvironmentalImpact(wasteKg) {
-  // More realistic conversion rates based on research
-  const plasticBagsAvoided = Math.round(wasteKg * 3.2) // 1kg organic waste = ~3.2 plastic bag equivalents
-  const co2Reduced = (wasteKg * 2.3).toFixed(1) // kg CO2 reduced (landfill methane + plastic production avoided)
-  const treesEquivalent = (wasteKg * 0.0045).toFixed(2) // Trees saved equivalent (carbon sequestration)
-  const carsOffRoad = (wasteKg * 0.0085).toFixed(1) // Days of car emissions equivalent
-  const waterSaved = Math.round(wasteKg * 15.6) // Liters of water saved (plastic production)
-  const energySaved = Math.round(wasteKg * 8.2) // kWh energy saved
-  const landSaved = (wasteKg * 0.12).toFixed(2) // m² of landfill space saved
-  const bioplasticProduced = (wasteKg * 0.15).toFixed(1) // kg of EcoForm® bioplastic produced
+  // Constants derived from the report (adjustable if numbers change)
+  const ECOFORM_YIELD = 0.57 // kg EcoForm produced per 1 kg dry organic waste (realistic mid-point)
+  const CO2_AVOIDED_PER_KG_ECOFORM = 2.3 // kg CO2e avoided per 1 kg EcoForm (report VI)
+  const WATER_SAVED_PER_KG_ECOFORM_L = 120 // litres saved per 1 kg EcoForm (report IV)
+  const ENERGY_SAVED_PER_KG_ECOFORM_KWH = 30 // kWh saved per 1 kg EcoForm (midpoint from report V)
+  const PLASTIC_BAGS_PER_KG_PLASTIC = 100 // 1 kg plastic avoided ≈ 100 standard single-use bags (10 g baseline)
+  const LAND_SAVED_PER_KG_WASTE_M2 = 0.000293 // m² land saved per kg waste (conservative "compost 30%" scenario from report VII)
+  const CAR_DAILY_EMISSIONS_KG = 12.6 // average car CO2 emissions per day (used to convert savings into "days of car emissions avoided")
+  const TREE_LIFETIME_CO2_KG = 511 // lifetime CO2 uptake per tree (used to compute tree-equivalents)
+
+  // 1) Bioplastic (EcoForm) produced from waste
+  const bioplasticProducedKgRaw = wasteKg * ECOFORM_YIELD
+  const bioplasticProducedKg = Number(bioplasticProducedKgRaw.toFixed(3)) // keep some precision
+
+  // 2) CO2 reduced (based on kg EcoForm replacing virgin polymer)
+  const co2ReducedKgRaw = bioplasticProducedKg * CO2_AVOIDED_PER_KG_ECOFORM
+  const co2ReducedKg = Number(co2ReducedKgRaw.toFixed(2))
+
+  // 3) Plastic bags avoided (100 bags per 1 kg plastic avoided)
+  const plasticBagsAvoided = Math.round(bioplasticProducedKg * PLASTIC_BAGS_PER_KG_PLASTIC)
+
+  // 4) Trees equivalent (based on lifetime uptake)
+  const treesEquivalentRaw = co2ReducedKg / TREE_LIFETIME_CO2_KG
+  const treesEquivalent = Number(treesEquivalentRaw.toFixed(4))
+
+  // 5) Days of car emissions avoided (co2 reduced / avg car daily emissions)
+  const carsOffRoadDaysRaw = co2ReducedKg / CAR_DAILY_EMISSIONS_KG
+  const carsOffRoad = Number(carsOffRoadDaysRaw.toFixed(1))
+
+  // 6) Water saved (litres) based on EcoForm produced
+  const waterSavedLitres = Math.round(bioplasticProducedKg * WATER_SAVED_PER_KG_ECOFORM_L)
+
+  // 7) Energy saved (kWh)
+  const energySavedKWh = Math.round(bioplasticProducedKg * ENERGY_SAVED_PER_KG_ECOFORM_KWH)
+
+  // 8) Land saved (m²) — computed from waste mass diverted using conservative factor from report
+  const landSavedM2Raw = wasteKg * LAND_SAVED_PER_KG_WASTE_M2
+  // keep moderate precision but keep it legible (land saved tends to be small per kg)
+  const landSavedM2 = Number(landSavedM2Raw.toFixed(6))
 
   return {
     plasticBagsAvoided,
-    co2Reduced,
+    co2Reduced: co2ReducedKg, // kg CO2e
     treesEquivalent,
     carsOffRoad,
-    waterSaved,
-    energySaved,
-    landSaved,
-    bioplasticProduced,
+    waterSaved: waterSavedLitres, // L
+    energySaved: energySavedKWh, // kWh
+    landSaved: landSavedM2, // m²
+    bioplasticProduced: Number(bioplasticProducedKg.toFixed(3)), // kg EcoForm
     wasteKg
   }
 }
+
 
 export default function ImpactCalculator() {
   const [waste, setWaste] = useState(1000)
@@ -46,6 +81,7 @@ export default function ImpactCalculator() {
   const resultsRef = useRef(null)
   
   const outputs = useMemo(() => calculateEnvironmentalImpact(waste), [waste])
+
 
   const handleCalculate = () => {
     setIsCalculating(true)
@@ -94,6 +130,7 @@ export default function ImpactCalculator() {
     }, 1200)
   }
 
+
   const closeModal = () => {
     gsap.to(modalRef.current, {
       opacity: 0,
@@ -105,6 +142,7 @@ export default function ImpactCalculator() {
       }
     })
   }
+
 
   // Close modal on escape key
   useEffect(() => {
@@ -122,11 +160,13 @@ export default function ImpactCalculator() {
     }
   }, [showModal])
 
+
   useEffect(() => {
     const slider = document.getElementById('wasteSliderReact')
     if (!slider) return
     slider.value = String(waste)
   }, [waste])
+
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -151,6 +191,7 @@ export default function ImpactCalculator() {
         }
       )
 
+
       gsap.fromTo('.impact-description', 
         { 
           opacity: 0, 
@@ -168,6 +209,7 @@ export default function ImpactCalculator() {
           }
         }
       )
+
 
       // Animate calculator container
       gsap.fromTo(calculatorRef.current, 
@@ -189,6 +231,7 @@ export default function ImpactCalculator() {
           }
         }
       )
+
 
       // Animate result cards
       gsap.fromTo('.result-card', 
@@ -214,10 +257,13 @@ export default function ImpactCalculator() {
         }
       )
 
+
     }, sectionRef)
+
 
     return () => ctx.revert()
   }, [])
+
 
   return (
     <section ref={sectionRef} className="py-20 bg-bg2 relative overflow-hidden" id="impact-calculator">
@@ -266,7 +312,7 @@ export default function ImpactCalculator() {
                   <span>10,000kg</span>
                 </div>
               </div>
-              
+            
               <div className="flex items-center justify-center gap-4">
                 <div className="flex items-center gap-2">
                   <input 
@@ -312,6 +358,7 @@ export default function ImpactCalculator() {
             Calculations based on current EcoForm® technology research and environmental impact studies
           </p>
         </div>
+
 
         {/* Results Modal */}
         {showModal && (
@@ -449,5 +496,3 @@ export default function ImpactCalculator() {
     </section>
   )
 }
-
-
