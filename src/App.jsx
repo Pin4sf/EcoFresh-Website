@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
@@ -6,44 +6,47 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Metrics from './components/Metrics'
-import ImpactCalculator from './components/ImpactCalculator'
-import VideoSection from './components/VideoSection'
 import Footer from './components/Footer'
 import TechTiles from './components/TechTiles'
 import Flywheel from './components/Flywheel'
-import RevenueStreams from './components/RevenueStreams'
-import Timeline from './components/Timeline'
 import Narrative from './components/Narrative'
 import Policy from './components/Policy'
 import Roadmap from './components/Roadmap'
-import IP from './components/IP'
-import Team from './components/Team'
 import InvestorCallout from './components/InvestorCallout'
+
+// Lazy-loaded sections
+const ImpactCalculator = lazy(() => import('./components/ImpactCalculator'))
+const VideoSection = lazy(() => import('./components/VideoSection'))
+const RevenueStreams = lazy(() => import('./components/RevenueStreams'))
+const Timeline = lazy(() => import('./components/Timeline'))
+const IP = lazy(() => import('./components/IP'))
+const Team = lazy(() => import('./components/Team'))
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 function App() {
   useEffect(() => {
-    // Check if device supports smooth scrolling for better performance
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     const isLowPerformance = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4
+    const isDesktop = !isMobile && (typeof window !== 'undefined' ? window.innerWidth >= 1024 : true)
 
-    // Initialize ScrollSmoother for fluid scrolling experience
-    let smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: isMobile ? 0.5 : isLowPerformance ? 0.8 : 1.2, // Adaptive smoothness based on device
-      effects: true, // Enable data-speed and data-lag effects
-      smoothTouch: isMobile ? 0.1 : false, // Light touch smoothing for mobile only
-      normalizeScroll: true, // Prevent scrolling issues on different devices
-      ignoreMobileResize: true, // Better mobile experience
-      speed: 1, // Scroll speed multiplier
-      lag: 0.1, // Lag amount for smoother feel
-    })
-
-    // Refresh ScrollTrigger when ScrollSmoother is ready
-    ScrollTrigger.refresh()
+    let smoother = null
+    if (!prefersReducedMotion && isDesktop && !isLowPerformance) {
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 0.9,
+        effects: true,
+        smoothTouch: false,
+        normalizeScroll: true,
+        ignoreMobileResize: true,
+        speed: 1,
+        lag: 0.08,
+      })
+      ScrollTrigger.refresh()
+    }
 
     return () => {
       smoother?.kill()
@@ -66,7 +69,9 @@ function App() {
         </div>
         <Flywheel />
         <div data-speed="0.98">
-          <RevenueStreams />
+          <Suspense fallback={null}>
+            <RevenueStreams />
+          </Suspense>
         </div>
         {/* <Timeline /> */}
         <div data-speed="1.02">
@@ -76,14 +81,22 @@ function App() {
         <div data-speed="0.97">
           <Roadmap />
         </div>
-        <IP />
+        <Suspense fallback={null}>
+          <IP />
+        </Suspense>
         <div data-speed="1.03">
-          <Team />
+          <Suspense fallback={null}>
+            <Team />
+          </Suspense>
         </div>
         <InvestorCallout />
-        <ImpactCalculator />
+        <Suspense fallback={null}>
+          <ImpactCalculator />
+        </Suspense>
         <div data-speed="0.99">
-          <VideoSection />
+          <Suspense fallback={null}>
+            <VideoSection />
+          </Suspense>
         </div>
       </main>
       

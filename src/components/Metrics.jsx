@@ -162,18 +162,10 @@ export default function Metrics() {
 
   return (
     <section ref={metricsRef} className="snap-section py-20 relative overflow-hidden" id="metrics">
-      {/* Background Video */}
+      {/* Static gradient background instead of video */}
       <div className="absolute inset-0 -z-10">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="https://res.cloudinary.com/dbhmxxxr2/video/upload/v1756527297/Plastic_Bag_s_Ominous_Grace_ezczoc.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-ink/60"></div>
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#0c2b3b] via-[#124170] to-[#26667F]" />
+        <div className="absolute inset-0 bg-ink/60" />
       </div>
       
       {/* Subtle background elements */}

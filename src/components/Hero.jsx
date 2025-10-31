@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from './ui/button'
-import NeonRaymarcher from './ui/neon-raymarcher'
+import AnimatedBubbleParticles from './ui/animated-bubble-particles'
 import { AnimatedGradientText } from './ui/animated-gradient-text'
 import { EcoFormSimpleBorder } from './ui/ecoform-simple-border'
 import { VantaCells } from './ui/vanta-cells'
@@ -284,7 +284,15 @@ export default function Hero() {
                 {isMobile ? (
                   <MobileCanvas />
                 ) : (
-                  <NeonRaymarcher className="w-full h-full" />
+                  <AnimatedBubbleParticles
+                    className="w-full h-full"
+                    backgroundColor="#0E2F45"
+                    particleColor="#DDF4E7"
+                    particleSize={22}
+                    spawnInterval={220}
+                    height="100%"
+                    width="100%"
+                  />
                 )}
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { WaveAnimation } from './ui/wave-animation'
@@ -9,8 +9,16 @@ export default function TechTiles() {
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const tilesRef = useRef(null)
+  const [inView, setInView] = useState(false)
 
   useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) setInView(true)
+      })
+    }, { rootMargin: '0px 0px -20% 0px' })
+    if (sectionRef.current) io.observe(sectionRef.current)
+
     const ctx = gsap.context(() => {
       // Animate header elements
       gsap.fromTo('.tech-title', 
@@ -101,7 +109,10 @@ export default function TechTiles() {
 
     }, sectionRef)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      io.disconnect()
+    }
   }, [])
 
   const tiles = [
@@ -133,16 +144,18 @@ export default function TechTiles() {
       
       {/* Wave Animation Background - Hidden on mobile for performance */}
       <div className="hidden sm:block absolute inset-0 -z-10 opacity-40">
-        <WaveAnimation 
-          width={2400}
-          height={950}
-          waveSpeed={1.5}
-          waveIntensity={30}
-          particleColor="#DDF4E7"
-          pointSize={2.5}
-          gridDistance={4}
-          className="w-full h-full"
-        />
+        {inView && (
+          <WaveAnimation 
+            width={1600}
+            height={700}
+            waveSpeed={1.0}
+            waveIntensity={18}
+            particleColor="#DDF4E7"
+            pointSize={2}
+            gridDistance={5}
+            className="w-full h-full"
+          />
+        )}
       </div>
 
       {/* Subtle dark overlay for readability */}

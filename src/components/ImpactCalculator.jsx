@@ -79,6 +79,8 @@ export default function ImpactCalculator() {
   const calculatorRef = useRef(null)
   const modalRef = useRef(null)
   const resultsRef = useRef(null)
+  const [inView, setInView] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   
   const outputs = useMemo(() => calculateEnvironmentalImpact(waste), [waste])
 
@@ -167,6 +169,27 @@ export default function ImpactCalculator() {
     slider.value = String(waste)
   }, [waste])
 
+
+  useEffect(() => {
+    // IntersectionObserver to render heavy background only when visible
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) setInView(true)
+      })
+    }, { rootMargin: '0px 0px -20% 0px' })
+    if (sectionRef.current) io.observe(sectionRef.current)
+
+    // reduced motion
+    const mql = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(!!(mql && mql.matches))
+    const onChange = (e) => setPrefersReducedMotion(e.matches)
+    if (mql && mql.addEventListener) mql.addEventListener('change', onChange)
+
+    return () => {
+      io.disconnect()
+      if (mql && mql.removeEventListener) mql.removeEventListener('change', onChange)
+    }
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -267,16 +290,18 @@ export default function ImpactCalculator() {
 
   return (
     <section ref={sectionRef} className="py-20 bg-bg2 relative overflow-hidden" id="impact-calculator">
-      {/* Vanta.js Fog Background */}
-      <VantaFog 
-        highlightColor="#67C090"
-        midtoneColor="#86c8b8"
-        lowlightColor="#124170"
-        backgroundColor="#f7f2ec"
-        blurFactor={0.50}
-        speed={1.50}
-        zoom={0.70}
-      />
+      {/* Vanta.js Fog Background (only when in view and motion allowed) */}
+      {inView && !prefersReducedMotion && (
+        <VantaFog 
+          highlightColor="#67C090"
+          midtoneColor="#86c8b8"
+          lowlightColor="#124170"
+          backgroundColor="#f7f2ec"
+          blurFactor={0.50}
+          speed={1.20}
+          zoom={0.70}
+        />
+      )}
       {/* Content overlay to ensure readability */}
       <div className="absolute inset-0 bg-bg2/80 -z-5" />
       <div className="mx-auto max-w-[1200px] px-4 relative z-20">
