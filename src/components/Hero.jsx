@@ -241,7 +241,7 @@ export default function Hero() {
               <a href="https://dune-mile-55e.notion.site/EcoFresh-268b7cf6c65f80b99f8efc738ef4fa8d" target="_blank" rel="noopener noreferrer">Explore Technology</a>
             </Button>
             <Button variant="cta" size="lg" asChild className="hero-button text-lg px-8 py-4">
-              <a href="https://docs.google.com/presentation/d/1ilMP4fLYCqhdDt54FxNFvYMEMkbNhaM8/edit?usp=sharing&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">View Investor Deck</a>
+              <a href="https://docs.google.com/presentation/d/12yjtNQnuhZZkTr1NPIfER--LK_buJwOF/edit?usp=drivesdk&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">View Investor Deck</a>
             </Button>
           </div>
         </div>

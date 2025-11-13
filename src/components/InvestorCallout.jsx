@@ -21,13 +21,13 @@ export default function InvestorCallout() {
         <p className="text-white/80 mb-6">Shape the future of sustainable materials with breakthrough technology and massive market opportunity.</p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button variant="cta" asChild>
-            <a href="https://docs.google.com/presentation/d/1ilMP4fLYCqhdDt54FxNFvYMEMkbNhaM8/edit?usp=sharing&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Open Investor Deck</a>
+            <a href="https://docs.google.com/presentation/d/12yjtNQnuhZZkTr1NPIfER--LK_buJwOF/edit?usp=drivesdk&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Open Investor Deck</a>
           </Button>
           <Button variant="cta" asChild>
             <a href="tel:+919665437830">Schedule Call</a>
           </Button>
           <Button variant="cta" asChild>
-            <a href="https://docs.google.com/presentation/d/1ilMP4fLYCqhdDt54FxNFvYMEMkbNhaM8/edit?usp=sharing&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Request Data Room</a>
+            <a href="https://docs.google.com/presentation/d/12yjtNQnuhZZkTr1NPIfER--LK_buJwOF/edit?usp=drivesdk&ouid=115342461485325584335&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Request Data Room</a>
           </Button>
         </div>
       </div>
