@@ -13,10 +13,10 @@ const LinkedInIcon = () => (
 )
 
 const team = [
-  { name: 'Ark Patil', role: 'CEO & Founder', linkedin: 'https://www.linkedin.com/in/ark-patil-a280a4218/', image: '/assets/ark.jpg', bullets: ['Operations & Executions', 'Smart manufacturings', 'Strategic planning'] },
-  { name: 'Shivansh Fulper', role: 'CTO & Co-Founder', linkedin: 'https://www.linkedin.com/in/shivanshfulper/', image: '/assets/shivansh.jpg', bullets: ['AI/ML systems architect', 'Smart manufacturing systems', 'Business analytics'] },
-  { name: 'Ansh Bathija', role: 'COO & Co-Founder', linkedin: 'https://www.linkedin.com/in/ansh-bathija-45b36121b/', image: '/assets/ansh.jpg', bullets: ['Industrial prototyping', 'Design strategy', 'Hardware systems'] },
-  { name: 'Mayur Kumar', role: 'CFO & Co-Founder', linkedin: 'https://www.linkedin.com/in/mayur-kumar-4751a2272/', image: '/assets/mayur.jpg', bullets: ['Product Design', '3D Modeling', 'System architecture'] },
+  { name: 'Ark Patil', role: 'Founder & CEO', linkedin: 'https://www.linkedin.com/in/ark-patil-a280a4218/', image: '/assets/ark.jpg', bullets: ['Leads strategic direction, partnerships, and commercialization'] },
+  { name: 'Shivansh Fulper', role: 'Co-Founder & CTO', linkedin: 'https://www.linkedin.com/in/shivanshfulper/', image: '/assets/shivansh.jpg', bullets: ['AI engineer leading hybrid control, system architecture, and MLOps'] },
+  { name: 'Ansh Bathija', role: 'Co-Founder & COO', linkedin: 'https://www.linkedin.com/in/ansh-bathija-45b36121b/', image: '/assets/ansh.jpg', bullets: ['Drives industrial design, data infrastructure, and operational scaling'] },
+  { name: 'Mayur Kumar', role: 'Co-Founder & CPO', linkedin: 'https://www.linkedin.com/in/mayur-kumar-4751a2272/', image: '/assets/mayur.jpg', bullets: ['Product lead owning materials innovation and field validation'] },
 ]
 
 export default function Team() {

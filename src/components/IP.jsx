@@ -5,11 +5,11 @@ import { Particles } from './ui/particles'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Image placeholder for patent certificate
+// Image placeholder for patent certificate (signed) - please add the provided Indian seal image at public/assets/patent-india.png
 const PatentImagePlaceholder = () => (
   <img 
-    src="/path/to/your/patent-image.png" 
-    alt="Patent Certificate" 
+    src="/assets/patent-india.png" 
+    alt="Signed Indian Patent Certificate" 
     className="w-20 h-20 object-contain"
   />
 )
@@ -87,7 +87,7 @@ export default function IP() {
       
       <div className="mx-auto max-w-[1200px] px-4 relative z-10">
         <div className="relative bg-bg1/90 backdrop-blur-md border-2 border-primary1 rounded-2xl p-8">
-          <div className="absolute -top-3 left-6 bg-accent text-ink rounded-full px-4 py-1 font-semibold">Patent Filed</div>
+          <div className="absolute -top-3 left-6 bg-accent text-ink rounded-full px-4 py-1 font-semibold">Indian Patent Filed — Signed</div>
           <h2 className="font-space-grotesk text-3xl font-bold mb-6">IP & Competitive Advantage</h2>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div ref={claimsRef}>
@@ -110,8 +110,8 @@ export default function IP() {
                     <PatentImagePlaceholder />
                   </div>
                 </div>
-                <h3 className="text-xl font-space-grotesk font-bold text-ink mb-2 group-hover:text-primary2 transition-colors duration-300">Patent Filed</h3>
-                <p className="text-ink-light text-sm font-light">US Patent Application<br/>Pending Approval</p>
+                <h3 className="text-xl font-space-grotesk font-bold text-ink mb-2 group-hover:text-primary2 transition-colors duration-300">Indian Patent Application — Signed</h3>
+                <p className="text-ink-light text-sm font-light">Indian Patent Application — Signed copy available</p>
               </div>
             </div>
           </div>
