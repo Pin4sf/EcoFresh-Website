@@ -191,7 +191,7 @@ export default function RevenueStreams() {
 
         <div ref={buttonsRef} className="flex flex-wrap items-center justify-center gap-3">
           <Button variant="cta" asChild className="revenue-button">
-            <a href="#">Download One-Pager</a>
+            <a href="https://sugared-zoo-169.notion.site/EcoFresh-AI-Tuned-PHA-Bioplastics-2a75f7d8412280a08191ffc550d25975?pvs=74" target="_blank" rel="noopener noreferrer">Download One-Pager</a>
           </Button>
           <Button variant="cta" asChild className="revenue-button">
             <a href="#pilots">Open Pilot Program</a>

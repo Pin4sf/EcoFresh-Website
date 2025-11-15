@@ -37,8 +37,8 @@ export default function Footer() {
             <a href="mailto:hello@ecofresh.com" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Contact</a>
           </div>
           <div className="flex gap-6 text-white/60 text-sm">
-            <a href="#" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Privacy Policy</a>
-            <a href="#" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Terms of Service</a>
+            <a href="https://sugared-zoo-169.notion.site/EcoFresh-AI-Tuned-PHA-Bioplastics-2a75f7d8412280a08191ffc550d25975?pvs=74" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Privacy Policy</a>
+            <a href="https://sugared-zoo-169.notion.site/EcoFresh-AI-Tuned-PHA-Bioplastics-2a75f7d8412280a08191ffc550d25975?pvs=74" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors font-space-grotesk font-medium">Terms of Service</a>
           </div>
         </div>
       </div>
