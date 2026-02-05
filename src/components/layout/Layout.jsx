@@ -25,10 +25,10 @@ export default function Layout() {
       setIsNavigating(true)
       prevPathRef.current = location.pathname
 
-      // Hide overlay after animation completes
+      // Hide overlay after animation completes (longer for message to be readable)
       const timer = setTimeout(() => {
         setIsNavigating(false)
-      }, 500)
+      }, 650)
 
       return () => clearTimeout(timer)
     }
@@ -36,7 +36,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-sand text-ink">
-      <PageTransitionOverlay isNavigating={isNavigating} />
+      <PageTransitionOverlay isNavigating={isNavigating} targetPath={location.pathname} />
       <ScrollProgress />
       <CustomCursor />
       <ScrollToTop />

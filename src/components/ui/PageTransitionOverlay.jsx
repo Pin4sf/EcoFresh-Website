@@ -1,17 +1,30 @@
 import { motion, AnimatePresence } from 'framer-motion'
 
+// Page-specific transition messages
+const pageMessages = {
+  '/': 'Welcome to EcoFresh',
+  '/problem': 'The Problem We Solve',
+  '/impact': 'The Impact We Create',
+  '/credibility': 'You Can Trust EcoFresh',
+  '/team': 'Meet the Builders',
+  '/investors': 'For Our Investors',
+}
+
 /**
  * PageTransitionOverlay Component
  * Quick branded transition shown during page navigation
- * Shows EcoFresh logo with a fast morph animation (~600ms)
+ * Shows EcoFresh logo with page-specific message (~600ms)
  */
-export default function PageTransitionOverlay({ isNavigating }) {
+export default function PageTransitionOverlay({ isNavigating, targetPath }) {
   // Check for reduced motion preference
   const prefersReducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   if (prefersReducedMotion) return null
+
+  // Get message for target page
+  const message = pageMessages[targetPath] || 'EcoFresh'
 
   return (
     <AnimatePresence>
@@ -25,7 +38,7 @@ export default function PageTransitionOverlay({ isNavigating }) {
         >
           {/* Logo container */}
           <motion.div
-            className="relative"
+            className="relative text-center"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 1.05, opacity: 0 }}
@@ -48,6 +61,17 @@ export default function PageTransitionOverlay({ isNavigating }) {
               exit={{ width: '100%', opacity: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
             />
+
+            {/* Page-specific message */}
+            <motion.p
+              className="mt-4 text-sm md:text-base text-ink-muted tracking-wide"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.1, duration: 0.2 }}
+            >
+              {message}
+            </motion.p>
           </motion.div>
 
           {/* Subtle background pulse */}
