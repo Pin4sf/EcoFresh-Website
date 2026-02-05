@@ -51,14 +51,35 @@ export default function Problem() {
           >
             <span className="section-eyebrow text-red-600">The Crisis</span>
             <h1 className="heading-display mt-4">
-              India's Mixed Waste Challenge is a{' '}
-              <span className="text-red-600">₹4.5 Lakh Crore</span> Problem
+              Every Day, India Buries{' '}
+              <span className="text-red-600">150,000 Tonnes</span> of Waste
             </h1>
             <p className="body-large mt-8 max-w-2xl">
-              Every day, over 150,000 tonnes of municipal waste is generated across India.
-              Most of it ends up in landfills — not because we lack technology, but because
-              existing solutions weren't built for reality.
+              Our cities are choking. Landfills are overflowing into neighborhoods.
+              Groundwater is contaminated. Communities living near dumpsites face serious
+              health risks — and the problem grows by 5% every year.
             </p>
+
+            {/* Emotional impact stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mt-12 grid gap-6 sm:grid-cols-3"
+            >
+              <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
+                <p className="text-3xl font-display font-bold text-red-600">62M+</p>
+                <p className="text-sm text-red-800/70 mt-1">Tonnes generated annually — 90% ends up in landfills or open dumps</p>
+              </div>
+              <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
+                <p className="text-3xl font-display font-bold text-red-600">3,000+</p>
+                <p className="text-sm text-red-800/70 mt-1">Dumpsites across India, many in residential areas affecting millions</p>
+              </div>
+              <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
+                <p className="text-3xl font-display font-bold text-red-600">5 Lakh+</p>
+                <p className="text-sm text-red-800/70 mt-1">Sanitation workers risking their health daily without proper protection</p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
