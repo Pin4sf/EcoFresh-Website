@@ -2,12 +2,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 // Page-specific transition messages
 const pageMessages = {
-  '/': 'Welcome to EcoFresh',
-  '/problem': 'The Problem We Solve',
+  '/': 'Waste to Value. At Scale.',
+  '/problem': '62 Million Tonnes. One Solution.',
   '/impact': 'The Impact We Create',
-  '/credibility': 'You Can Trust EcoFresh',
+  '/credibility': 'Proven. Recognized. Trusted.',
   '/team': 'Meet the Builders',
-  '/investors': 'For Our Investors',
+  '/investors': 'Partner in Impact',
 }
 
 /**
