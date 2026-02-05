@@ -1,0 +1,19 @@
+<svg width="720" height="180" viewBox="0 0 720 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="40" width="160" height="80" rx="18" class="stroke-anim" stroke="#2F7AE5" stroke-width="2" stroke-dasharray="6 6" fill="white" />
+  <text x="45" y="85" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" fill="#0E1C17">Mixed Municipal Waste</text>
+
+  <rect x="280" y="40" width="160" height="80" rx="18" class="stroke-anim" stroke="#148A3A" stroke-width="2" fill="#EEF6F1" />
+  <text x="312" y="75" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" fill="#0E1C17">Eco Converter</text>
+  <text x="305" y="97" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#40524B">Segregation-agnostic</text>
+
+  <rect x="540" y="24" width="160" height="48" rx="16" class="stroke-anim" stroke="#148A3A" stroke-width="2" fill="white" />
+  <rect x="540" y="84" width="160" height="48" rx="16" class="stroke-anim" stroke="#148A3A" stroke-width="2" fill="white" />
+  <rect x="540" y="144" width="160" height="48" rx="16" class="stroke-anim" stroke="#148A3A" stroke-width="2" fill="white" />
+
+  <text x="558" y="52" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#0E1C17">EcoForm PHA</text>
+  <text x="558" y="112" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#0E1C17">Bio-fertilizer</text>
+  <text x="558" y="172" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="#0E1C17">Eco-composites</text>
+
+  <path d="M180 80H260" class="stroke-anim" stroke="#0E1C17" stroke-width="2" />
+  <path d="M440 80H520" class="stroke-anim" stroke="#0E1C17" stroke-width="2" />
+</svg>

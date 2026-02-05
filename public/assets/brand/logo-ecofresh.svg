@@ -1,0 +1,8 @@
+<svg width="240" height="120" viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="38" stroke="#148A3A" stroke-width="4" />
+  <path d="M82 32c-8 2-14 8-16 16c8-2 14-8 16-16z" stroke="#148A3A" stroke-width="3" fill="none" stroke-linejoin="round" />
+  <path d="M38 80c-8 2-14 8-16 16c8-2 14-8 16-16z" stroke="#148A3A" stroke-width="3" fill="none" stroke-linejoin="round" />
+  <line x1="74" y1="46" x2="68" y2="52" stroke="#148A3A" stroke-width="2" />
+  <line x1="30" y1="94" x2="36" y2="88" stroke="#148A3A" stroke-width="2" />
+  <text x="110" y="70" font-family="Sora, Arial, sans-serif" font-size="28" font-weight="600" fill="#148A3A">EcoFresh</text>
+</svg>

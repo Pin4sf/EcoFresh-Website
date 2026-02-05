@@ -1,93 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Sora:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Lexend", cursive;
-    --font-display: "Lexend", cursive;
-    --font-cursive: "Lexend", cursive;
+    --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
 
-    --color-ink: #124170;
-    --color-ink-light: #26667f;
-    --color-bg1: #ddf4e7;
-    --color-bg2: #ddf4e7;
-    --color-primary1: #67c090;
-    --color-primary2: #26667f;
-    --color-secondary1: #67c090;
-    --color-secondary2: #26667f;
-    --color-accent: #67c090;
-    --color-seafoam: #67c090;
-    --color-lilac: #26667f;
+    --color-ink: #0E1C17;
+    --color-ink-muted: #40524B;
+    --color-eco: #148A3A;
+    --color-eco-dark: #0E5F29;
+    --color-mist: #EEF6F1;
+    --color-sand: #FAFBF8;
+    --color-sky: #2F7AE5;
 }
 
 @layer base {
-    html,
-    body,
-    #root {
-        height: 100%;
+    *, *::before, *::after {
+        box-sizing: border-box;
     }
 
-    /* Font Rendering Optimization */
-    * {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-    }
-
-    /* Snap Scrolling Setup - Fixed to allow normal scrolling */
     html {
-        overflow-y: auto;
+        scroll-behavior: smooth;
     }
 
     body {
-        @apply bg-bg1 text-ink font-sans;
+        @apply bg-sand text-ink font-sans antialiased;
     }
 
-    /* Preserve layout-only behavior for sections without scroll snap */
-    .snap-section {
-        min-height: 100vh;
-        height: auto;
-        overflow: visible;
+    h1, h2, h3, h4 {
+        @apply font-display text-ink;
+    }
+
+    a {
+        @apply text-ink;
+    }
+
+    .section {
+        @apply py-20 md:py-24;
     }
 
     .section-title {
-        @apply font-display text-3xl font-semibold text-ink;
+        @apply text-3xl md:text-4xl font-semibold tracking-tight;
     }
 
-    /* Prevent layout shifts during animations */
-    section {
-        will-change: opacity, transform;
+    .section-eyebrow {
+        @apply text-xs uppercase tracking-[0.2em] text-eco font-semibold;
     }
 
-    /* Loading states */
-    .loading {
+    .container-default {
+        @apply mx-auto max-w-[1200px] px-4;
+    }
+
+    .section-divider {
+        @apply my-16 h-px w-full bg-gradient-to-r from-transparent via-ink/10 to-transparent;
+    }
+
+    [data-reveal] {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(16px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .loaded {
+    [data-reveal].is-visible {
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
 
-    /* Floating animations are handled via GSAP for performance and control */
+    /* Reduced Motion - Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
 
-    /* Hide scrollbars utility */
-    .no-scrollbar::-webkit-scrollbar {
+        [data-reveal] {
+            opacity: 1;
+            transform: none;
+        }
+
+        [data-parallax] {
+            transform: none !important;
+        }
+    }
+}
+
+@layer components {
+    /* Primary Button - EcoFresh green */
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-full bg-eco px-6 py-3 text-sm font-semibold text-white transition-all duration-300;
+        @apply hover:bg-eco-dark hover:-translate-y-0.5 hover:shadow-lg hover:shadow-eco/25;
+        @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-eco/40 focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
+        @apply active:scale-[0.98];
+    }
+
+    /* Outline Button */
+    .btn-outline {
+        @apply inline-flex items-center justify-center rounded-full border border-ink/20 px-6 py-3 text-sm font-semibold text-ink transition-all duration-300;
+        @apply hover:border-eco hover:text-eco;
+        @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-eco/30 focus-visible:ring-offset-2;
+        @apply active:scale-[0.98];
+    }
+
+    /* Glass Button - zerocircle inspired */
+    .btn-glass {
+        @apply inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-semibold text-ink;
+        @apply bg-white/10 backdrop-blur-md border border-ink/10;
+        @apply transition-all duration-300;
+        @apply hover:bg-white/20 hover:border-ink/20;
+        @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-eco/30;
+        @apply active:scale-[0.98];
+    }
+
+    /* Trust chips */
+    .chip {
+        @apply inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-ink-muted;
+    }
+
+    /* Minimal chip variant */
+    .chip-minimal {
+        @apply px-4 py-2 text-xs font-medium text-ink-muted;
+        @apply bg-white/60 backdrop-blur-sm rounded-full border border-ink/5;
+    }
+
+    /* Dashed card (brand element) */
+    .dashed-card {
+        @apply rounded-3xl border border-dashed border-ink/20 bg-white/90 p-6;
+    }
+
+    /* Typography - Large confident headlines (zerocircle inspired) */
+    .heading-display {
+        @apply text-5xl md:text-7xl lg:text-[5.5rem] font-display font-semibold leading-[1.02] tracking-[-0.02em];
+    }
+
+    .heading-section {
+        @apply text-3xl md:text-5xl font-display font-semibold leading-[1.1] tracking-tight;
+    }
+
+    .heading-subsection {
+        @apply text-2xl md:text-3xl font-display font-semibold leading-tight tracking-tight;
+    }
+
+    .heading-card {
+        @apply text-xl font-display font-semibold;
+    }
+
+    /* Body typography */
+    .body-large {
+        @apply text-xl md:text-2xl font-light text-ink-muted leading-relaxed;
+    }
+
+    .body-regular {
+        @apply text-base text-ink-muted leading-relaxed;
+    }
+
+    /* Stat number - large typography for impact */
+    .stat-number {
+        @apply text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight;
+        @apply bg-gradient-to-br from-eco via-eco-dark to-ink bg-clip-text text-transparent;
+    }
+
+    .marquee {
+        @apply relative overflow-hidden border-y border-ink/10 bg-white/80 py-4;
+    }
+
+    .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 24s linear infinite;
+        gap: 24px;
+    }
+
+    .marquee-item {
+        @apply rounded-full border border-ink/10 bg-sand px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted;
+        white-space: nowrap;
+    }
+
+    .stroke-anim {
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        animation: stroke-draw 2.5s ease forwards;
+    }
+
+    .footer-grid {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        background-size: 60px 60px;
+    }
+
+    /* Floating navbar styles */
+    .navbar-floating {
+        @apply fixed z-50 transition-all duration-500;
+        will-change: transform, width, border-radius, background-color;
+    }
+
+    .navbar-floating--top {
+        @apply top-0 left-0 right-0 bg-transparent;
+    }
+
+    .navbar-floating--scrolled {
+        @apply top-4 left-1/2 -translate-x-1/2;
+        @apply max-w-[900px] w-[calc(100%-2rem)];
+        @apply bg-white/95 backdrop-blur-md;
+        @apply rounded-3xl border border-ink/10;
+        @apply shadow-lg shadow-ink/5;
+    }
+
+    /* Nav link pill hover effect */
+    .nav-link-pill {
+        @apply relative px-3 py-2 rounded-full text-sm font-medium transition-all duration-200;
+    }
+
+    .nav-link-pill:hover {
+        @apply bg-mist/50;
+    }
+
+    .nav-link-pill--active {
+        @apply text-eco;
+    }
+
+    /* Icon container styles */
+    .icon-container {
+        @apply inline-flex items-center justify-center transition-all duration-300;
+    }
+
+    .icon-container-circle {
+        @apply rounded-full;
+    }
+
+    .icon-container-rounded {
+        @apply rounded-xl;
+    }
+
+    .icon-hover-scale:hover {
+        @apply scale-110;
+    }
+
+    .icon-hover-glow:hover {
+        box-shadow: 0 0 20px rgba(20, 138, 58, 0.3);
+    }
+
+    /* Footer glow border */
+    .footer-glow-border {
+        position: relative;
+    }
+
+    .footer-glow-border::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(20, 138, 58, 0.5),
+            rgba(47, 122, 229, 0.3),
+            transparent
+        );
+        filter: blur(1px);
+    }
+
+    /* Spotlight utility */
+    .spotlight-eco {
+        background: radial-gradient(
+            ellipse 50% 40% at 50% 50%,
+            rgba(20, 138, 58, 0.08) 0%,
+            transparent 70%
+        );
+    }
+
+    /* Breadcrumbs styling */
+    .breadcrumb-link {
+        @apply flex items-center gap-1.5 text-ink-muted hover:text-ink transition-colors;
+    }
+
+    .breadcrumb-current {
+        @apply font-medium text-eco;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-video {
         display: none;
     }
-    .no-scrollbar {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
+}
 
-    /* EcoFresh Brand Text Optimization */
-    .ecofresh-brand {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-        font-variant-numeric: lining-nums;
-        letter-spacing: -0.02em;
-    }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes stroke-draw {
+    to { stroke-dashoffset: 0; }
 }

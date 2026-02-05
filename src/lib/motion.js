@@ -1,0 +1,134 @@
+// Reusable animation variants for framer-motion
+// Inspired by zerocircle.in - minimal, smooth, purposeful animations
+
+export const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+export const fadeIn = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.5 }
+}
+
+export const fadeInScale = {
+  initial: { opacity: 0, scale: 0.95 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+export const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+}
+
+export const staggerItem = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+// For scroll-triggered animations with whileInView
+export const scrollReveal = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+export const scrollRevealLeft = {
+  initial: { opacity: 0, x: -40 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+export const scrollRevealRight = {
+  initial: { opacity: 0, x: 40 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+// Blur reveal (great for hero text)
+export const blurReveal = {
+  initial: { opacity: 0, filter: 'blur(10px)' },
+  animate: { opacity: 1, filter: 'blur(0px)' },
+  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+// For hover animations on cards
+export const cardHover = {
+  rest: { scale: 1, y: 0 },
+  hover: { scale: 1.02, y: -4, transition: { duration: 0.3 } }
+}
+
+// Button press effect
+export const buttonPress = {
+  tap: { scale: 0.98 }
+}
+
+// Custom easing values
+export const easings = {
+  smooth: [0.25, 0.1, 0.25, 1],      // cubic-bezier
+  bounce: [0.34, 1.56, 0.64, 1],     // back.out equivalent
+  swift: [0.4, 0, 0.2, 1]            // material design standard
+}
+
+// Duration tokens
+export const durations = {
+  fast: 0.2,
+  normal: 0.3,
+  slow: 0.5,
+  reveal: 0.6,
+  hero: 0.8
+}
+
+// Navbar-specific animations
+export const navbarTransition = {
+  type: "spring",
+  stiffness: 400,
+  damping: 30
+}
+
+// Nav link hover animation
+export const navLinkHover = {
+  rest: {
+    scale: 1,
+    backgroundColor: "transparent"
+  },
+  hover: {
+    scale: 1.02,
+    backgroundColor: "rgba(238, 246, 241, 0.5)",
+    transition: { duration: 0.2 }
+  }
+}
+
+// Breadcrumb animations
+export const breadcrumbReveal = {
+  initial: { opacity: 0, y: -8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+// Magnetic hover effect (for buttons and interactive elements)
+export const magneticHover = {
+  whileHover: { y: -2 },
+  whileTap: { scale: 0.98 },
+  transition: { type: "spring", stiffness: 400, damping: 17 }
+}
+
+// Logo scale reveal
+export const logoReveal = {
+  initial: { opacity: 0, scale: 0.95, y: 20 },
+  whileInView: { opacity: 1, scale: 1, y: 0 },
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+}
