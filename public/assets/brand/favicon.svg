@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="#148A3A"/>
+  <!-- Leaf icon - stylized recycling/eco symbol -->
+  <path d="M16 7c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9z" fill="none" stroke="white" stroke-width="1.5"/>
+  <!-- Top leaf -->
+  <path d="M20 10c-2 0.5-3.5 2-4 4c2-0.5 3.5-2 4-4z" fill="white"/>
+  <!-- Bottom leaf -->
+  <path d="M12 18c-2 0.5-3.5 2-4 4c2-0.5 3.5-2 4-4z" fill="white"/>
+  <!-- Center dot -->
+  <circle cx="16" cy="16" r="2" fill="white"/>
+  <!-- Arrow suggesting cycle/conversion -->
+  <path d="M18 14l2-2m0 0l-1 3m1-3l-3 1" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
