@@ -50,7 +50,7 @@ export default function useReveal(trigger) {
 
       // Store observer reference for cleanup
       window.__revealObserver = observer
-    }, 450) // Delay to ensure DOM is ready after page transition (400ms enter + buffer)
+    }, 700) // Delay to ensure DOM is ready after page transition overlay (650ms) + page enter (400ms)
 
     return () => {
       clearTimeout(timeoutId)

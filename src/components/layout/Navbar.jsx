@@ -317,7 +317,7 @@ export default function Navbar() {
         animate={navbarState}
         variants={navbarVariants}
         transition={navbarTransition}
-        className="fixed z-50 backdrop-blur-md"
+        className={cn('fixed z-50', !open && 'backdrop-blur-md')}
         style={{
           borderWidth: 1,
           borderStyle: 'solid',
