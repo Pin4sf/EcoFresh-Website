@@ -131,26 +131,38 @@
         @apply rounded-3xl border border-dashed border-ink/20 bg-white/90 p-6;
     }
 
-    /* Typography - Large confident headlines (zerocircle inspired) */
+    /* Typography - Fluid scaling with clamp() for smooth responsiveness */
     .heading-display {
-        @apply text-5xl md:text-7xl lg:text-[5.5rem] font-display font-semibold leading-[1.02] tracking-[-0.02em];
+        font-size: clamp(2.25rem, 1rem + 4vw, 4.5rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        @apply font-display font-semibold;
     }
 
     .heading-section {
-        @apply text-3xl md:text-5xl font-display font-semibold leading-[1.1] tracking-tight;
+        font-size: clamp(1.5rem, 0.75rem + 2vw, 2.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        @apply font-display font-semibold;
     }
 
     .heading-subsection {
-        @apply text-2xl md:text-3xl font-display font-semibold leading-tight tracking-tight;
+        font-size: clamp(1.25rem, 0.9rem + 1vw, 1.75rem);
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        @apply font-display font-semibold;
     }
 
     .heading-card {
-        @apply text-xl font-display font-semibold;
+        font-size: clamp(1rem, 0.85rem + 0.4vw, 1.25rem);
+        @apply font-display font-semibold;
     }
 
-    /* Body typography */
+    /* Body typography - Fluid */
     .body-large {
-        @apply text-xl md:text-2xl font-light text-ink-muted leading-relaxed;
+        font-size: clamp(1rem, 0.85rem + 0.5vw, 1.25rem);
+        line-height: 1.7;
+        @apply font-light text-ink-muted;
     }
 
     .body-regular {
@@ -159,7 +171,9 @@
 
     /* Stat number - large typography for impact */
     .stat-number {
-        @apply text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight;
+        font-size: clamp(2rem, 1rem + 2.5vw, 3rem);
+        letter-spacing: -0.02em;
+        @apply font-display font-bold;
         @apply bg-gradient-to-br from-eco via-eco-dark to-ink bg-clip-text text-transparent;
     }
 
@@ -298,4 +312,84 @@
 
 @keyframes stroke-draw {
     to { stroke-dashoffset: 0; }
+}
+
+/* ============================================
+   Aurora Background Animations
+   ============================================ */
+
+.aurora-blob {
+    position: absolute;
+    width: var(--aurora-size, 50%);
+    height: var(--aurora-size, 50%);
+    background: radial-gradient(
+        ellipse at center,
+        var(--aurora-color, rgba(20, 138, 58, 0.1)) 0%,
+        transparent 70%
+    );
+    filter: blur(60px);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.aurora-blob-1 {
+    top: -10%;
+    right: -10%;
+    animation: aurora-drift-1 20s ease-in-out infinite;
+}
+
+.aurora-blob-2 {
+    bottom: -5%;
+    left: -10%;
+    animation: aurora-drift-2 25s ease-in-out infinite;
+}
+
+.aurora-blob-3 {
+    top: 30%;
+    left: 20%;
+    animation: aurora-drift-3 18s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-1 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(-5%, 10%) scale(1.1);
+    }
+    50% {
+        transform: translate(-10%, 5%) scale(0.95);
+    }
+    75% {
+        transform: translate(-3%, -5%) scale(1.05);
+    }
+}
+
+@keyframes aurora-drift-2 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(8%, -8%) scale(1.15);
+    }
+    66% {
+        transform: translate(3%, 5%) scale(0.9);
+    }
+}
+
+@keyframes aurora-drift-3 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(15%, 10%) scale(1.2) rotate(5deg);
+    }
+}
+
+/* Disable aurora animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .aurora-blob {
+        animation: none !important;
+        opacity: 0.5;
+    }
 }

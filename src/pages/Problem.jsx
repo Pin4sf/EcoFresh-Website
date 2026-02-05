@@ -4,6 +4,7 @@ import { Truck, Factory, Cog, BarChart3 } from 'lucide-react'
 import { siteCopy } from '../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../lib/motion'
 import { Icon } from '../components/ui/Icon'
+import TextReveal from '../components/ui/TextReveal'
 
 const wasteBreakdown = [
   { category: 'Organic Waste', percentage: 55, color: 'bg-eco' },
@@ -44,21 +45,42 @@ export default function Problem() {
 
         <div className="container-default relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="max-w-4xl"
           >
-            <span className="section-eyebrow text-red-600">The Crisis</span>
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="section-eyebrow text-red-600"
+            >
+              The Crisis
+            </motion.span>
             <h1 className="heading-display mt-4">
-              Every Day, India Buries{' '}
-              <span className="text-red-600">150,000 Tonnes</span> of Waste
+              <TextReveal delay={0.2}>
+                Every Day, India Buries
+              </TextReveal>
+              <span className="text-red-600 inline-block">
+                <TextReveal delay={0.4}>
+                  150,000 Tonnes
+                </TextReveal>
+              </span>
+              <TextReveal delay={0.5}>
+                of Waste
+              </TextReveal>
             </h1>
-            <p className="body-large mt-8 max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="body-large mt-8 max-w-2xl"
+            >
               Our cities are choking. Landfills are overflowing into neighborhoods.
               Groundwater is contaminated. Communities living near dumpsites face serious
               health risks — and the problem grows by 5% every year.
-            </p>
+            </motion.p>
 
             {/* Emotional impact stats */}
             <motion.div

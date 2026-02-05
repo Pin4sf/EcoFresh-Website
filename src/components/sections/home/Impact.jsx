@@ -14,7 +14,7 @@ function CountUpStat({ value, prefix = '', suffix = '', decimal = false }) {
   const { ref, value: count } = useCountUp(decimal ? value * 10 : value, 1200)
 
   return (
-    <span ref={ref} className="stat-number tabular-nums">
+    <span ref={ref} className="stat-number tabular-nums whitespace-nowrap">
       {prefix}{decimal ? (count / 10).toFixed(1) : count}{suffix}
     </span>
   )
@@ -45,18 +45,18 @@ export default function Impact() {
         </motion.div>
 
         <motion.div
-          className="grid gap-8 md:grid-cols-3"
+          className="grid gap-6 md:grid-cols-3"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           {impactStats.map((stat, i) => (
             <motion.div
               key={stat.label}
               variants={staggerItem}
-              className="group text-center p-8 rounded-3xl bg-white border border-ink/5 transition-all duration-300 hover:border-eco/20 hover:shadow-lg hover:shadow-eco/5"
-              whileHover={{ y: -8 }}
+              className="group text-center p-6 rounded-2xl bg-white border border-ink/5 transition-all duration-300 hover:border-eco/20 hover:shadow-lg hover:shadow-eco/5"
+              whileHover={{ y: -4 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               <CountUpStat
@@ -65,10 +65,10 @@ export default function Impact() {
                 suffix={stat.suffix}
                 decimal={stat.decimal}
               />
-              <p className="text-sm font-semibold text-eco uppercase tracking-wider mt-2">{stat.label}</p>
-              <p className="text-sm text-ink-muted mt-4">{stat.description}</p>
+              <p className="text-xs font-semibold text-eco uppercase tracking-wider mt-2">{stat.label}</p>
+              <p className="text-sm text-ink-muted mt-3 leading-relaxed">{stat.description}</p>
 
-              {/* Animated underline on hover */}
+              {/* Animated underline */}
               <motion.div
                 className="mt-4 h-0.5 bg-eco/20 mx-auto"
                 initial={{ width: 0 }}

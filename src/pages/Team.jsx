@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { siteCopy } from '../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../lib/motion'
+import TextReveal from '../components/ui/TextReveal'
 
 const founderDetails = [
   {
@@ -56,21 +57,37 @@ export default function Team() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-b from-sand via-mist/30 to-white relative overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-eco/5 rounded-full blur-[100px] pointer-events-none" />
+      <section className="py-24 md:py-32 bg-gradient-to-b from-sand via-amber-50/30 to-white relative overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="container-default relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <span className="section-eyebrow">{siteCopy.team.eyebrow}</span>
-            <h1 className="heading-display mt-4">{siteCopy.team.title}</h1>
-            <p className="body-large mt-8 max-w-3xl mx-auto">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="section-eyebrow text-amber-600"
+            >
+              {siteCopy.team.eyebrow}
+            </motion.span>
+            <h1 className="heading-display mt-4">
+              <TextReveal delay={0.2}>
+                {siteCopy.team.title}
+              </TextReveal>
+            </h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="body-large mt-8 max-w-3xl mx-auto"
+            >
               {siteCopy.team.subtitle}
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -89,7 +106,7 @@ export default function Team() {
               <motion.div
                 key={member.name}
                 variants={staggerItem}
-                className="group text-center p-6 rounded-3xl border border-ink/10 bg-sand transition-all duration-300 hover:border-eco/20 hover:shadow-lg hover:shadow-eco/5"
+                className="group text-center p-6 rounded-2xl border border-ink/10 bg-sand transition-all duration-300 hover:border-eco/20 hover:shadow-lg hover:shadow-eco/5"
               >
                 <div className="relative inline-block">
                   <img

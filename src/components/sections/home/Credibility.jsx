@@ -49,39 +49,39 @@ function AchievementCard({ achievement, index }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.15, duration: 0.5 }}
-      className="group relative bg-white rounded-3xl border border-ink/10 p-6 md:p-8 overflow-hidden transition-all duration-300 hover:border-eco/30 hover:shadow-xl hover:shadow-eco/10"
-      whileHover={{ y: -8 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1, duration: 0.4 }}
+      className="group relative bg-white rounded-2xl border border-ink/10 p-6 overflow-hidden transition-all duration-300 hover:border-eco/30 hover:shadow-lg hover:shadow-eco/5"
+      whileHover={{ y: -4 }}
     >
       {/* Background glow on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-eco/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <div className="relative z-10">
         {/* Icon */}
-        <div className="w-12 h-12 rounded-2xl bg-eco/10 flex items-center justify-center mb-4 group-hover:bg-eco/20 transition-colors">
-          <Icon className="w-6 h-6 text-eco" />
+        <div className="w-10 h-10 rounded-xl bg-eco/10 flex items-center justify-center mb-4 group-hover:bg-eco/20 transition-colors">
+          <Icon className="w-5 h-5 text-eco" />
         </div>
 
         {/* Stat */}
-        <p ref={ref} className="text-4xl md:text-5xl font-display font-bold text-ink">
+        <p ref={ref} className="text-2xl md:text-3xl font-display font-bold text-ink whitespace-nowrap">
           {achievement.prefix || ''}
           {achievement.decimal ? (value / 10).toFixed(1) : value}
           {achievement.suffix}
         </p>
 
-        <p className="text-sm font-semibold text-eco uppercase tracking-wider mt-2">
+        <p className="text-xs font-semibold text-eco uppercase tracking-wider mt-2">
           {achievement.label}
         </p>
 
-        <p className="text-sm text-ink-muted mt-3 leading-relaxed">
+        <p className="text-sm text-ink-muted mt-2 leading-relaxed">
           {achievement.description}
         </p>
 
         {/* Highlight tag */}
-        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-mist text-xs font-medium text-ink-muted">
+        <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mist text-xs font-medium text-ink-muted">
           <span className="w-1.5 h-1.5 rounded-full bg-eco" />
           {achievement.highlight}
         </div>

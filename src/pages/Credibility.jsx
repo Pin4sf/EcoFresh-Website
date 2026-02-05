@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { siteCopy } from '../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../lib/motion'
+import TextReveal from '../components/ui/TextReveal'
 
 const tabs = [
   { id: 'recognitions', label: 'Recognitions' },
@@ -62,22 +63,42 @@ export default function Credibility() {
 
         <div className="container-default relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="max-w-4xl"
           >
-            <span className="section-eyebrow">Credibility</span>
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="section-eyebrow"
+            >
+              Credibility
+            </motion.span>
             <h1 className="heading-display mt-4">
-              Backed by{' '}
-              <span className="text-eco">National & International</span>{' '}
-              Recognition
+              <TextReveal delay={0.2}>
+                Backed by
+              </TextReveal>
+              <span className="text-eco inline-block">
+                <TextReveal delay={0.35}>
+                  National & International
+                </TextReveal>
+              </span>
+              <TextReveal delay={0.5}>
+                Recognition
+              </TextReveal>
             </h1>
-            <p className="body-large mt-8 max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="body-large mt-8 max-w-2xl"
+            >
               EcoFresh is recognized by leading government bodies, academic institutions,
               and international organizations. Our work is validated by experts and
               supported by formal documentation.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
