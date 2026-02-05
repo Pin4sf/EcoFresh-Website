@@ -1,23 +1,151 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLoading } from '../../context/LoadingContext'
 
 /**
- * LoadingScreen Component
- * Full branded loading experience with 3 phases:
- * 1. Logo reveal (0-800ms) - Scale in with blur-to-clear
- * 2. Progress bar (800-2200ms) - Animated 0-100%
- * 3. Exit (2200-2800ms) - Slide up and reveal content
+ * LoadingScreen Component - Award-Winning 4-Phase Experience
+ *
+ * Phase 1 (0-700ms):   Letter-by-letter "EcoFresh" reveal
+ * Phase 2 (700-1400ms): Tagline blur-reveal with delay
+ * Phase 3 (1400-2200ms): Circular progress ring animation
+ * Phase 4 (2200-2800ms): Split-screen exit (dramatic reveal)
  */
+
+// Letter animation variants
+const letterVariants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+    rotateX: -60,
+  },
+  animate: (i) => ({
+    y: 0,
+    opacity: 1,
+    rotateX: 0,
+    transition: {
+      delay: i * 0.06,
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  }),
+}
+
+// Tagline blur reveal
+const taglineVariants = {
+  initial: {
+    opacity: 0,
+    filter: 'blur(10px)',
+    y: 10,
+  },
+  animate: {
+    opacity: 1,
+    filter: 'blur(0px)',
+    y: 0,
+    transition: {
+      delay: 0.5,
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+}
+
+// Split panel variants for dramatic exit
+const splitPanelVariants = {
+  top: {
+    initial: { y: 0 },
+    exit: {
+      y: '-100%',
+      transition: {
+        duration: 0.6,
+        ease: [0.7, 0, 0.3, 1],
+      },
+    },
+  },
+  bottom: {
+    initial: { y: 0 },
+    exit: {
+      y: '100%',
+      transition: {
+        duration: 0.6,
+        ease: [0.7, 0, 0.3, 1],
+        delay: 0.05, // Slight offset for visual interest
+      },
+    },
+  },
+}
+
+// Progress ring component
+function CircularProgress({ progress }) {
+  const circumference = 2 * Math.PI * 42 // radius = 42
+  const strokeDashoffset = circumference - (circumference * progress) / 100
+
+  return (
+    <div className="relative w-24 h-24">
+      {/* Background circle */}
+      <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="42"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-ink/10"
+        />
+        {/* Progress circle */}
+        <motion.circle
+          cx="50"
+          cy="50"
+          r="42"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          className="text-eco"
+          style={{
+            strokeDasharray: circumference,
+            strokeDashoffset,
+          }}
+          initial={{ strokeDashoffset: circumference }}
+          animate={{ strokeDashoffset }}
+          transition={{ duration: 0.1, ease: 'linear' }}
+        />
+      </svg>
+
+      {/* Percentage text */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-sm font-medium text-ink tabular-nums">
+          {Math.round(progress)}%
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export default function LoadingScreen() {
   const { isLoading, isFirstVisit, setLoadingComplete } = useLoading()
-  const [phase, setPhase] = useState('logo') // 'logo' | 'progress' | 'exit'
+  const [phase, setPhase] = useState('letters') // 'letters' | 'tagline' | 'progress' | 'exit'
   const [progress, setProgress] = useState(0)
+  const [isExiting, setIsExiting] = useState(false)
 
   // Check for reduced motion preference
   const prefersReducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Split "EcoFresh" into individual letters
+  const brandLetters = useMemo(() => {
+    return [
+      { char: 'E', color: 'text-ink' },
+      { char: 'c', color: 'text-ink' },
+      { char: 'o', color: 'text-ink' },
+      { char: 'F', color: 'text-eco' },
+      { char: 'r', color: 'text-eco' },
+      { char: 'e', color: 'text-eco' },
+      { char: 's', color: 'text-eco' },
+      { char: 'h', color: 'text-eco' },
+    ]
+  }, [])
 
   useEffect(() => {
     // Skip entirely if not first visit or reduced motion preferred
@@ -26,33 +154,40 @@ export default function LoadingScreen() {
       return
     }
 
-    // Phase 1: Logo reveal (800ms)
-    const logoTimer = setTimeout(() => {
-      setPhase('progress')
-    }, 800)
+    // Phase 1: Letters animation (700ms)
+    const taglineTimer = setTimeout(() => {
+      setPhase('tagline')
+    }, 700)
 
-    // Phase 2: Progress animation (800-2200ms = 1400ms duration)
+    // Phase 2: Show progress after tagline (1400ms total)
     const progressTimer = setTimeout(() => {
-      setPhase('exit')
-    }, 2200)
+      setPhase('progress')
+    }, 1400)
 
-    // Phase 3: Exit animation complete (2800ms)
+    // Phase 3: Start exit animation (2200ms total)
     const exitTimer = setTimeout(() => {
+      setPhase('exit')
+      setIsExiting(true)
+    }, 2400)
+
+    // Phase 4: Complete loading (2800ms total)
+    const completeTimer = setTimeout(() => {
       setLoadingComplete()
-    }, 2800)
+    }, 3000)
 
     return () => {
-      clearTimeout(logoTimer)
+      clearTimeout(taglineTimer)
       clearTimeout(progressTimer)
       clearTimeout(exitTimer)
+      clearTimeout(completeTimer)
     }
   }, [isFirstVisit, prefersReducedMotion, setLoadingComplete])
 
-  // Animate progress bar
+  // Animate progress ring
   useEffect(() => {
-    if (phase !== 'progress') return
+    if (phase !== 'progress' && phase !== 'exit') return
 
-    const duration = 1400 // ms
+    const duration = 1000 // ms
     const startTime = Date.now()
 
     const animate = () => {
@@ -72,88 +207,88 @@ export default function LoadingScreen() {
   if (!isLoading || !isFirstVisit) return null
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isLoading && (
-        <motion.div
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-sand"
-          initial={{ opacity: 1 }}
-          exit={{
-            y: '-100%',
-            transition: {
-              duration: 0.6,
-              ease: [0.7, 0, 0.3, 1]
-            }
-          }}
-        >
-          {/* Logo */}
+        <div className="fixed inset-0 z-[9999] overflow-hidden">
+          {/* Top split panel */}
           <motion.div
-            className="relative"
-            initial={{ scale: 0.8, filter: 'blur(10px)', opacity: 0 }}
-            animate={{
-              scale: 1,
-              filter: 'blur(0px)',
-              opacity: 1
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.1, 0.25, 1]
-            }}
+            className="absolute inset-x-0 top-0 h-1/2 bg-sand z-10"
+            variants={splitPanelVariants.top}
+            initial="initial"
+            animate={isExiting ? 'exit' : 'initial'}
           >
-            {/* Brand name */}
-            <h1 className="text-5xl md:text-7xl font-display font-semibold tracking-tight">
-              <span className="text-ink">Eco</span>
-              <span className="text-eco">Fresh</span>
-            </h1>
+            {/* Decorative aurora blob - top */}
+            <div
+              className="absolute bottom-0 right-1/4 w-80 h-80 bg-eco/[0.06] rounded-full blur-[100px] pointer-events-none"
+              aria-hidden="true"
+            />
+          </motion.div>
+
+          {/* Bottom split panel */}
+          <motion.div
+            className="absolute inset-x-0 bottom-0 h-1/2 bg-sand z-10"
+            variants={splitPanelVariants.bottom}
+            initial="initial"
+            animate={isExiting ? 'exit' : 'initial'}
+          >
+            {/* Decorative aurora blob - bottom */}
+            <div
+              className="absolute top-0 left-1/4 w-64 h-64 bg-sky/[0.05] rounded-full blur-[80px] pointer-events-none"
+              aria-hidden="true"
+            />
+          </motion.div>
+
+          {/* Content layer - centered */}
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center z-20"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isExiting ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Brand name - letter by letter */}
+            <div
+              className="flex items-center justify-center overflow-hidden"
+              style={{ perspective: '1000px' }}
+            >
+              {brandLetters.map((letter, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={letterVariants}
+                  initial="initial"
+                  animate="animate"
+                  className={`text-5xl md:text-7xl font-display font-semibold tracking-tight inline-block ${letter.color}`}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {letter.char}
+                </motion.span>
+              ))}
+            </div>
 
             {/* Tagline */}
             <motion.p
-              className="mt-4 text-center text-sm text-ink-muted tracking-wide"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
+              variants={taglineVariants}
+              initial="initial"
+              animate={phase !== 'letters' ? 'animate' : 'initial'}
+              className="mt-4 text-sm text-ink-muted tracking-widest uppercase"
             >
               Sustainable Innovation
             </motion.p>
-          </motion.div>
 
-          {/* Progress bar */}
-          <motion.div
-            className="absolute bottom-20 left-1/2 -translate-x-1/2 w-48"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: phase === 'progress' || phase === 'exit' ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Track */}
-            <div className="h-0.5 bg-ink/10 rounded-full overflow-hidden">
-              {/* Fill */}
-              <motion.div
-                className="h-full bg-eco rounded-full"
-                style={{ width: `${progress}%` }}
-                transition={{ duration: 0.1 }}
-              />
-            </div>
-
-            {/* Percentage */}
-            <motion.p
-              className="mt-3 text-center text-xs text-ink-muted tabular-nums"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+            {/* Circular progress - appears in phase 3 */}
+            <motion.div
+              className="mt-10"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: phase === 'progress' || phase === 'exit' ? 1 : 0,
+                scale: phase === 'progress' || phase === 'exit' ? 1 : 0.8,
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              {Math.round(progress)}%
-            </motion.p>
+              <CircularProgress progress={progress} />
+            </motion.div>
           </motion.div>
-
-          {/* Decorative aurora blob */}
-          <div
-            className="absolute top-1/4 right-1/4 w-64 h-64 bg-eco/5 rounded-full blur-[80px] pointer-events-none"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-sky/5 rounded-full blur-[60px] pointer-events-none"
-            aria-hidden="true"
-          />
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   )

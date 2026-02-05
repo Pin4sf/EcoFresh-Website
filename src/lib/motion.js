@@ -236,3 +236,182 @@ export const footerStagger = {
     }
   }
 }
+
+// ============================================
+// Award-Winning UX Enhancement Variants
+// ============================================
+
+// Split-screen exit for loading screen
+export const splitReveal = {
+  top: {
+    initial: { y: 0 },
+    exit: {
+      y: '-100%',
+      transition: { duration: 0.7, ease: [0.7, 0, 0.3, 1] }
+    }
+  },
+  bottom: {
+    initial: { y: 0 },
+    exit: {
+      y: '100%',
+      transition: { duration: 0.7, ease: [0.7, 0, 0.3, 1] }
+    }
+  }
+}
+
+// Letter-by-letter stagger for brand animations
+export const letterStagger = {
+  container: {
+    initial: {},
+    animate: {
+      transition: {
+        staggerChildren: 0.04,
+        delayChildren: 0.1
+      }
+    }
+  },
+  letter: {
+    initial: {
+      y: 50,
+      opacity: 0,
+      rotateX: -60
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
+  }
+}
+
+// Clip-path page transition (upward wipe reveal)
+export const clipPathReveal = {
+  initial: {
+    opacity: 0,
+    clipPath: 'inset(0 0 100% 0)'
+  },
+  animate: {
+    opacity: 1,
+    clipPath: 'inset(0 0 0% 0)',
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+      clipPath: { duration: 0.5 }
+    }
+  },
+  exit: {
+    opacity: 0,
+    clipPath: 'inset(100% 0 0 0)',
+    transition: {
+      duration: 0.4,
+      ease: [0.25, 0.1, 0.25, 1]
+    }
+  }
+}
+
+// Footer brand reveal - character by character with 3D rotation
+export const footerBrandReveal = {
+  container: {
+    initial: {},
+    whileInView: {
+      transition: {
+        staggerChildren: 0.03,
+        delayChildren: 0.1
+      }
+    },
+    viewport: { once: true, margin: '-100px' }
+  },
+  char: {
+    initial: {
+      y: 120,
+      opacity: 0,
+      rotateX: -90,
+      scale: 0.8
+    },
+    whileInView: {
+      y: 0,
+      opacity: 1,
+      rotateX: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
+  }
+}
+
+// Circular progress ring animation
+export const circularProgress = {
+  initial: {
+    strokeDashoffset: 283 // 2 * PI * 45 (circumference)
+  },
+  animate: (progress) => ({
+    strokeDashoffset: 283 - (283 * progress / 100),
+    transition: {
+      duration: 0.1,
+      ease: 'linear'
+    }
+  })
+}
+
+// Interactive orb hover response
+export const orbHover = {
+  rest: {
+    scale: 1,
+    filter: 'blur(60px)'
+  },
+  hover: {
+    scale: 1.05,
+    filter: 'blur(50px)',
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 20
+    }
+  }
+}
+
+// Sticky scroll panel transitions
+export const stickyPanelVariants = {
+  enter: {
+    opacity: 0,
+    scale: 0.95,
+    filter: 'blur(10px)'
+  },
+  center: {
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1]
+    }
+  },
+  exit: {
+    opacity: 0,
+    scale: 1.02,
+    filter: 'blur(5px)',
+    transition: {
+      duration: 0.3
+    }
+  }
+}
+
+// Magnetic link character shuffle effect
+export const charShuffle = {
+  initial: {
+    y: 0
+  },
+  hover: {
+    y: [-2, 2, -1, 0],
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut'
+    }
+  }
+}

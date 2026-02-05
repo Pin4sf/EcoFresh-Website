@@ -89,10 +89,10 @@
 }
 
 @layer components {
-    /* Primary Button - EcoFresh green */
+    /* Primary Button - EcoFresh green with glow effect */
     .btn-primary {
         @apply inline-flex items-center justify-center rounded-full bg-eco px-6 py-3 text-sm font-semibold text-white transition-all duration-300;
-        @apply hover:bg-eco-dark hover:-translate-y-0.5 hover:shadow-lg hover:shadow-eco/25;
+        @apply hover:bg-eco-dark hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(20,138,58,0.35)];
         @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-eco/40 focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
         @apply active:scale-[0.98];
     }
@@ -132,24 +132,25 @@
     }
 
     /* Typography - Fluid scaling with clamp() for smooth responsiveness */
+    /* Tighter letter-spacing for modern, award-winning impact (bartoszkolenda-inspired) */
     .heading-display {
         font-size: clamp(2.25rem, 1rem + 4vw, 4.5rem);
         line-height: 1.08;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.04em;  /* Tightened from -0.02em for modern impact */
         @apply font-display font-semibold;
     }
 
     .heading-section {
         font-size: clamp(1.5rem, 0.75rem + 2vw, 2.5rem);
         line-height: 1.15;
-        letter-spacing: -0.015em;
+        letter-spacing: -0.03em;  /* Tightened from -0.015em */
         @apply font-display font-semibold;
     }
 
     .heading-subsection {
         font-size: clamp(1.25rem, 0.9rem + 1vw, 1.75rem);
         line-height: 1.25;
-        letter-spacing: -0.01em;
+        letter-spacing: -0.02em;  /* Tightened from -0.01em */
         @apply font-display font-semibold;
     }
 
@@ -167,6 +168,14 @@
 
     .body-regular {
         @apply text-base text-ink-muted leading-relaxed;
+    }
+
+    /* Elegant body - Light weight for refined feel (bartoszkolenda-inspired) */
+    .body-elegant {
+        font-weight: 300;
+        letter-spacing: 0.01em;
+        line-height: 1.8;
+        @apply text-ink-muted;
     }
 
     /* Stat number - large typography for impact */
@@ -287,6 +296,35 @@
             rgba(20, 138, 58, 0.08) 0%,
             transparent 70%
         );
+    }
+
+    /* Radial gradient background utility */
+    .bg-gradient-radial {
+        background: radial-gradient(ellipse at center, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+    }
+
+    /* Text gradient utility */
+    .text-gradient-eco {
+        @apply bg-gradient-to-br from-eco via-eco-dark to-ink bg-clip-text text-transparent;
+    }
+
+    /* Focus ring for interactive elements */
+    .focus-ring-eco {
+        @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-eco/30 focus-visible:ring-offset-2;
+    }
+
+    /* Smooth text underline animation */
+    .link-underline {
+        @apply relative;
+    }
+
+    .link-underline::after {
+        content: '';
+        @apply absolute -bottom-0.5 left-0 w-full h-px bg-current origin-left scale-x-0 transition-transform duration-300 ease-out;
+    }
+
+    .link-underline:hover::after {
+        @apply scale-x-100;
     }
 
     /* Breadcrumbs styling */
