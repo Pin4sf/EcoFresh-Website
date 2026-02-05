@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom'
 import { Globe, Droplets, Sprout, Zap, FlaskConical, Leaf, Boxes, Recycle } from 'lucide-react'
 import { scrollReveal, staggerContainer, staggerItem } from '../lib/motion'
 import { Icon } from '../components/ui/Icon'
+import TextReveal from '../components/ui/TextReveal'
 
 const marketStats = [
-  { value: 62, suffix: 'M', label: 'Tonnes', description: 'Municipal waste generated annually in India' },
-  { value: 55, suffix: '%', label: 'Organic', description: 'Food-contaminated fractions requiring processing' },
-  { value: 4.5, suffix: 'L Cr', label: 'Market Size', description: 'Projected Indian waste-management market by 2030' },
+  { value: '62M+', label: 'Tonnes', description: 'Municipal waste generated annually in India' },
+  { value: '55%', label: 'Organic', description: 'Food-contaminated fractions requiring on-site processing' },
+  { value: '₹4.5L Cr', label: 'Market', description: 'Projected Indian waste-management market by 2030' },
 ]
 
 const systemOutputs = [
-  { value: 90, suffix: 'K kg', label: 'Monthly Processing', description: 'Waste processed per month (3-TPD system)' },
-  { value: 45, suffix: 'T', label: 'Bioplastic Output', description: 'Tonnes of standardized bioplastic monthly' },
-  { value: 20, suffix: 'T', label: 'Bio-fertilizer', description: 'Tonnes of organic bio-fertilizer monthly' },
+  { value: '90K', label: 'kg/month', description: 'Waste processed per month (3-TPD system)' },
+  { value: '45T', label: 'Bioplastic', description: 'Tonnes of standardized bioplastic monthly' },
+  { value: '20T', label: 'Bio-fertilizer', description: 'Tonnes of organic bio-fertilizer monthly' },
 ]
 
 const environmentalImpact = [
@@ -43,15 +44,14 @@ const environmentalImpact = [
   },
 ]
 
-function StatCard({ value, suffix, label, description }) {
+function StatCard({ value, label, description }) {
   return (
-    <div className="text-center p-8 rounded-3xl bg-white border border-ink/5">
-      <p className="stat-number">
+    <div className="text-center p-6 rounded-2xl bg-white border border-ink/5">
+      <p className="text-2xl md:text-3xl font-display font-bold whitespace-nowrap bg-gradient-to-br from-eco via-eco to-ink/80 bg-clip-text text-transparent">
         {value}
-        <span className="text-eco">{suffix}</span>
       </p>
-      <p className="text-sm font-semibold text-eco uppercase tracking-wider mt-2">{label}</p>
-      <p className="text-sm text-ink-muted mt-4">{description}</p>
+      <p className="text-xs font-semibold text-eco uppercase tracking-wider mt-2">{label}</p>
+      <p className="text-sm text-ink-muted mt-3 leading-relaxed">{description}</p>
     </div>
   )
 }
@@ -60,26 +60,47 @@ export default function Impact() {
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-b from-sand via-mist/30 to-white relative overflow-hidden">
-        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-eco/5 rounded-full blur-[100px] pointer-events-none" />
+      <section className="py-24 md:py-32 bg-gradient-to-b from-sand via-sky/5 to-white relative overflow-hidden">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-sky/8 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="container-default relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="max-w-4xl"
           >
-            <span className="section-eyebrow">Market Opportunity</span>
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="section-eyebrow text-sky"
+            >
+              Market Opportunity
+            </motion.span>
             <h1 className="heading-display mt-4">
-              A <span className="text-eco">₹4.5 Lakh Crore</span> Market
-              Waiting for the Right Solution
+              <TextReveal delay={0.2}>
+                A
+              </TextReveal>
+              <span className="text-sky inline-block">
+                <TextReveal delay={0.25}>
+                  ₹4.5 Lakh Crore
+                </TextReveal>
+              </span>
+              <TextReveal delay={0.4}>
+                Market Waiting for the Right Solution
+              </TextReveal>
             </h1>
-            <p className="body-large mt-8 max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="body-large mt-8 max-w-2xl"
+            >
               India's waste management sector is at an inflection point. The combination of
               regulatory pressure, ESG mandates, and genuine environmental concern is creating
               unprecedented demand for effective solutions.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -161,18 +182,13 @@ export default function Impact() {
               <motion.div
                 key={item.title}
                 variants={staggerItem}
-                className="p-6 rounded-3xl bg-sand border border-ink/5 text-center"
+                className="p-6 rounded-2xl bg-sand border border-ink/5 text-center"
               >
-                <Icon
-                  icon={item.icon}
-                  size="lg"
-                  container="circle"
-                  containerBg="eco"
-                  variant="primary"
-                  containerClassName="mx-auto"
-                />
+                <div className="w-12 h-12 rounded-xl bg-eco/10 flex items-center justify-center mx-auto">
+                  <item.icon className="w-6 h-6 text-eco" />
+                </div>
                 <h3 className="font-semibold text-ink mt-4">{item.title}</h3>
-                <p className="text-2xl font-display font-bold text-eco mt-2">{item.stat}</p>
+                <p className="text-xl font-display font-bold text-eco mt-2">{item.stat}</p>
                 <p className="text-xs text-ink-muted mt-3">{item.description}</p>
               </motion.div>
             ))}

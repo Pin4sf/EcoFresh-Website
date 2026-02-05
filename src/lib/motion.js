@@ -29,31 +29,31 @@ export const staggerContainer = {
 }
 
 export const staggerItem = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
 }
 
 // For scroll-triggered animations with whileInView
 export const scrollReveal = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 16 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
 }
 
 export const scrollRevealLeft = {
-  initial: { opacity: 0, x: -40 },
+  initial: { opacity: 0, x: -20 },
   whileInView: { opacity: 1, x: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
 }
 
 export const scrollRevealRight = {
-  initial: { opacity: 0, x: 40 },
+  initial: { opacity: 0, x: 20 },
   whileInView: { opacity: 1, x: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
 }
 
 // Blur reveal (great for hero text)
@@ -131,4 +131,108 @@ export const logoReveal = {
   whileInView: { opacity: 1, scale: 1, y: 0 },
   viewport: { once: true, margin: "-50px" },
   transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+}
+
+// ============================================
+// New variants for enhanced UX (Sprint 1+)
+// ============================================
+
+// Word reveal with 3D rotation (for TextReveal component)
+export const wordReveal = {
+  initial: { opacity: 0, y: 20, rotateX: -90 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+// Character stagger animation
+export const charStagger = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.02, duration: 0.3 }
+  })
+}
+
+// Page transitions
+export const pageTransition = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    transition: { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+// Loading screen variants
+export const loadingVariants = {
+  logo: {
+    initial: { scale: 0.8, filter: 'blur(10px)', opacity: 0 },
+    animate: { scale: 1, filter: 'blur(0px)', opacity: 1 }
+  },
+  exit: {
+    y: '-100vh',
+    transition: { duration: 0.6, ease: [0.7, 0, 0.3, 1] }
+  }
+}
+
+// Magnetic spring config (for useMagnetic hook)
+export const magneticSpring = {
+  damping: 15,
+  stiffness: 150,
+  mass: 0.5
+}
+
+// Underline slide animation (for nav links)
+export const underlineSlide = {
+  rest: { scaleX: 0, originX: 0 },
+  hover: {
+    scaleX: 1,
+    transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }
+  }
+}
+
+// Social icon hover
+export const socialIconHover = {
+  rest: { scale: 1 },
+  hover: {
+    scale: 1.1,
+    transition: { type: 'spring', stiffness: 400, damping: 17 }
+  }
+}
+
+// Back to top button variants
+export const backToTopVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 25 }
+  },
+  exit: {
+    opacity: 0,
+    y: 20,
+    scale: 0.8,
+    transition: { duration: 0.2 }
+  }
+}
+
+// Footer stagger container
+export const footerStagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.2
+    }
+  }
 }

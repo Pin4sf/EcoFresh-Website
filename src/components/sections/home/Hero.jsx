@@ -1,24 +1,14 @@
 import { motion } from 'framer-motion'
 import { siteCopy } from '../../../content/siteCopy'
 import { staggerContainer, staggerItem } from '../../../lib/motion'
+import AuroraBackground from '../../ui/AuroraBackground'
+import TextReveal from '../../ui/TextReveal'
 
 export default function Hero() {
   return (
     <section id="hero" className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Subtle gradient background - CSS only */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sand via-mist/30 to-sand" />
-
-      {/* Glassmorphic accent blob - purely decorative */}
-      <div
-        className="absolute top-1/4 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px]
-          bg-eco/5 rounded-full blur-[100px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px]
-          bg-sky/5 rounded-full blur-[80px] pointer-events-none"
-        aria-hidden="true"
-      />
+      {/* Aurora background with mouse-reactive glow */}
+      <AuroraBackground />
 
       {/* Parallax decorative vector */}
       <motion.img
@@ -39,13 +29,19 @@ export default function Hero() {
           animate="animate"
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Main headline - typography as hero */}
+          {/* Main headline - typography as hero with text reveal */}
           <motion.h1
             variants={staggerItem}
             className="heading-display text-ink"
           >
-            Converting mixed waste into{' '}
-            <span className="text-eco">standardized bioplastics.</span>
+            <TextReveal delay={0.3}>
+              Converting mixed waste into
+            </TextReveal>{' '}
+            <span className="text-eco">
+              <TextReveal delay={0.5}>
+                standardized bioplastics.
+              </TextReveal>
+            </span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -53,7 +49,9 @@ export default function Hero() {
             variants={staggerItem}
             className="mt-6 md:mt-8 body-large max-w-2xl mx-auto"
           >
-            {siteCopy.hero.subhead}
+            <TextReveal delay={0.7} mode="word">
+              {siteCopy.hero.subhead}
+            </TextReveal>
           </motion.p>
 
           {/* CTAs */}

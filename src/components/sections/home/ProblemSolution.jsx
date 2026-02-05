@@ -1,10 +1,22 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { siteCopy } from '../../../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../../../lib/motion'
 
 export default function ProblemSolution() {
+  const solutionRef = useRef(null)
+
+  // Parallax scroll effect for video
+  const { scrollYProgress } = useScroll({
+    target: solutionRef,
+    offset: ['start end', 'end start'],
+  })
+
+  // Video moves slower than scroll (parallax)
+  const videoY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%'])
+
   return (
-    <section id="problem-solution" className="min-h-screen flex flex-col justify-center py-24 md:py-32 bg-gradient-to-b from-sand via-sand to-mist/30 relative overflow-hidden">
+    <section ref={solutionRef} id="problem-solution" className="min-h-screen flex flex-col justify-center py-24 md:py-32 bg-gradient-to-b from-sand via-sand to-mist/30 relative overflow-hidden">
       {/* Decorative parallax vector */}
       <motion.img
         src="/assets/brand/credibility/thrash_vector.png"
@@ -38,7 +50,7 @@ export default function ProblemSolution() {
                 variants={staggerItem}
                 className="p-6 rounded-2xl border border-ink/10 bg-sand"
               >
-                <p className="stat-number text-4xl md:text-5xl mb-3">{item.title}</p>
+                <p className="stat-number mb-3">{item.title}</p>
                 <p className="text-ink-muted text-sm leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
@@ -84,26 +96,42 @@ export default function ProblemSolution() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            {/* Flywheel Diagram */}
-            <div className="rounded-3xl border border-ink/10 bg-white/80 backdrop-blur-sm p-6 md:p-8 overflow-hidden">
-              <motion.img
-                src="/assets/flywheel.png"
-                alt="EcoFresh waste-to-value conversion process"
-                className="w-full h-auto rounded-2xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              />
+            {/* EcoConverter Video with Parallax */}
+            <div className="rounded-3xl border border-ink/10 bg-black overflow-hidden aspect-[4/3] relative">
+              <motion.div
+                className="absolute inset-0 w-full h-[120%] -top-[10%]"
+                style={{ y: videoY }}
+              >
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/assets/videos/VID_20260205124755.webm" type="video/webm" />
+                </video>
+              </motion.div>
 
-              {/* Process steps below */}
-              <div className="mt-8 grid grid-cols-3 gap-4">
-                <ProcessStep number="01" title="Input" description="Mixed waste" icon="→" />
-                <ProcessStep number="02" title="Convert" description="Eco Converter" icon="⚡" />
-                <ProcessStep number="03" title="Output" description="3 Value Streams" icon="✓" />
+              {/* Subtle gradient overlay at bottom for text legibility */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
+
+              {/* Label overlay */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-white/90 font-display font-semibold text-lg">EcoConverter</p>
+                <p className="text-white/60 text-sm">Mixed waste → Standardized bioplastics</p>
               </div>
             </div>
 
+            {/* Process steps below */}
+            <div className="mt-6 grid grid-cols-3 gap-4">
+              <ProcessStep number="01" title="Input" description="Mixed waste" icon="→" />
+              <ProcessStep number="02" title="Convert" description="Eco Converter" icon="⚡" />
+              <ProcessStep number="03" title="Output" description="3 Value Streams" icon="✓" />
+            </div>
+
             {/* Decorative glow */}
-            <div className="absolute -z-10 inset-4 bg-eco/10 rounded-3xl blur-2xl" aria-hidden="true" />
+            <div className="absolute -z-10 inset-4 top-0 bg-eco/10 rounded-3xl blur-2xl" aria-hidden="true" />
           </motion.div>
         </motion.div>
       </div>
