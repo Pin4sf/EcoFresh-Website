@@ -7,22 +7,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#202527',
-        'ink-light': '#6d767a',
-        bg1: '#fafaf7',
-        bg2: '#f7f2ec',
-        primary1: '#b7e4d6',
-        primary2: '#86c8b8',
-        secondary1: '#b7d4f1',
-        secondary2: '#86a6ea',
-        accent: '#f7e27a',
-        seafoam: '#a8e6cf',
-        lilac: '#60a5fa',
+        ink: '#0E1C17',
+        'ink-muted': '#40524B',
+        eco: '#148A3A',
+        'eco-dark': '#0E5F29',
+        mist: '#EEF6F1',
+        sand: '#FAFBF8',
+        sky: '#2F7AE5',
       },
       fontFamily: {
-        display: ['Space Grotesk', 'Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sans: ['Space Grotesk', 'Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'space-grotesk': ['Space Grotesk', 'sans-serif'],
+        display: ['Sora', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['IBM Plex Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['IBM Plex Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },
@@ -36,5 +32,4 @@ export default {
     }
   ],
 }
-
 
