@@ -1,4 +1,5 @@
 import Hero from '../components/sections/home/Hero'
+import ValueProposition from '../components/sections/home/ValueProposition'
 import ProblemSolution from '../components/sections/home/ProblemSolution'
 import Impact from '../components/sections/home/Impact'
 import Credibility from '../components/sections/home/Credibility'
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ValueProposition />
       <ProblemSolution />
       <Impact />
       <Credibility />
