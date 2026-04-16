@@ -15,7 +15,7 @@ const nationalLogos = [
   { name: 'DPIIT', src: '/assets/brand/credibility/DPIIT-Small.png' },
   { name: 'Government of India', src: '/assets/brand/credibility/GOI-logo.png' },
   { name: 'IIC', src: '/assets/brand/credibility/IIC-logo.png' },
-  { name: 'IITDM Jabalpur', src: '/assets/brand/credibility/IIITDMJ-logo.png' },
+  { name: 'IIITDM Jabalpur', src: '/assets/brand/credibility/IIITDMJ-logo.png' },
   { name: 'MSME', src: '/assets/brand/credibility/MSME.png' },
   { name: 'Startup India', src: '/assets/brand/credibility/Group 10.png' },
 ]
@@ -37,8 +37,8 @@ const timeline = [
   },
   {
     date: 'September 2025',
-    title: 'MoE-IIC x IITDM Jabalpur Incubation',
-    description: 'Formal incubation under Institution\'s Innovation Council at IITDM Jabalpur.',
+    title: 'MoE-IIC x IIITDM Jabalpur Incubation',
+    description: 'Formal incubation under Institution\'s Innovation Council at IIITDM Jabalpur.',
   },
   {
     date: 'November 2025',
@@ -107,10 +107,10 @@ export default function Credibility() {
       <div className="py-6 border-y border-ink/5 overflow-hidden bg-mist/50">
         <div className="marquee">
           <div className="marquee-track">
-            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IITDM Jabalpur'].map((item, i) => (
+            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur'].map((item, i) => (
               <span key={`${item}-${i}`} className="marquee-item">{item}</span>
             ))}
-            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IITDM Jabalpur'].map((item, i) => (
+            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur'].map((item, i) => (
               <span key={`${item}-dup-${i}`} className="marquee-item">{item}</span>
             ))}
           </div>
