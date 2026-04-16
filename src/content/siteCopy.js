@@ -16,7 +16,7 @@ export const siteCopy = {
     ctaSecondary: 'Investor Deck',
   },
   trustBar: {
-    items: ['DPIIT Recognized', 'MoE-IIC Incubated', 'IITDM Jabalpur'],
+    items: ['DPIIT Recognized', 'MoE-IIC Incubated', 'IIITDM Jabalpur'],
     highlight: 'Segregation-agnostic, plug-and-play, mid-scale.',
   },
   problem: {
@@ -82,7 +82,7 @@ export const siteCopy = {
     national: [
       'Department for Promotion of Industry and Internal Trade (DPIIT), Government of India.',
       'Ministry of Education (MoE), Government of India.',
-      "MoE - Institution's Innovation Council (IIC), IITDM Jabalpur.",
+      "MoE - Institution's Innovation Council (IIC), IIITDM Jabalpur.",
       'Intellectual Property India (Controller General of Patents, Designs & Trademarks).',
       'Goods and Services Tax (GST), Government of India.',
       'Ministry of Micro, Small & Medium Enterprises (MSME), Government of India.',
@@ -100,7 +100,7 @@ export const siteCopy = {
     title: 'Market Validation & Timeline',
     timeline: [
       { date: 'June 2025', title: 'MoE National Recognition' },
-      { date: 'September 2025', title: 'MoE-IIC x IITDM Jabalpur Incubation' },
+      { date: 'September 2025', title: 'MoE-IIC x IIITDM Jabalpur Incubation' },
       { date: 'November 2025', title: 'Formal Startup Recognition' },
       { date: 'January 2026', title: 'Hult Prize + International Innovation Merit' },
     ],
@@ -130,7 +130,7 @@ export const siteCopy = {
         quote:
           'EcoFresh represents the kind of system-level innovation India needs - where sustainability, engineering rigor, and long-term scalability are aligned to create real environmental and societal impact.',
         name: 'Prof. Puneet Tondon',
-        title: 'Professor-in-Charge, Innovation & Incubation Centre, IITDM Jabalpur.',
+        title: 'Professor-in-Charge, Innovation & Incubation Centre, IIITDM Jabalpur.',
       },
     ],
   },

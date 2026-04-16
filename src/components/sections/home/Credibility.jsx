@@ -27,7 +27,7 @@ const achievements = [
     prefix: 'Top ',
     label: 'Academic Incubations',
     description: '90% of innovations never reach national academic incubation',
-    highlight: 'IITDM Jabalpur × IIC',
+    highlight: 'IIITDM Jabalpur × IIC',
   },
   {
     icon: Rocket,
@@ -95,7 +95,7 @@ const nationalLogos = [
   { name: 'DPIIT', src: '/assets/brand/credibility/DPIIT-Small.png' },
   { name: 'Government of India', src: '/assets/brand/credibility/GOI-logo.png' },
   { name: 'IIC', src: '/assets/brand/credibility/IIC-logo.png' },
-  { name: 'IITDM Jabalpur', src: '/assets/brand/credibility/IIITDMJ-logo.png' },
+  { name: 'IIITDM Jabalpur', src: '/assets/brand/credibility/IIITDMJ-logo.png' },
   { name: 'MSME', src: '/assets/brand/credibility/MSME.png' },
   { name: 'Startup India', src: '/assets/brand/credibility/Group 10.png' },
 ]
@@ -115,7 +115,7 @@ const trustItems = [
   'DPIIT Recognized',
   'MoE-IIC Incubated',
   'Patent Filed',
-  'IITDM Jabalpur',
+  'IIITDM Jabalpur',
 ]
 
 export default function Credibility() {
