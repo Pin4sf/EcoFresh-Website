@@ -16,7 +16,7 @@ export const siteCopy = {
     ctaSecondary: 'Investor Deck',
   },
   trustBar: {
-    items: ['DPIIT Recognized', 'MoE-IIC Incubated', 'IIITDM Jabalpur'],
+    items: ['DPIIT Recognized', 'MoE-IIC Incubated', 'IIITDM Jabalpur', 'TBIF IIT Ropar'],
     highlight: 'Segregation-agnostic, plug-and-play, mid-scale.',
   },
   problem: {
@@ -83,6 +83,7 @@ export const siteCopy = {
       'Department for Promotion of Industry and Internal Trade (DPIIT), Government of India.',
       'Ministry of Education (MoE), Government of India.',
       "MoE - Institution's Innovation Council (IIC), IIITDM Jabalpur.",
+      'TBIF, IIT Ropar - Institutional Partner.',
       'Intellectual Property India (Controller General of Patents, Designs & Trademarks).',
       'Goods and Services Tax (GST), Government of India.',
       'Ministry of Micro, Small & Medium Enterprises (MSME), Government of India.',
@@ -103,6 +104,7 @@ export const siteCopy = {
       { date: 'September 2025', title: 'MoE-IIC x IIITDM Jabalpur Incubation' },
       { date: 'November 2025', title: 'Formal Startup Recognition' },
       { date: 'January 2026', title: 'Hult Prize + International Innovation Merit' },
+      { date: 'April 2026', title: 'TBIF x IIT Ropar Institutional Partnership' },
     ],
   },
   endorsements: {
@@ -227,7 +229,7 @@ export const siteCopy = {
       ],
       monthlyOutput: [
         { metric: 'Waste processed', value: '~90,000 kg / month' },
-        { metric: 'Bioplastic output', value: '~40-45 tonnes / month' },
+        { metric: 'Bioplastic output', value: '~30-35 tonnes / month' },
         { metric: 'Bio-fertilizer output', value: '~16-20 tonnes / month' },
         { metric: 'Eco-composite output', value: '~22-27 tonnes / month' },
       ],

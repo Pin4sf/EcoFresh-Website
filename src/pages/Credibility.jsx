@@ -16,6 +16,7 @@ const nationalLogos = [
   { name: 'Government of India', src: '/assets/brand/credibility/GOI-logo.png' },
   { name: 'IIC', src: '/assets/brand/credibility/IIC-logo.png' },
   { name: 'IIITDM Jabalpur', src: '/assets/brand/credibility/IIITDMJ-logo.png' },
+  { name: 'TBIF IIT Ropar', src: '/assets/brand/credibility/IIT-Ropar.png' },
   { name: 'MSME', src: '/assets/brand/credibility/MSME.png' },
   { name: 'Startup India', src: '/assets/brand/credibility/Group 10.png' },
 ]
@@ -49,6 +50,11 @@ const timeline = [
     date: 'January 2026',
     title: 'Hult Prize International Merit',
     description: 'Recognition at the world\'s largest social entrepreneurship competition backed by the UN.',
+  },
+  {
+    date: 'April 2026',
+    title: 'TBIF x IIT Ropar Institutional Partnership',
+    description: 'Institutional partnership with Technology Business Incubation Foundation at IIT Ropar.',
   },
 ]
 
@@ -107,10 +113,10 @@ export default function Credibility() {
       <div className="py-6 border-y border-ink/5 overflow-hidden bg-mist/50">
         <div className="marquee">
           <div className="marquee-track">
-            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur'].map((item, i) => (
+            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur', 'TBIF IIT Ropar'].map((item, i) => (
               <span key={`${item}-${i}`} className="marquee-item">{item}</span>
             ))}
-            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur'].map((item, i) => (
+            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur', 'TBIF IIT Ropar'].map((item, i) => (
               <span key={`${item}-dup-${i}`} className="marquee-item">{item}</span>
             ))}
           </div>
