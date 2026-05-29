@@ -13,7 +13,7 @@ const marketStats = [
 
 const systemOutputs = [
   { value: '90K', label: 'kg/month', description: 'Waste processed per month (3-TPD system)' },
-  { value: '45T', label: 'Bioplastic', description: 'Tonnes of standardized bioplastic monthly' },
+  { value: '35T', label: 'Bioplastic', description: 'Tonnes of standardized bioplastic monthly' },
   { value: '20T', label: 'Bio-fertilizer', description: 'Tonnes of organic bio-fertilizer monthly' },
 ]
 

@@ -96,6 +96,7 @@ const nationalLogos = [
   { name: 'Government of India', src: '/assets/brand/credibility/GOI-logo.png' },
   { name: 'IIC', src: '/assets/brand/credibility/IIC-logo.png' },
   { name: 'IIITDM Jabalpur', src: '/assets/brand/credibility/IIITDMJ-logo.png' },
+  { name: 'TBIF IIT Ropar', src: '/assets/brand/credibility/IIT-Ropar.png' },
   { name: 'MSME', src: '/assets/brand/credibility/MSME.png' },
   { name: 'Startup India', src: '/assets/brand/credibility/Group 10.png' },
 ]
@@ -116,6 +117,7 @@ const trustItems = [
   'MoE-IIC Incubated',
   'Patent Filed',
   'IIITDM Jabalpur',
+  'TBIF IIT Ropar',
 ]
 
 export default function Credibility() {
