@@ -343,7 +343,12 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="relative z-10 border-t border-sand/10 py-5">
         <div className="container-default flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-sand/40">
-          <span>© {new Date().getFullYear()} EcoFresh GreenSync Pvt. Ltd.</span>
+          <div className="text-center md:text-left">
+            <span>© {new Date().getFullYear()} EcoFresh GreenSync LLP</span>
+            <p className="mt-2 font-mono text-[10px] leading-relaxed text-sand/30 break-words">
+              LLPIN {siteCopy.legal.llpin} · GSTIN {siteCopy.legal.gstin} · DPIIT {siteCopy.legal.dpiit} · Udyam {siteCopy.legal.udyam} · Patent App. {siteCopy.legal.patentApp}
+            </p>
+          </div>
           <span className="text-sand/30">Designed for impact, engineered for scale.</span>
         </div>
       </div>

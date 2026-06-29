@@ -208,6 +208,37 @@ export default function Credibility() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
+                {/* Registration Cards */}
+                <div className="mb-12">
+                  <div className="text-center max-w-2xl mx-auto mb-8">
+                    <p className="text-sm font-semibold text-eco mb-3 uppercase tracking-wider">
+                      {siteCopy.registrations.eyebrow}
+                    </p>
+                    <h3 className="heading-subsection">{siteCopy.registrations.title}</h3>
+                  </div>
+                  <motion.div
+                    className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5"
+                    variants={staggerContainer}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                  >
+                    {siteCopy.registrations.items.map((item) => (
+                      <motion.div
+                        key={item.label}
+                        variants={staggerItem}
+                        className="rounded-2xl border border-ink/10 bg-white p-5 shadow-sm shadow-ink/5"
+                      >
+                        <p className="text-sm font-semibold text-ink leading-snug">{item.label}</p>
+                        <p className="mt-2 text-xs uppercase tracking-wider text-eco">{item.issuer}</p>
+                        <p className="mt-4 font-mono text-xs leading-relaxed text-ink-muted break-words">
+                          {item.detail}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+
                 {/* Logo Grids */}
                 <div className="mb-12">
                   <p className="text-sm font-semibold text-eco mb-6 uppercase tracking-wider text-center">

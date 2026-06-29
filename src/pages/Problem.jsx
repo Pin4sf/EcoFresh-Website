@@ -27,7 +27,7 @@ const challenges = [
   {
     icon: Cog,
     title: 'Segregation Dependency',
-    description: 'Most solutions assume perfect source segregation — a reality that doesn\'t exist in Indian municipalities.',
+    description: 'Most solutions assume perfect source segregation, a reality that doesn\'t exist in Indian municipalities.',
   },
   {
     icon: BarChart3,
@@ -79,7 +79,7 @@ export default function Problem() {
             >
               Our cities are choking. Landfills are overflowing into neighborhoods.
               Groundwater is contaminated. Communities living near dumpsites face serious
-              health risks — and the problem grows by 5% every year.
+              health risks, and the problem grows by 5% every year.
             </motion.p>
 
             {/* Emotional impact stats */}
@@ -91,7 +91,7 @@ export default function Problem() {
             >
               <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
                 <p className="text-3xl font-display font-bold text-red-600">62M+</p>
-                <p className="text-sm text-red-800/70 mt-1">Tonnes generated annually — 90% ends up in landfills or open dumps</p>
+                <p className="text-sm text-red-800/70 mt-1">Tonnes generated annually, 90% ends up in landfills or open dumps</p>
               </div>
               <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
                 <p className="text-3xl font-display font-bold text-red-600">3,000+</p>
@@ -169,7 +169,7 @@ export default function Problem() {
             <span className="section-eyebrow">Core Challenges</span>
             <h2 className="heading-section mt-4">Why Current Solutions Fail</h2>
             <p className="body-regular mt-4">
-              The Indian waste management ecosystem wasn't designed for processing — it was designed for disposal.
+              The Indian waste management ecosystem wasn't designed for processing. It was designed for disposal.
             </p>
           </motion.div>
 
@@ -208,7 +208,7 @@ export default function Problem() {
             <h2 className="heading-section text-white">There is a Better Way</h2>
             <p className="body-large text-white/60 mt-4 max-w-2xl mx-auto">
               EcoFresh is building segregation-agnostic, mid-scale systems designed for how
-              Indian waste actually arrives — mixed, contaminated, and challenging.
+              Indian waste actually arrives mixed, contaminated, and challenging.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link to="/impact" className="btn-primary">

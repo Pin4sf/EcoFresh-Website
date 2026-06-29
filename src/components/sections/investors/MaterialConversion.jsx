@@ -24,7 +24,7 @@ export default function MaterialConversion() {
             </div>
           </div>
           <div className="rounded-3xl border border-ink/10 bg-sand p-6">
-            <p className="text-sm font-semibold text-eco mb-4">Monthly Output (3-TPD system)</p>
+            <p className="text-sm font-semibold text-eco mb-4">Process Design Basis</p>
             <div className="space-y-4 text-sm text-ink-muted">
               {siteCopy.investors.conversion.monthlyOutput.map((item) => (
                 <div key={item.metric} className="flex items-center justify-between border-b border-ink/10 pb-3">

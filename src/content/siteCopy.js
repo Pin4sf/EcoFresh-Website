@@ -1,7 +1,46 @@
 export const siteCopy = {
   brand: {
     name: 'EcoFresh',
+    legalName: 'EcoFresh GreenSync LLP',
     tagline: 'Convert mixed waste into standardized bioplastics and value.',
+  },
+  legal: {
+    llpin: 'ACS-9260',
+    gstin: '27AAMFE5707C1ZK',
+    dpiit: 'DIPP240485',
+    udyam: 'UDYAM-MH-26-1041291',
+    patentApp: '202621016608',
+  },
+  registrations: {
+    eyebrow: 'Registered & Recognized',
+    title: 'A Verified Legal Entity',
+    items: [
+      {
+        label: 'Incorporated LLP',
+        issuer: 'Ministry of Corporate Affairs',
+        detail: 'LLPIN ACS-9260 · Nov 2025',
+      },
+      {
+        label: 'DPIIT Recognized Startup',
+        issuer: 'Startup India',
+        detail: 'DIPP240485 · valid to 2035',
+      },
+      {
+        label: 'Udyam / MSME Registered',
+        issuer: 'Ministry of MSME',
+        detail: 'UDYAM-MH-26-1041291',
+      },
+      {
+        label: 'GST Registered',
+        issuer: 'Government of India',
+        detail: 'Maharashtra',
+      },
+      {
+        label: 'Patent Application Published',
+        issuer: 'Indian Patent Office',
+        detail: 'App. No. 202621016608',
+      },
+    ],
   },
   links: {
     deck: 'https://docs.google.com/presentation/d/12yjtNQnuhZZkTr1NPIfER--LK_buJwOF/edit?usp=drivesdk&ouid=115342461485325584335&rtpof=true&sd=true',
@@ -80,13 +119,13 @@ export const siteCopy = {
     eyebrow: 'Credibility',
     title: 'National & International Recognition',
     national: [
-      'Department for Promotion of Industry and Internal Trade (DPIIT), Government of India.',
-      'Ministry of Education (MoE), Government of India.',
-      "MoE - Institution's Innovation Council (IIC), IIITDM Jabalpur.",
-      'TBIF, IIT Ropar - Institutional Partner.',
-      'Intellectual Property India (Controller General of Patents, Designs & Trademarks).',
-      'Goods and Services Tax (GST), Government of India.',
-      'Ministry of Micro, Small & Medium Enterprises (MSME), Government of India.',
+      'EcoFresh GreenSync LLP incorporated by the Ministry of Corporate Affairs, LLPIN ACS-9260.',
+      'DPIIT recognized startup, DIPP240485 issued 22 Jan 2026 and valid to 23 Nov 2035.',
+      'GST registered in Maharashtra, GSTIN 27AAMFE5707C1ZK.',
+      'Udyam / MSME registered Micro enterprise, UDYAM-MH-26-1041291.',
+      "IIITDM Jabalpur incubation under MoE-IIC.",
+      'TBIF, IIT Ropar institutional partnership.',
+      'Intellectual Property India published Patent App. No. 202621016608 in Journal No. 14/2026, examination requested.',
     ],
     international: [
       'Hult Prize (Global Impact Entrepreneurship Competition) - International merit recognition.',
@@ -94,17 +133,19 @@ export const siteCopy = {
       'IndiaAI Global Summit (MeitY, Government of India) - International AI benchmark.',
       'International Expert & Academic Review (PhD-level, global).',
     ],
-    logos: ['Hult Prize', 'build3', 'AI Impact Summit', 'Campus Fund', 'Y Combinator'],
+    logos: ['Hult Prize', 'build3', 'AI Impact Summit'],
   },
   validation: {
     eyebrow: 'Validation',
     title: 'Market Validation & Timeline',
     timeline: [
-      { date: 'June 2025', title: 'MoE National Recognition' },
-      { date: 'September 2025', title: 'MoE-IIC x IIITDM Jabalpur Incubation' },
-      { date: 'November 2025', title: 'Formal Startup Recognition' },
-      { date: 'January 2026', title: 'Hult Prize + International Innovation Merit' },
-      { date: 'April 2026', title: 'TBIF x IIT Ropar Institutional Partnership' },
+      { date: 'Sep 2025', title: 'IIITDM Jabalpur Incubation (MoE-IIC)' },
+      { date: 'Nov 2025', title: 'LLP Incorporated (MCA)' },
+      { date: 'Dec 2025', title: 'Udyam/MSME Registration' },
+      { date: 'Jan 2026', title: 'DPIIT Recognition + GST Registration' },
+      { date: 'Feb 2026', title: 'Patent Application Filed (202621016608)' },
+      { date: 'Apr 2026', title: 'TBIF x IIT Ropar Partnership' },
+      { date: '2026', title: 'Patent Application Published (Journal 14/2026)' },
     ],
   },
   endorsements: {
@@ -131,7 +172,7 @@ export const siteCopy = {
       {
         quote:
           'EcoFresh represents the kind of system-level innovation India needs - where sustainability, engineering rigor, and long-term scalability are aligned to create real environmental and societal impact.',
-        name: 'Prof. Puneet Tondon',
+        name: 'Prof. Puneet Tandon',
         title: 'Professor-in-Charge, Innovation & Incubation Centre, IIITDM Jabalpur.',
       },
     ],
@@ -139,7 +180,7 @@ export const siteCopy = {
   team: {
     eyebrow: 'The Team',
     title: 'Built by Founders',
-    subtitle: 'Dedicated to revolutionizing waste management and solving India\'s environmental crisis once and for all. Building end-to-end systems — processing, conversion, and value recovery.',
+    subtitle: 'Dedicated to revolutionizing waste management and solving India\'s environmental crisis once and for all. Building end-to-end systems for processing, conversion, and value recovery.',
     members: [
       {
         name: 'Ark Patil',
@@ -220,40 +261,36 @@ export const siteCopy = {
     },
     conversion: {
       eyebrow: 'Material Conversion',
-      title: 'Outputs per 1 kg Mixed Waste (3-TPD System)',
+      title: 'Design-Basis Mass Balance (per 100 kg mixed MSW)',
       table: [
-        { stream: 'Bioplastic (EcoForm / PHA)', quantity: '450-500 g', basis: 'Discounted biological + process yield' },
-        { stream: 'Bio-fertilizer / digestate', quantity: '180-220 g', basis: 'Residual organic recovery' },
-        { stream: 'Eco-composite / inert fraction', quantity: '250-300 g', basis: 'Non-polymer usable solids' },
-        { stream: 'Total recovery', quantity: '~900-1000 g', basis: 'Minor moisture & gas losses' },
+        { stream: 'PHA biopolymer (EcoForm)', quantity: '~4.5 kg', basis: 'Aerobic fermentation (C. necator), design-basis yield' },
+        { stream: 'Bio-fertilizer / digestate', quantity: 'Residual organics', basis: 'Stabilized soil input from organic fraction' },
+        { stream: 'Inert composite fraction', quantity: 'Non-organic balance', basis: 'Recovered as construction-grade filler' },
       ],
       monthlyOutput: [
-        { metric: 'Waste processed', value: '~90,000 kg / month' },
-        { metric: 'Bioplastic output', value: '~30-35 tonnes / month' },
-        { metric: 'Bio-fertilizer output', value: '~16-20 tonnes / month' },
-        { metric: 'Eco-composite output', value: '~22-27 tonnes / month' },
+        { metric: 'Unit throughput', value: '1 to 5 TPD per unit' },
+        { metric: 'PHA design yield', value: '~4.5 kg per 100 kg MSW' },
+        { metric: 'CDW accumulation target', value: '55 to 65%' },
+        { metric: 'Validation status', value: 'TRL 4-5, bench validation in progress' },
       ],
     },
     economics: {
       eyebrow: 'Unit Economics',
-      title: 'Steady-State Monthly Economics',
+      title: 'Indicative Unit Economics',
       metrics: [
         { label: 'Unit build cost', value: '₹35-45 lakh' },
         { label: 'System sale price', value: '₹48-55 lakh' },
         { label: 'Upfront gross margin', value: '₹8-10 lakh' },
         { label: 'Annual AMC', value: '₹2-3 lakh / year' },
-        { label: 'Revenue share', value: '8-12% (₹6-7.5 lakh / month)' },
-        { label: 'Net operating cash flow', value: '₹4.5-6.0 lakh / month' },
-        { label: '3-year value / unit', value: '₹1.75-2.6 crore' },
       ],
       note:
-        'All yields shown are conservative, worst-case assumptions derived from simulation-validated carbon-flow models and discounted for mixed-waste field conditions.',
+        'Capital figures are indicative hardware economics. Output-linked and offtake revenue is design-basis at TRL 4-5, being finalized against bench validation, and is not presented as proven performance.',
     },
     ip: {
       eyebrow: 'Intellectual Property',
-      title: 'Core system IP under filing',
+      title: 'Patent application published',
       text:
-        'Core process and system integration IP is under filing with the Indian Patent Office, covering segregation-agnostic inputs, conversion sequencing, and modular system design.',
+        'Core IP, App. No. 202621016608, "Bioplastic Production System and Method of Its Operation", is filed with the Indian Patent Office and published in Journal No. 14/2026 with examination requested. It covers segregation-agnostic intake, conversion sequencing, and modular system design. Published status is an active application under examination, not a granted patent.',
     },
     deployment: {
       eyebrow: 'Deployment Plan',

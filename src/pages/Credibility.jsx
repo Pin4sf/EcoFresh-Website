@@ -30,34 +30,6 @@ const internationalLogos = [
   { name: 'Cohort', src: '/assets/brand/credibility/Group 8.png' },
 ]
 
-const timeline = [
-  {
-    date: 'June 2025',
-    title: 'MoE National Recognition',
-    description: 'Ministry of Education recognizes EcoFresh for innovation in waste-to-value technology.',
-  },
-  {
-    date: 'September 2025',
-    title: 'MoE-IIC x IIITDM Jabalpur Incubation',
-    description: 'Formal incubation under Institution\'s Innovation Council at IIITDM Jabalpur.',
-  },
-  {
-    date: 'November 2025',
-    title: 'DPIIT Startup Recognition',
-    description: 'Department for Promotion of Industry and Internal Trade recognizes EcoFresh as a registered startup.',
-  },
-  {
-    date: 'January 2026',
-    title: 'Hult Prize International Merit',
-    description: 'Recognition at the world\'s largest social entrepreneurship competition backed by the UN.',
-  },
-  {
-    date: 'April 2026',
-    title: 'TBIF x IIT Ropar Institutional Partnership',
-    description: 'Institutional partnership with Technology Business Incubation Foundation at IIT Ropar.',
-  },
-]
-
 export default function Credibility() {
   const [activeTab, setActiveTab] = useState('recognitions')
 
@@ -151,6 +123,37 @@ export default function Credibility() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
+                {/* Registration Cards */}
+                <div className="mb-16">
+                  <div className="text-center max-w-2xl mx-auto mb-8">
+                    <p className="text-sm font-semibold text-eco mb-3 uppercase tracking-wider">
+                      {siteCopy.registrations.eyebrow}
+                    </p>
+                    <h2 className="heading-section">{siteCopy.registrations.title}</h2>
+                  </div>
+                  <motion.div
+                    className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5"
+                    variants={staggerContainer}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                  >
+                    {siteCopy.registrations.items.map((item) => (
+                      <motion.div
+                        key={item.label}
+                        variants={staggerItem}
+                        className="rounded-2xl border border-ink/10 bg-sand p-5 shadow-sm shadow-ink/5"
+                      >
+                        <p className="text-sm font-semibold text-ink leading-snug">{item.label}</p>
+                        <p className="mt-2 text-xs uppercase tracking-wider text-eco">{item.issuer}</p>
+                        <p className="mt-4 font-mono text-xs leading-relaxed text-ink-muted break-words">
+                          {item.detail}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+
                 {/* National Recognition */}
                 <div className="mb-16">
                   <p className="text-sm font-semibold text-eco mb-8 uppercase tracking-wider text-center">
@@ -307,7 +310,7 @@ export default function Credibility() {
                 </div>
 
                 <div className="max-w-3xl mx-auto">
-                  {timeline.map((item, i) => (
+                  {siteCopy.validation.timeline.map((item, i) => (
                     <motion.div
                       key={item.date}
                       initial={{ opacity: 0, x: -20 }}
@@ -316,7 +319,7 @@ export default function Credibility() {
                       className="relative pl-8 pb-12 last:pb-0"
                     >
                       {/* Timeline line */}
-                      {i < timeline.length - 1 && (
+                      {i < siteCopy.validation.timeline.length - 1 && (
                         <div className="absolute left-[11px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-eco to-eco/20" />
                       )}
                       {/* Timeline dot */}
@@ -329,7 +332,9 @@ export default function Credibility() {
                           {item.date}
                         </span>
                         <h3 className="heading-card mt-2">{item.title}</h3>
-                        <p className="text-sm text-ink-muted mt-2">{item.description}</p>
+                        {item.description && (
+                          <p className="text-sm text-ink-muted mt-2">{item.description}</p>
+                        )}
                       </div>
                     </motion.div>
                   ))}

@@ -12,9 +12,9 @@ const marketStats = [
 ]
 
 const systemOutputs = [
-  { value: '90K', label: 'kg/month', description: 'Waste processed per month (3-TPD system)' },
-  { value: '35T', label: 'Bioplastic', description: 'Tonnes of standardized bioplastic monthly' },
-  { value: '20T', label: 'Bio-fertilizer', description: 'Tonnes of organic bio-fertilizer monthly' },
+  { value: '1-5', label: 'TPD per unit', description: 'Process design throughput range' },
+  { value: '~4.5 kg', label: 'PHA / 100 kg MSW', description: 'Design-basis PHA yield under bench validation' },
+  { value: 'TRL 4-5', label: 'Validation', description: 'Bench validation in progress' },
 ]
 
 const environmentalImpact = [
@@ -124,7 +124,7 @@ export default function Impact() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {marketStats.map((stat, i) => (
+            {marketStats.map((stat) => (
               <motion.div key={stat.label} variants={staggerItem}>
                 <StatCard {...stat} />
               </motion.div>
@@ -138,9 +138,9 @@ export default function Impact() {
         <div className="container-default">
           <motion.div {...scrollReveal} className="text-center max-w-3xl mx-auto mb-16">
             <span className="section-eyebrow">System Performance</span>
-            <h2 className="heading-section mt-4">What One EcoFresh Unit Delivers</h2>
+            <h2 className="heading-section mt-4">What One EcoFresh Unit Is Designed For</h2>
             <p className="body-regular mt-4">
-              A single 3-TPD Eco Converter transforms municipal waste into valuable outputs.
+              Each Eco Converter is being validated against a design-basis mass balance for mixed municipal waste.
             </p>
           </motion.div>
 
@@ -205,16 +205,16 @@ export default function Impact() {
                 Material Flow
               </span>
               <h2 className="heading-section text-white mt-6">
-                1 kg Mixed Waste → Multiple Value Streams
+                100 kg Mixed MSW → Process Design Basis
               </h2>
             </div>
 
             <div className="grid gap-4 md:grid-cols-4">
               {[
-                { output: 'Bioplastic', amount: '450-500g', icon: FlaskConical },
-                { output: 'Bio-fertilizer', amount: '180-220g', icon: Leaf },
-                { output: 'Eco-composite', amount: '250-300g', icon: Boxes },
-                { output: 'Total Recovery', amount: '~95%', icon: Recycle },
+                { output: 'PHA biopolymer', amount: '~4.5 kg', icon: FlaskConical },
+                { output: 'Bio-fertilizer', amount: 'Residual organics', icon: Leaf },
+                { output: 'Inert composite', amount: 'Non-organic balance', icon: Boxes },
+                { output: 'Validation', amount: 'TRL 4-5', icon: Recycle },
               ].map((item) => (
                 <div
                   key={item.output}
