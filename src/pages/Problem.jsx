@@ -13,28 +13,12 @@ const wasteBreakdown = [
   { category: 'Inert & Others', percentage: 20, color: 'bg-gray-400' },
 ]
 
-const challenges = [
-  {
-    icon: Truck,
-    title: 'Transport-Led Systems',
-    description: 'Current infrastructure is optimized to move waste, not process it. Long transport chains lead to contamination and inefficiency.',
-  },
-  {
-    icon: Factory,
-    title: 'Centralization Failure',
-    description: 'Large centralized plants are too far from sources. By the time waste arrives, it\'s already degraded and mixed beyond processing.',
-  },
-  {
-    icon: Cog,
-    title: 'Segregation Dependency',
-    description: 'Most solutions assume perfect source segregation, a reality that doesn\'t exist in Indian municipalities.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Missing Mid-Scale',
-    description: 'No reliable mid-scale options exist between household composters (too small) and centralized plants (too far).',
-  },
-]
+const challengeIcons = [Truck, Factory, Cog, BarChart3]
+
+const challenges = siteCopy.problemPage.challenges.map((challenge, index) => ({
+  ...challenge,
+  icon: challengeIcons[index],
+}))
 
 export default function Problem() {
   return (
@@ -56,19 +40,19 @@ export default function Problem() {
               transition={{ duration: 0.5 }}
               className="section-eyebrow text-red-600"
             >
-              The Crisis
+              {siteCopy.problemPage.hero.eyebrow}
             </motion.span>
             <h1 className="heading-display mt-4">
               <TextReveal delay={0.2}>
-                Every Day, India Buries
+                {siteCopy.problemPage.hero.lead}
               </TextReveal>
               <span className="text-red-600 inline-block">
                 <TextReveal delay={0.4}>
-                  150,000 Tonnes
+                  {siteCopy.problemPage.hero.accent}
                 </TextReveal>
               </span>
               <TextReveal delay={0.5}>
-                of Waste
+                {siteCopy.problemPage.hero.tail}
               </TextReveal>
             </h1>
             <motion.p
@@ -77,9 +61,7 @@ export default function Problem() {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="body-large mt-8 max-w-2xl"
             >
-              Our cities are choking. Landfills are overflowing into neighborhoods.
-              Groundwater is contaminated. Communities living near dumpsites face serious
-              health risks, and the problem grows by 5% every year.
+              {siteCopy.problemPage.hero.description}
             </motion.p>
 
             {/* Emotional impact stats */}
@@ -89,18 +71,12 @@ export default function Problem() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mt-12 grid gap-6 sm:grid-cols-3"
             >
-              <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
-                <p className="text-3xl font-display font-bold text-red-600">62M+</p>
-                <p className="text-sm text-red-800/70 mt-1">Tonnes generated annually, 90% ends up in landfills or open dumps</p>
-              </div>
-              <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
-                <p className="text-3xl font-display font-bold text-red-600">3,000+</p>
-                <p className="text-sm text-red-800/70 mt-1">Dumpsites across India, many in residential areas affecting millions</p>
-              </div>
-              <div className="p-5 rounded-2xl bg-red-50 border border-red-100">
-                <p className="text-3xl font-display font-bold text-red-600">5 Lakh+</p>
-                <p className="text-sm text-red-800/70 mt-1">Sanitation workers risking their health daily without proper protection</p>
-              </div>
+              {siteCopy.problemPage.stats.map((stat) => (
+                <div key={stat.value} className="p-5 rounded-2xl bg-red-50 border border-red-100">
+                  <p className="text-3xl font-display font-bold text-red-600">{stat.value}</p>
+                  <p className="text-sm text-red-800/70 mt-1">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
@@ -205,14 +181,13 @@ export default function Problem() {
       <section className="py-20 bg-ink text-white">
         <div className="container-default text-center">
           <motion.div {...scrollReveal}>
-            <h2 className="heading-section text-white">There is a Better Way</h2>
+            <h2 className="heading-section text-white">{siteCopy.problemPage.ctaTitle}</h2>
             <p className="body-large text-white/60 mt-4 max-w-2xl mx-auto">
-              EcoFresh is building segregation-agnostic, mid-scale systems designed for how
-              Indian waste actually arrives mixed, contaminated, and challenging.
+              {siteCopy.problemPage.ctaDescription}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link to="/impact" className="btn-primary">
-                See Our Impact
+                Explore the Build Path
               </Link>
               <Link to="/" className="btn-glass">
                 Back to Home

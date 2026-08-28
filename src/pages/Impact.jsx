@@ -4,45 +4,16 @@ import { Globe, Droplets, Sprout, Zap, FlaskConical, Leaf, Boxes, Recycle } from
 import { scrollReveal, staggerContainer, staggerItem } from '../lib/motion'
 import { Icon } from '../components/ui/Icon'
 import TextReveal from '../components/ui/TextReveal'
+import { siteCopy } from '../content/siteCopy'
 
-const marketStats = [
-  { value: '62M+', label: 'Tonnes', description: 'Municipal waste generated annually in India' },
-  { value: '55%', label: 'Organic', description: 'Food-contaminated fractions requiring on-site processing' },
-  { value: '₹4.5L Cr', label: 'Market', description: 'Projected Indian waste-management market by 2030' },
-]
+const roadmapIcons = [Globe, Droplets, Sprout, Zap]
 
-const systemOutputs = [
-  { value: '1-5', label: 'TPD per unit', description: 'Process design throughput range' },
-  { value: '~4.5 kg', label: 'PHA / 100 kg MSW', description: 'Design-basis PHA yield under bench validation' },
-  { value: 'TRL 4-5', label: 'Validation', description: 'Bench validation in progress' },
-]
+const roadmap = siteCopy.impactPage.roadmap.map((stage, index) => ({
+  ...stage,
+  icon: roadmapIcons[index],
+}))
 
-const environmentalImpact = [
-  {
-    icon: Globe,
-    title: 'Carbon Reduction',
-    stat: '~12 tonnes',
-    description: 'CO₂ equivalent prevented per 3-TPD unit monthly through diversion from landfills',
-  },
-  {
-    icon: Droplets,
-    title: 'Water Saved',
-    stat: '~50,000 L',
-    description: 'Water conserved monthly by reducing plastic production from virgin resources',
-  },
-  {
-    icon: Sprout,
-    title: 'Land Preserved',
-    stat: '~1,000 m²',
-    description: 'Landfill space saved annually per deployed unit',
-  },
-  {
-    icon: Zap,
-    title: 'Energy Efficient',
-    stat: 'Low-energy',
-    description: 'Controlled conversion process designed for minimal energy consumption',
-  },
-]
+const ladderIcons = [FlaskConical, Leaf, Boxes, Recycle]
 
 function StatCard({ value, label, description }) {
   return (
@@ -76,20 +47,17 @@ export default function Impact() {
               transition={{ duration: 0.5 }}
               className="section-eyebrow text-sky"
             >
-              Market Opportunity
+              {siteCopy.impactPage.hero.eyebrow}
             </motion.span>
             <h1 className="heading-display mt-4">
               <TextReveal delay={0.2}>
-                A
+                {siteCopy.impactPage.hero.lead}
               </TextReveal>
               <span className="text-sky inline-block">
                 <TextReveal delay={0.25}>
-                  ₹4.5 Lakh Crore
+                  {siteCopy.impactPage.hero.accent}
                 </TextReveal>
               </span>
-              <TextReveal delay={0.4}>
-                Market Waiting for the Right Solution
-              </TextReveal>
             </h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -97,9 +65,7 @@ export default function Impact() {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="body-large mt-8 max-w-2xl"
             >
-              India's waste management sector is at an inflection point. The combination of
-              regulatory pressure, ESG mandates, and genuine environmental concern is creating
-              unprecedented demand for effective solutions.
+              {siteCopy.impactPage.hero.description}
             </motion.p>
           </motion.div>
         </div>
@@ -109,11 +75,10 @@ export default function Impact() {
       <section className="py-20 bg-white">
         <div className="container-default">
           <motion.div {...scrollReveal} className="text-center max-w-3xl mx-auto mb-16">
-            <span className="section-eyebrow">The Numbers</span>
-            <h2 className="heading-section mt-4">Scale of the Opportunity</h2>
+            <span className="section-eyebrow">Current Evidence</span>
+            <h2 className="heading-section mt-4">{siteCopy.impactPage.stageTitle}</h2>
             <p className="body-regular mt-4">
-              India generates more municipal solid waste than any country except China.
-              Yet, less than 30% is processed effectively.
+              {siteCopy.impactPage.stageDescription}
             </p>
           </motion.div>
 
@@ -124,7 +89,7 @@ export default function Impact() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {marketStats.map((stat) => (
+            {siteCopy.impactPage.stageStats.map((stat) => (
               <motion.div key={stat.label} variants={staggerItem}>
                 <StatCard {...stat} />
               </motion.div>
@@ -137,10 +102,10 @@ export default function Impact() {
       <section className="py-20 bg-mist">
         <div className="container-default">
           <motion.div {...scrollReveal} className="text-center max-w-3xl mx-auto mb-16">
-            <span className="section-eyebrow">System Performance</span>
-            <h2 className="heading-section mt-4">What One EcoFresh Unit Is Designed For</h2>
+            <span className="section-eyebrow">Designed Architecture</span>
+            <h2 className="heading-section mt-4">{siteCopy.impactPage.systemTitle}</h2>
             <p className="body-regular mt-4">
-              Each Eco Converter is being validated against a design-basis mass balance for mixed municipal waste.
+              {siteCopy.impactPage.systemDescription}
             </p>
           </motion.div>
 
@@ -151,7 +116,7 @@ export default function Impact() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {systemOutputs.map((stat) => (
+            {siteCopy.impactPage.systemStats.map((stat) => (
               <motion.div key={stat.label} variants={staggerItem}>
                 <StatCard {...stat} />
               </motion.div>
@@ -164,10 +129,10 @@ export default function Impact() {
       <section className="py-20 bg-white">
         <div className="container-default">
           <motion.div {...scrollReveal} className="text-center max-w-3xl mx-auto mb-16">
-            <span className="section-eyebrow">Environmental Impact</span>
-            <h2 className="heading-section mt-4">Real Environmental Benefits</h2>
+            <span className="section-eyebrow">{siteCopy.impactPage.roadmapEyebrow}</span>
+            <h2 className="heading-section mt-4">{siteCopy.impactPage.roadmapTitle}</h2>
             <p className="body-regular mt-4">
-              Every EcoFresh deployment creates measurable environmental value.
+              {siteCopy.impactPage.roadmapDescription}
             </p>
           </motion.div>
 
@@ -178,7 +143,7 @@ export default function Impact() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {environmentalImpact.map((item) => (
+            {roadmap.map((item) => (
               <motion.div
                 key={item.title}
                 variants={staggerItem}
@@ -202,26 +167,21 @@ export default function Impact() {
           <motion.div {...scrollReveal} className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 text-xs font-semibold text-eco uppercase tracking-widest bg-eco/10 rounded-full">
-                Material Flow
+                {siteCopy.impactPage.ladderEyebrow}
               </span>
               <h2 className="heading-section text-white mt-6">
-                100 kg Mixed MSW → Process Design Basis
+                {siteCopy.impactPage.ladderTitle}
               </h2>
             </div>
 
             <div className="grid gap-4 md:grid-cols-4">
-              {[
-                { output: 'PHA biopolymer', amount: '~4.5 kg', icon: FlaskConical },
-                { output: 'Bio-fertilizer', amount: 'Residual organics', icon: Leaf },
-                { output: 'Inert composite', amount: 'Non-organic balance', icon: Boxes },
-                { output: 'Validation', amount: 'TRL 4-5', icon: Recycle },
-              ].map((item) => (
+              {siteCopy.impactPage.ladder.map((item, index) => (
                 <div
                   key={item.output}
                   className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center"
                 >
                   <Icon
-                    icon={item.icon}
+                    icon={ladderIcons[index]}
                     size="lg"
                     container="circle"
                     containerBg="glass"
@@ -236,7 +196,7 @@ export default function Impact() {
 
             <div className="mt-16 text-center">
               <Link to="/credibility" className="btn-primary">
-                See Our Credibility
+                Review the Record
               </Link>
             </div>
           </motion.div>

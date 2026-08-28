@@ -2,63 +2,42 @@ import { useRef, useMemo } from 'react'
 import { useScroll, useTransform, motion } from 'framer-motion'
 import { AlertTriangle, Sparkles, TrendingUp } from 'lucide-react'
 import { staggerContainer, staggerItem } from '../../../lib/motion'
+import { siteCopy } from '../../../content/siteCopy'
 
 /**
  * ValueProposition - Sticky Scroll Storytelling Section
  *
  * 3-panel immersive experience:
- * 1. The Crisis - Visualizing the waste problem
- * 2. The Innovation - EcoConverter solution
- * 3. The Impact - Measurable outcomes
+ * 1. The Gap - Current processing shortfall
+ * 2. The System - EcoConverter architecture
+ * 3. The Build - Evidence-led scale-up path
  *
  * Uses scroll-locked panels that transition smoothly
  */
 
-// Panel content data
-const panels = [
-  {
-    id: 'crisis',
-    eyebrow: 'The Crisis',
-    title: 'India generates 62M+ tons of waste annually',
-    description: 'Only 20% gets processed. The rest ends up in landfills, oceans, and air we breathe.',
+// Visual treatment stays local; all public copy lives in siteCopy.js.
+const panelVisuals = {
+  crisis: {
     icon: AlertTriangle,
     iconColor: 'text-red-500',
-    stats: [
-      { value: '62M+', label: 'Tons/year' },
-      { value: '80%', label: 'Unprocessed' },
-      { value: '3,000+', label: 'Dumpsites' },
-    ],
     bgGradient: 'from-red-500/5 via-orange-500/5 to-transparent',
   },
-  {
-    id: 'innovation',
-    eyebrow: 'Our Innovation',
-    title: 'EcoConverter transforms waste into value',
-    description: 'Segregation-agnostic, decentralized systems that process mixed waste into standardized bioplastics.',
+  innovation: {
     icon: Sparkles,
     iconColor: 'text-eco',
-    stats: [
-      { value: '3', label: 'Value Streams' },
-      { value: '0', label: 'Landfill Output' },
-      { value: '24/7', label: 'Operation' },
-    ],
     bgGradient: 'from-eco/5 via-eco/10 to-transparent',
   },
-  {
-    id: 'impact',
-    eyebrow: 'The Impact',
-    title: 'Creating measurable environmental change',
-    description: 'Every unit deployed diverts waste, reduces emissions, and creates circular economy products.',
+  progress: {
     icon: TrendingUp,
     iconColor: 'text-sky',
-    stats: [
-      { value: '500+', label: 'Tons Diverted' },
-      { value: '40%', label: 'Cost Savings' },
-      { value: '3x', label: 'Revenue Streams' },
-    ],
     bgGradient: 'from-sky/5 via-eco/5 to-transparent',
   },
-]
+}
+
+const panels = siteCopy.homeStory.panels.map((panel) => ({
+  ...panel,
+  ...panelVisuals[panel.id],
+}))
 
 // Individual stat component with animation
 function AnimatedStat({ value, label, delay = 0 }) {

@@ -1,14 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { siteCopy } from '../../content/siteCopy'
 
 // Page-specific transition messages
-const pageMessages = {
-  '/': 'Waste to Value. At Scale.',
-  '/problem': '62 Million Tonnes. One Solution.',
-  '/impact': 'The Impact We Create',
-  '/credibility': 'Proven. Recognized. Trusted.',
-  '/team': 'Meet the Builders',
-  '/investors': 'Partner in Impact',
-}
+const pageMessages = siteCopy.shared.transitions
 
 /**
  * PageTransitionOverlay Component

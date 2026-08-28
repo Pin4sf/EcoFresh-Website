@@ -3,13 +3,6 @@ import { siteCopy } from '../../../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../../../lib/motion'
 import useCountUp from '../../../hooks/useCountUp'
 
-// Big impact numbers combining market opportunity and system output
-const impactStats = [
-  { value: 62, suffix: 'M+', label: 'Tonnes', description: 'Municipal waste generated annually in India' },
-  { value: 55, suffix: '%', label: 'Organic', description: 'Food-contaminated fractions requiring on-site processing' },
-  { prefix: '₹', value: 4.5, suffix: 'L Cr', label: 'Market', description: 'Projected Indian waste-management market by 2030', decimal: true },
-]
-
 function CountUpStat({ value, prefix = '', suffix = '', decimal = false }) {
   const { ref, value: count } = useCountUp(decimal ? value * 10 : value, 1200)
 
@@ -38,9 +31,9 @@ export default function Impact() {
       <div className="container-default relative z-10">
         <motion.div {...scrollReveal} className="text-center max-w-3xl mx-auto mb-16">
           <span className="section-eyebrow">{siteCopy.market.eyebrow}</span>
-          <h2 className="heading-section mt-4">The Scale of Opportunity</h2>
+          <h2 className="heading-section mt-4">{siteCopy.market.title}</h2>
           <p className="body-regular mt-4">
-            India's waste management sector presents a transformative opportunity for impact-driven solutions.
+            {siteCopy.market.description}
           </p>
         </motion.div>
 
@@ -51,7 +44,7 @@ export default function Impact() {
           whileInView="animate"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {impactStats.map((stat, i) => (
+          {siteCopy.market.stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               variants={staggerItem}
