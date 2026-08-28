@@ -1,47 +1,9 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { siteCopy } from '../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../lib/motion'
 import TextReveal from '../components/ui/TextReveal'
 
-const founderDetails = [
-  {
-    name: 'Ark Patil',
-    tagline: 'The Visionary',
-    role: 'CEO · Biosensing & Performance',
-    image: '/assets/Team/Ark.jpeg',
-    linkedin: 'https://www.linkedin.com/in/ark-patil-a280a4218/',
-    bio: 'Leads strategy and institutional partnerships. Responsible for building relationships with government bodies, investors, and deployment partners.',
-    expertise: ['Strategic Planning', 'Institutional Partnerships', 'Business Development'],
-  },
-  {
-    name: 'Shivansh Fulper',
-    tagline: 'The Architect',
-    role: 'CTO · AI & Systems',
-    image: '/assets/Team/Shivansh.png',
-    linkedin: 'https://www.linkedin.com/in/shivanshfulper/',
-    bio: 'Designs and develops the core conversion systems and EcoSync platform. Responsible for technology architecture and process engineering.',
-    expertise: ['Systems Engineering', 'AI & ML', 'Process Design'],
-  },
-  {
-    name: 'Ansh Bathija',
-    tagline: 'The Operator',
-    role: 'COO · Manufacturing & Ops',
-    image: '/assets/Team/ANsh.jpeg',
-    linkedin: 'https://www.linkedin.com/in/ansh-bathija-45b36121b/',
-    bio: 'Manages operations and deployment logistics. Ensures smooth execution of pilot programs and scaling operations.',
-    expertise: ['Operations', 'Supply Chain', 'Project Management'],
-  },
-  {
-    name: 'Mayur Kumar',
-    tagline: 'The Builder',
-    role: 'CPO · Product & Hardware',
-    image: '/assets/Team/Mayur.png',
-    linkedin: 'https://www.linkedin.com/in/mayur-kumar-4751a2272/',
-    bio: 'Leads product design and hardware development. Translates system requirements into manufacturable, deployable units.',
-    expertise: ['Product Design', 'Hardware Engineering', 'Manufacturing'],
-  },
-]
+const founderDetails = siteCopy.team.members
 
 function LinkedInIcon() {
   return (
@@ -142,10 +104,10 @@ export default function Team() {
       <section className="py-20 bg-mist">
         <div className="container-default">
           <motion.div {...scrollReveal} className="text-center max-w-3xl mx-auto mb-16">
-            <span className="section-eyebrow">Meet the Founders</span>
-            <h2 className="heading-section mt-4">Expertise & Background</h2>
+            <span className="section-eyebrow">{siteCopy.team.detailsEyebrow}</span>
+            <h2 className="heading-section mt-4">{siteCopy.team.detailsTitle}</h2>
             <p className="body-regular mt-4">
-              Each founder brings unique skills and experience to solve India's waste challenge.
+              {siteCopy.team.detailsSubtitle}
             </p>
           </motion.div>
 
@@ -220,10 +182,10 @@ export default function Team() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-xl font-display font-semibold text-ink">
-                Connect with Our Team
+                {siteCopy.team.connectTitle}
               </h3>
               <p className="text-ink-muted mt-1">
-                Follow our founders on LinkedIn for updates on EcoFresh's journey.
+                {siteCopy.team.connectSubtitle}
               </p>
             </div>
             <div className="flex gap-3">
@@ -253,13 +215,13 @@ export default function Team() {
       <section className="py-20 bg-ink text-white">
         <div className="container-default text-center">
           <motion.div {...scrollReveal}>
-            <h2 className="heading-section text-white">Ready to Partner?</h2>
+            <h2 className="heading-section text-white">{siteCopy.team.ctaTitle}</h2>
             <p className="body-large text-white/60 mt-4 max-w-2xl mx-auto">
-              Join us in building India's waste-to-value infrastructure.
+              {siteCopy.team.ctaSubtitle}
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a href={siteCopy.links.partnerEmail} className="btn-primary" data-cursor="Email">
-                Start a Partnership
+                Explore a Partnership
               </a>
               <a href={siteCopy.links.deck} target="_blank" rel="noopener noreferrer" className="btn-glass" data-cursor="Open">
                 View Investor Deck

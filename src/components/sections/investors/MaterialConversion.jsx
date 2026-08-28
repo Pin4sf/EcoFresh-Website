@@ -9,9 +9,9 @@ export default function MaterialConversion() {
         <div className="grid gap-8 lg:grid-cols-2" data-reveal>
           <div className="rounded-3xl border border-ink/10 bg-sand p-6">
             <div className="grid grid-cols-3 text-xs font-semibold text-ink-muted border-b border-ink/10 pb-3">
-              <span>Output Stream</span>
-              <span>Quantity</span>
-              <span>Basis</span>
+              {siteCopy.investors.conversion.columns.map((column) => (
+                <span key={column}>{column}</span>
+              ))}
             </div>
             <div className="mt-4 space-y-4 text-sm text-ink-muted">
               {siteCopy.investors.conversion.table.map((row) => (

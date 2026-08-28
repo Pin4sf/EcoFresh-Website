@@ -15,7 +15,7 @@ export default function CompetitorPositioning() {
           ))}
         </div>
         <div className="rounded-3xl border border-dashed border-eco/40 bg-mist p-6 text-sm text-ink-muted" data-reveal>
-          "EcoFresh uniquely combines segregation-agnostic processing, mid-scale modularity, and standardized deployment - capabilities not offered together by existing solutions."
+          {siteCopy.investors.competitors.summary}
         </div>
       </div>
     </section>

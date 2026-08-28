@@ -82,17 +82,24 @@ export default function Hero() {
           animate="animate"
           className="max-w-4xl mx-auto text-center"
         >
+          <motion.p
+            variants={staggerItem}
+            className="section-eyebrow mb-5"
+          >
+            {siteCopy.hero.eyebrow}
+          </motion.p>
+
           {/* Main headline - typography as hero with text reveal */}
           <motion.h1
             variants={staggerItem}
             className="heading-display text-ink"
           >
             <TextReveal delay={0.3}>
-              Converting mixed waste into
+              {siteCopy.hero.headlineLead}
             </TextReveal>{' '}
             <span className="text-eco">
               <TextReveal delay={0.5}>
-                standardized bioplastics.
+                {siteCopy.hero.headlineAccent}
               </TextReveal>
             </span>
           </motion.h1>

@@ -3,48 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Award, Trophy, Rocket } from 'lucide-react'
 import { siteCopy } from '../../../content/siteCopy'
 import { scrollReveal, staggerContainer, staggerItem } from '../../../lib/motion'
-import useCountUp from '../../../hooks/useCountUp'
 
 const tabs = [
   { id: 'recognitions', label: 'Recognitions' },
   { id: 'endorsements', label: 'Expert Opinions' },
 ]
 
-// Achievement stats from SMARK deck
-const achievements = [
-  {
-    icon: Trophy,
-    value: 16,
-    suffix: 'th',
-    label: 'Global Rank',
-    description: 'Hult Prize among 2,500+ teams from 6 countries',
-    highlight: 'Hult Prize × IIT Bombay',
-  },
-  {
-    icon: Award,
-    value: 10,
-    suffix: '%',
-    prefix: 'Top ',
-    label: 'Academic Incubations',
-    description: '90% of innovations never reach national academic incubation',
-    highlight: 'IIITDM Jabalpur × IIC',
-  },
-  {
-    icon: Rocket,
-    value: 0.3,
-    suffix: '%',
-    label: 'DPIIT Recognized',
-    description: 'Among ~2 lakh recognized out of 6+ crore MSMEs',
-    highlight: 'Startup India',
-    decimal: true,
-  },
-]
+const achievementIcons = [Trophy, Award, Rocket]
+
+const achievements = siteCopy.credibility.achievements.map((achievement, index) => ({
+  ...achievement,
+  icon: achievementIcons[index],
+}))
 
 function AchievementCard({ achievement, index }) {
-  const { ref, value } = useCountUp(
-    achievement.decimal ? achievement.value * 10 : achievement.value,
-    1500
-  )
   const Icon = achievement.icon
 
   return (
@@ -66,10 +38,8 @@ function AchievementCard({ achievement, index }) {
         </div>
 
         {/* Stat */}
-        <p ref={ref} className="text-2xl md:text-3xl font-display font-bold text-ink whitespace-nowrap">
-          {achievement.prefix || ''}
-          {achievement.decimal ? (value / 10).toFixed(1) : value}
-          {achievement.suffix}
+        <p className="text-2xl md:text-3xl font-display font-bold text-ink">
+          {achievement.value}
         </p>
 
         <p className="text-xs font-semibold text-eco uppercase tracking-wider mt-2">
@@ -111,14 +81,7 @@ const internationalLogos = [
 ]
 
 // Trust marquee items
-const trustItems = [
-  ...siteCopy.credibility.logos,
-  'DPIIT Recognized',
-  'MoE-IIC Incubated',
-  'Patent Filed',
-  'IIITDM Jabalpur',
-  'TBIF IIT Ropar',
-]
+const trustItems = siteCopy.credibility.trustItems
 
 export default function Credibility() {
   const [activeTab, setActiveTab] = useState('recognitions')
@@ -157,8 +120,8 @@ export default function Credibility() {
       <div className="py-16 md:py-20 bg-gradient-to-b from-mist/30 to-sand">
         <div className="container-default">
           <motion.div {...scrollReveal} className="text-center max-w-2xl mx-auto mb-12">
-            <span className="section-eyebrow">Key Achievements</span>
-            <h3 className="heading-subsection mt-4">Positioned in the Top Tier</h3>
+            <span className="section-eyebrow">{siteCopy.credibility.achievementEyebrow}</span>
+            <h3 className="heading-subsection mt-4">{siteCopy.credibility.achievementTitle}</h3>
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -176,7 +139,7 @@ export default function Credibility() {
             <span className="section-eyebrow">{siteCopy.credibility.eyebrow}</span>
             <h2 className="heading-section mt-4">{siteCopy.credibility.title}</h2>
             <p className="body-regular mt-4">
-              Recognitions, certifications, and endorsements supported by official documentation.
+              {siteCopy.credibility.description}
             </p>
           </motion.div>
 
@@ -270,7 +233,7 @@ export default function Credibility() {
 
                 <div className="mb-12">
                   <p className="text-sm font-semibold text-eco mb-6 uppercase tracking-wider text-center">
-                    International Merit & Programs
+                    Institutional Programs & Merit
                   </p>
                   <motion.div
                     className="flex flex-wrap justify-center items-center gap-6 md:gap-10"
@@ -312,7 +275,7 @@ export default function Credibility() {
                     </ul>
                   </div>
                   <div className="rounded-3xl border border-ink/10 bg-sand p-6 md:p-8">
-                    <p className="text-sm font-semibold text-eco mb-6 uppercase tracking-wider">International Merit Details</p>
+                    <p className="text-sm font-semibold text-eco mb-6 uppercase tracking-wider">Institutional Programs & Merit</p>
                     <ul className="space-y-4">
                       {siteCopy.credibility.international.map((item) => (
                         <li key={item} className="flex gap-3 text-sm text-ink-muted">

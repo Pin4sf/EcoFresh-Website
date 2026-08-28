@@ -52,20 +52,17 @@ export default function Credibility() {
               transition={{ duration: 0.5 }}
               className="section-eyebrow"
             >
-              Credibility
+              {siteCopy.credibility.hero.eyebrow}
             </motion.span>
             <h1 className="heading-display mt-4">
               <TextReveal delay={0.2}>
-                Backed by
+                {siteCopy.credibility.hero.lead}
               </TextReveal>
               <span className="text-eco inline-block">
                 <TextReveal delay={0.35}>
-                  National & International
+                  {siteCopy.credibility.hero.accent}
                 </TextReveal>
               </span>
-              <TextReveal delay={0.5}>
-                Recognition
-              </TextReveal>
             </h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -73,9 +70,7 @@ export default function Credibility() {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="body-large mt-8 max-w-2xl"
             >
-              EcoFresh is recognized by leading government bodies, academic institutions,
-              and international organizations. Our work is validated by experts and
-              supported by formal documentation.
+              {siteCopy.credibility.hero.description}
             </motion.p>
           </motion.div>
         </div>
@@ -85,10 +80,10 @@ export default function Credibility() {
       <div className="py-6 border-y border-ink/5 overflow-hidden bg-mist/50">
         <div className="marquee">
           <div className="marquee-track">
-            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur', 'TBIF IIT Ropar'].map((item, i) => (
+            {siteCopy.credibility.trustItems.map((item, i) => (
               <span key={`${item}-${i}`} className="marquee-item">{item}</span>
             ))}
-            {[...siteCopy.credibility.logos, 'DPIIT Recognized', 'MoE-IIC Incubated', 'Patent Filed', 'IIITDM Jabalpur', 'TBIF IIT Ropar'].map((item, i) => (
+            {siteCopy.credibility.trustItems.map((item, i) => (
               <span key={`${item}-dup-${i}`} className="marquee-item">{item}</span>
             ))}
           </div>
@@ -186,7 +181,7 @@ export default function Credibility() {
                 {/* International Recognition */}
                 <div className="mb-16">
                   <p className="text-sm font-semibold text-eco mb-8 uppercase tracking-wider text-center">
-                    International Merit & Programs
+                    Institutional Programs & Merit
                   </p>
                   <motion.div
                     className="flex flex-wrap justify-center items-center gap-6 md:gap-10"
@@ -231,7 +226,7 @@ export default function Credibility() {
                   </div>
                   <div className="rounded-3xl border border-ink/10 bg-sand p-8">
                     <p className="text-sm font-semibold text-eco mb-6 uppercase tracking-wider">
-                      International Merit Details
+                      Institutional Programs & Merit
                     </p>
                     <ul className="space-y-4">
                       {siteCopy.credibility.international.map((item) => (
@@ -303,9 +298,9 @@ export default function Credibility() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="text-center max-w-3xl mx-auto mb-12">
-                  <h2 className="heading-section">Our Journey</h2>
+                  <h2 className="heading-section">{siteCopy.validation.title}</h2>
                   <p className="body-regular mt-4">
-                    Key milestones in EcoFresh's growth and recognition.
+                    Registrations, institutional pathways, and technical progress recorded in sequence.
                   </p>
                 </div>
 
@@ -349,9 +344,9 @@ export default function Credibility() {
       <section className="py-20 bg-ink text-white">
         <div className="container-default text-center">
           <motion.div {...scrollReveal}>
-            <h2 className="heading-section text-white">Meet the Team Behind EcoFresh</h2>
+            <h2 className="heading-section text-white">Meet the Team Building the Next Evidence Gate</h2>
             <p className="body-large text-white/60 mt-4 max-w-2xl mx-auto">
-              Learn about the founders driving India's waste-to-value revolution.
+              Four founders spanning venture building, field hardware, intellectual property, and intelligent systems.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link to="/team" className="btn-primary">

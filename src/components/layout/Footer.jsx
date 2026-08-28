@@ -190,7 +190,7 @@ function AnimatedBrand({ scrollProgress }) {
         transition={{ delay: 0.5, duration: 0.6 }}
         className="mt-4 text-sand/40 text-sm md:text-base tracking-widest uppercase"
       >
-        Waste to value. At scale.
+        {siteCopy.shared.footerTagline}
       </motion.p>
     </motion.div>
   )
@@ -249,7 +249,7 @@ export default function Footer() {
                 About
               </p>
               <p className="text-sand/60 text-sm leading-relaxed body-elegant">
-                Decentralized, segregation-agnostic waste-to-value systems for Indian cities and institutions.
+                {siteCopy.brand.tagline}
               </p>
             </div>
 
@@ -349,7 +349,7 @@ export default function Footer() {
               LLPIN {siteCopy.legal.llpin} · GSTIN {siteCopy.legal.gstin} · DPIIT {siteCopy.legal.dpiit} · Udyam {siteCopy.legal.udyam} · Patent App. {siteCopy.legal.patentApp}
             </p>
           </div>
-          <span className="text-sand/30">Designed for impact, engineered for scale.</span>
+          <span className="text-sand/30">{siteCopy.shared.footerClosing}</span>
         </div>
       </div>
     </footer>

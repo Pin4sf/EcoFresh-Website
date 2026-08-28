@@ -34,7 +34,7 @@ export default function ProblemSolution() {
           <span className="section-eyebrow">{siteCopy.problem.eyebrow}</span>
           <h2 className="heading-section mt-4 max-w-3xl">{siteCopy.problem.title}</h2>
           <p className="body-large mt-6 max-w-2xl">
-            India's waste ecosystem is optimized to move waste, not process it.
+            {siteCopy.problem.description}
           </p>
 
           <motion.div
@@ -119,7 +119,7 @@ export default function ProblemSolution() {
               {/* Label overlay */}
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-white/90 font-display font-semibold text-lg">EcoConverter</p>
-                <p className="text-white/60 text-sm">Mixed waste → Standardized bioplastics</p>
+                <p className="text-white/60 text-sm">{siteCopy.solution.visualLabel}</p>
               </div>
             </div>
 
