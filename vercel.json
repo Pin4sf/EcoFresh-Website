@@ -1,0 +1,10 @@
+{
+    "redirects": [
+        { "source": "/team", "destination": "/#/team", "permanent": true },
+        { "source": "/investors", "destination": "/", "permanent": true },
+        { "source": "/problem", "destination": "/", "permanent": true },
+        { "source": "/impact", "destination": "/", "permanent": true },
+        { "source": "/credibility", "destination": "/", "permanent": true },
+        { "source": "/gallery", "destination": "/", "permanent": false }
+    ]
+}
