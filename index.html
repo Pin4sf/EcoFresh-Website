@@ -33,6 +33,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style>
+#tm-only-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px clamp(20px,3vw,56px);font:500 15px Figtree,'Segoe UI',sans-serif;color:#5F6B72;background:#F2F7F5;border-bottom:1px solid #DCE6E2}
+#tm-only-bar a{color:#1F6F5E;text-decoration:none}#tm-only-bar a:hover{text-decoration:underline}
+#tm-only-bar b{color:#1C1F24;font-weight:600}#tm-only-bar .tm-only-all{margin-left:auto;font-weight:600}
+</style>
 </head>
 <body><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;700&display=swap">
 <style>
@@ -8051,12 +8056,18 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m&&!m.hidde
   var H=document.getElementById('pg-home'),S=document.getElementById('pg-science'),T=document.getElementById('pg-tech'),M=document.getElementById('pg-team'),V=document.getElementById('pg-vision'),cur='home';
   var links=[].slice.call(document.querySelectorAll('[data-page]'));
   var PATH={home:'/',science:'/science',tech:'/technology',team:'/team',vision:'/vision'};
+  var FOUNDER={'/ark-patil':['tm-ark','Ark Patil | Founder & CEO, EcoFresh and VION'],'/ansh-bathija':['tm-ansh','Ansh Bathija | Co-founder & COO, EcoFresh'],'/shivansh-fulper':['tm-shiv','Shivansh Fulper | Co-founder & CTO, EcoFresh; Founder, Waldo'],'/mayur-kumar':['tm-mayur','Mayur Kumar | Co-founder & CPO, EcoFresh']};
   var TITLE={home:'EcoFresh | Food Waste to Bioplastic, Made in India',science:'The Science of PHA Bioplastic | EcoFresh',tech:'Technology: Hotel Unit and Central Hub | EcoFresh',team:'Team and Mentors | EcoFresh',vision:'Vision: Materials Made in India | EcoFresh'};
   function pageOfPath(p){p=(p||'/').replace(/\.html$/,'').replace(/\/+$/,'')||'/';
-    return p==='/science'?'science':p==='/technology'?'tech':p==='/team'?'team':p==='/vision'?'vision':p==='/'?'home':null;}
+    return FOUNDER[p]?'team':p==='/science'?'science':p==='/technology'?'tech':p==='/team'?'team':p==='/vision'?'vision':p==='/'?'home':null;}
+  function founderOnly(){var p=(location.pathname||'/').replace(/\.html$/,'').replace(/\/+$/,'');var f=FOUNDER[p];var main=M.querySelector('main');if(!main)return null;
+    [].forEach.call(main.children,function(c){if(c.tagName==='SECTION')c.hidden=!!f&&c.id!==f[0];});
+    var bc=document.getElementById('tm-only-bar');if(f&&!bc){bc=document.createElement('nav');bc.id='tm-only-bar';bc.setAttribute('aria-label','Breadcrumb');bc.innerHTML='<a href="/team">Team</a><span aria-hidden="true">›</span><b></b><a class="tm-only-all" href="/team">Meet the whole team →</a>';main.insertBefore(bc,main.firstChild);}
+    if(bc){bc.hidden=!f;if(f)bc.querySelector('b').textContent=f[1].split(' | ')[0];}
+    return f;}
   function show(p){cur=p;H.hidden=p!=='home';S.hidden=p!=='science';T.hidden=p!=='tech';M.hidden=p!=='team';V.hidden=p!=='vision';
     links.forEach(function(a){if(a.getAttribute('data-page')===p)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-    document.title=TITLE[p];
+    var fo=p==='team'?founderOnly():(founderOnly(),null);document.title=fo?fo[1]:TITLE[p];
     requestAnimationFrame(function(){dispatchEvent(new Event('resize'));});}
   function route(first){var h=location.hash;
     // old #/ links keep working and move to the real address
