@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const SITE = 'https://www.ecofreshgreensync.com';
+const IMG_VERSION = '2';
 const src = readFileSync('dist/index.html', 'utf8');
 
 const pages = [
@@ -169,7 +170,8 @@ pages.push(...founders);
 
 for (const p of pages) {
   const url = `${SITE}/${p.slug}`;
-  const img = `${SITE}/${p.image}`;
+  // bump IMG_VERSION whenever a preview image changes, so LinkedIn and others fetch the new file
+  const img = `${SITE}/${p.image}?v=${IMG_VERSION}`;
   let h = src;
   h = setTag(h, /(<title>)([^<]*)(<\/title>)/, esc(p.title), 'title');
   h = setTag(h, /(<meta name="description" content=")([^"]*)(")/, esc(p.description), 'description');
