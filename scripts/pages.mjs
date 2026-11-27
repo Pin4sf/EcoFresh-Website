@@ -119,7 +119,7 @@ const founders = [
       name: 'Shivansh Fulper',
       jobTitle: 'Co-founder & CTO',
       worksFor: [ORG, { '@type': 'Organization', name: 'Waldo', url: 'https://www.heywaldo.in/' }],
-      image: `${SITE}/shiv-cover.webp`,
+      image: `${SITE}/shiv-cover3.webp`,
       email: 'mailto:shivansh.fulper@ecofreshgreensync.com',
       award: [
         'Major League Hacking Fellow, 2024',
