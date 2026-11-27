@@ -54,6 +54,113 @@ function setTag(html, re, value, label) {
   return html.replace(re, (m, a, _old, b) => a + value + b);
 }
 
+// Founder profile pages: /ark-patil etc. The router shows only that founder's
+// section of the Team page; Person structured data tells Google who they are.
+const ORG = { '@type': 'Organization', name: 'EcoFresh GreenSync LLP', url: `${SITE}/` };
+const IIITDM = { '@type': 'CollegeOrUniversity', name: 'IIITDM Jabalpur', sameAs: 'https://www.iiitdmj.ac.in/' };
+const person = (o) => ({ '@context': 'https://schema.org', '@type': 'Person', alumniOf: IIITDM, ...o });
+
+const founders = [
+  {
+    slug: 'ark-patil',
+    title: 'Ark Patil | Founder & CEO, EcoFresh and VION',
+    ogTitle: 'Ark Patil, Founder & CEO of EcoFresh and VION',
+    description:
+      "Ark Patil, Founder & CEO of EcoFresh and VION: ISSS National Innovation Award AIR 2 (IISc), Founder's Day Honouree at IIITDM Jabalpur, five patent applications.",
+    image: 'og-ark-patil.png',
+    imageAlt: 'Ark Patil, Founder & CEO of EcoFresh and VION',
+    jsonLd: person({
+      name: 'Ark Patil',
+      jobTitle: 'Founder & CEO',
+      worksFor: [ORG, { '@type': 'Organization', name: 'VION Health Technologies', url: 'https://www.vion-global.com/' }],
+      image: `${SITE}/ark-cover.webp`,
+      email: 'mailto:ark.patil@ecofreshgreensync.com',
+      memberOf: { '@type': 'Organization', name: 'ISSS, IISc Bengaluru' },
+      award: [
+        'ISSS National Innovation Award, All India Rank 2, IISc Bengaluru',
+        "Founder's Day Honour 2026, IIITDM Jabalpur",
+        'Second Globally, Together 7.0, Schulich School of Business, York University (with EcoFresh)',
+        'Top 14 of 1,300+ teams, LoopX Accelerator Programme, ISB Hyderabad (with EcoFresh)',
+        '16th of 2,500+ participants, Hult Prize Global Entrepreneurship Bootcamp 2025, IIT Bombay (with EcoFresh)',
+      ],
+      knowsAbout: ['Bioplastics', 'PHA', 'Food waste', 'Wearable health technology', 'Smart manufacturing'],
+      sameAs: ['https://www.linkedin.com/in/arkpatil/', 'https://www.vion-global.com/'],
+    }),
+  },
+  {
+    slug: 'ansh-bathija',
+    title: 'Ansh Bathija | Co-founder & COO, EcoFresh',
+    ogTitle: 'Ansh Bathija, Co-founder & COO of EcoFresh',
+    description:
+      'Ansh Bathija, Co-founder & COO of EcoFresh: industrial and automotive designer, Global Finalist at the Green Concept Award 2026, Berlin, and SAE life member.',
+    image: 'og-ansh-bathija.png',
+    imageAlt: 'Ansh Bathija, Co-founder & COO of EcoFresh',
+    jsonLd: person({
+      name: 'Ansh Bathija',
+      jobTitle: 'Co-founder & COO',
+      worksFor: ORG,
+      image: `${SITE}/ansh-cover.webp`,
+      email: 'mailto:ansh.bathija@ecofreshgreensync.com',
+      memberOf: { '@type': 'Organization', name: 'SAE International' },
+      award: ['Global Finalist, Green Concept Award 2026, Berlin'],
+      knowsAbout: ['Industrial design', 'Automotive design', 'Operations', 'Defence systems'],
+      sameAs: ['https://www.linkedin.com/in/anshbathija/', 'https://www.behance.net/anshbathija'],
+    }),
+  },
+  {
+    slug: 'shivansh-fulper',
+    title: 'Shivansh Fulper | Co-founder & CTO, EcoFresh; Founder, Waldo',
+    ogTitle: 'Shivansh Fulper, Co-founder & CTO of EcoFresh and founder of Waldo',
+    description:
+      'Shivansh Fulper, Co-founder & CTO of EcoFresh and founder of Waldo: built Eka Curator, the 20-trillion-token pipeline for Project EKA; MIRAI-Setu 2025.',
+    image: 'og-shivansh-fulper.png',
+    imageAlt: 'Shivansh Fulper, Co-founder & CTO of EcoFresh and founder of Waldo',
+    jsonLd: person({
+      name: 'Shivansh Fulper',
+      jobTitle: 'Co-founder & CTO',
+      worksFor: [ORG, { '@type': 'Organization', name: 'Waldo', url: 'https://www.heywaldo.in/' }],
+      image: `${SITE}/shiv-cover.webp`,
+      email: 'mailto:shivansh.fulper@ecofreshgreensync.com',
+      award: [
+        'Major League Hacking Fellow, 2024',
+        'MIRAI-Setu 2025, Ministry of Foreign Affairs, Japan',
+        'Code for GovTech 2024',
+      ],
+      knowsAbout: ['AI systems', 'Large language model data pipelines', 'AI agents', 'Control systems'],
+      sameAs: [
+        'https://www.linkedin.com/in/shivanshfulper/',
+        'https://github.com/Pin4sf',
+        'https://shivansh-portfolio-one.vercel.app/',
+      ],
+    }),
+  },
+  {
+    slug: 'mayur-kumar',
+    title: 'Mayur Kumar | Co-founder & CPO, EcoFresh',
+    ogTitle: 'Mayur Kumar, Co-founder & CPO of EcoFresh',
+    description:
+      'Mayur Kumar, Co-founder & CPO of EcoFresh: industrial designer and inventor with eight patent filings in India and the US; ISSS National Innovation Award AIR 2.',
+    image: 'og-mayur-kumar.png',
+    imageAlt: 'Mayur Kumar, Co-founder & CPO of EcoFresh',
+    jsonLd: person({
+      name: 'Mayur Kumar',
+      jobTitle: 'Co-founder & CPO',
+      worksFor: ORG,
+      image: `${SITE}/mk-cover.webp`,
+      email: 'mailto:mayur.kumar@ecofreshgreensync.com',
+      award: [
+        'Special Jury Mention, Invention Factory 2024, IIT Jammu',
+        'Global Finalist, Green Concept Award 2026, Berlin',
+        'ISSS National Innovation Award, All India Rank 2, IISc Bengaluru',
+      ],
+      knowsAbout: ['Industrial design', 'Healthcare devices', 'Patent drafting', 'Human factors'],
+      sameAs: ['https://www.linkedin.com/in/mayurrkr/'],
+    }),
+  },
+];
+for (const f of founders) f.jsonLd.url = `${SITE}/${f.slug}`;
+pages.push(...founders);
+
 for (const p of pages) {
   const url = `${SITE}/${p.slug}`;
   const img = `${SITE}/${p.image}`;
@@ -69,6 +176,10 @@ for (const p of pages) {
   h = setTag(h, /(<meta name="twitter:title" content=")([^"]*)(")/, esc(p.ogTitle), 'twitter:title');
   h = setTag(h, /(<meta name="twitter:description" content=")([^"]*)(")/, esc(p.description), 'twitter:description');
   h = setTag(h, /(<meta name="twitter:image" content=")([^"]*)(")/, img, 'twitter:image');
+  if (p.jsonLd) {
+    const ld = JSON.stringify(p.jsonLd).replace(/</g, '\\u003c');
+    h = h.replace('</head>', `<script type="application/ld+json">${ld}</script>\n</head>`);
+  }
   writeFileSync(`dist/${p.slug}.html`, h);
   console.log(`wrote dist/${p.slug}.html (${p.description.length}-char description)`);
 }
